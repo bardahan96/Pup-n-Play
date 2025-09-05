@@ -20,7 +20,7 @@ const [dog, setDog] = useState( {
     location: ""
 });
 
-//function to likeBtn - insert liek into the array
+//function to likeBtn - insert like into the array
 
 //update form - to the dog state  and than to the dogs state
 
@@ -28,9 +28,9 @@ const [dog, setDog] = useState( {
 
 
     return (
-        <DogProvider.Provider >
+        <DogContext.Provider >
             {children}
-        </DogProvider.Provider>
+        </DogContext.Provider>
     )
     
 };
