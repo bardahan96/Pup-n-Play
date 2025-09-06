@@ -20,6 +20,11 @@ const [dog, setDog] = useState( {
     location: ""
 });
 
+//img modal swiper
+const [isPop, setIsPop] = useState(false)
+
+
+
 //function to likeBtn - insert like into the array
 
 //update form - to the dog state  and than to the dogs state
@@ -28,7 +33,7 @@ const [dog, setDog] = useState( {
 
 
     return (
-        <DogContext.Provider >
+        <DogContext.Provider value={{isPop, setIsPop}} >
             {children}
         </DogContext.Provider>
     )

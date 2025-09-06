@@ -1,4 +1,5 @@
-import { BrowserRouter } from "react-router";
+import { BrowserRouter, Route, Routes } from "react-router";
+import HomePage from "../HomePage/HomePage";
 
 
 export default function DiegoApp() {
@@ -7,12 +8,11 @@ export default function DiegoApp() {
 
 
             <BrowserRouter>
-            
-            </BrowserRouter>
-        
+                    <HomePage/>
 
-        
-        
+              
+            </BrowserRouter>
+
     )
     
 };

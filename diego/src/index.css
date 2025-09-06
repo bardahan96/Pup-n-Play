@@ -1,8 +1,16 @@
 :root{
-  --primaryColor:  #696DDB;
+  --primaryColor:  #373858;
   --secondaryColor:  #465;
   --primaryFontSize: 18px;
   --secondaryFontSize: 16px;
   --PrimaryFontHeadSize: 22px;
   --primaryBackgroundColor: #98f4;
+  --secondaryBackgroundColor: rgba(79, 64, 161, 0.267);
+  --primaryBoxShadow: 0 4px 10px rgba(153, 136, 255, 0.27);
 }
+
+root{
+  height: 100vh;
+  width: 100vw;
+}
+

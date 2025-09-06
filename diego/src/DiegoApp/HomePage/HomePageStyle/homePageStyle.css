@@ -1,0 +1,97 @@
+.homePage-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    color: var(--primaryColor);
+    
+    
+    .main-profile {
+        height: 90%;
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        background-color: var(--primaryBackgroundColor);
+        border-radius: 8px;
+        box-shadow: var(--primaryBoxShadow);
+        
+      
+      .main-profile-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            gap: 1em;
+            padding: 1.5em;
+            box-sizing: border-box;
+
+        .main-profile-name {
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+
+          img {
+            border-radius: 50%;
+            height: 33px;
+            width: 36px;
+          }
+
+          span {
+
+          }
+        }
+  
+        .dog-main-img {
+            padding: 1em;
+            box-sizing: border-box;
+            box-shadow: var(--primaryBoxShadow);
+            background-color: var(--secondaryBackgroundColor);
+            border-radius: 8px;
+          img {
+            width: 100%;
+
+          }
+        }
+  
+        .profile-descrption {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 0.5em;
+
+            .descrption-list{
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: center;
+                gap: 6px;
+                flex-wrap: wrap;
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+                .profile-descrption-header{
+                display: flex;
+                align-items: center;
+                gap: 1em;
+                h3{
+                    margin: 0;
+                }
+                }
+
+                .infoContainer , .hobbies{
+                    padding: 0.2em 1em;
+                    background-color: rgb(244, 200, 255);
+                    border-radius: 2em;
+                    color: var(--primaryColor);
+                    display: flex;
+
+                }
+        }
+  
+      }
+    }
+  }
+  
