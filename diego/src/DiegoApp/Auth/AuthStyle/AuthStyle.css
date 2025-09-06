@@ -1,0 +1,29 @@
+ /* --primaryColor:  #696DDB;
+  --secondaryColor:  #465;
+  --primaryFontSize: 18px;
+  --secondaryFontSize: 16px;
+  --PrimaryFontHeadSize: 22px;
+  --primaryBackgroundColor: #98f4; */
+.login-page-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+  .email-pass-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  button{
+    
+    background-color: var(--primaryColor);
+    color: white;
+    border: none;
+    padding: 5px 55px ;
+    border-radius: 5px;
+  }
+  button:hover{
+    background-color: var(--primaryBackgroundColor);
+  }

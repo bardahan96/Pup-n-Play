@@ -1,4 +1,5 @@
 import { BrowserRouter } from "react-router";
+import SignUp from "../Auth/SignUp";
 
 
 export default function DiegoApp() {
@@ -7,7 +8,6 @@ export default function DiegoApp() {
 
 
             <BrowserRouter>
-            
             </BrowserRouter>
         
 
