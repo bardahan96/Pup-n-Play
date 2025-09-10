@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { auth } from "../config/firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import "./AuthStyle/AuthStyle.css";
+import { DogContext } from "../app/context/DogContext";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -9,6 +10,10 @@ export default function SignUp() {
   const [name, setName] = useState("");
   const [size, setSize] = useState("Small");
   const [age, setAge] = useState(0);
+
+  // onchageDogData- function that take and sets the data of the dog
+  const { dog,setDogs, dogs,  onChangeDogData } = useContext(DogContext)
+
   console.log(auth?.currentUser?.email); //this is the way we cann access to the current user!!!!
   console.log(size);
   //   name: "",
@@ -28,6 +33,12 @@ export default function SignUp() {
       //TODO: להוסיף בדיקה של אימייל קיים,אימייל לא תקין
     }
   }
+function updateArry () {
+  setDogs(prev => [...prev , dog])
+}
+  useEffect(() => {
+    signUpDB()
+  }, [dogs])
 
   return (
     <>
@@ -94,20 +105,48 @@ export default function SignUp() {
       </div>
       <input
         type="range"
-        value={age}
+        value={dog.age}
         min="0"
         max="30"
         step="0.1"
-        onChange={(e) => {
-          setAge(e.target.value);
-        }}
+        onChange={onChangeDogData}
       />
+
+       {/* img need to make */}
+       <div className="preferencesContainer">
+          <label htmlFor="preferences">preferences :</label>
+       <input type="text" 
+       id="preferences"
+        value={dog.preferences}
+        name="preferences"
+        onChange={onChangeDogData}
+       />
+       </div>
+
+       <div className="descriptionContainer">
+        <label htmlFor="description">description :</label>
+        <input type="text"
+        id="description" 
+        value={dog.description}
+        name="description"
+        onChange={onChangeDogData}
+        />
+
+
+       </div>
+
+
       <p>Age:{age}</p>
       <h2>email pass</h2>
       {email}
       {password}
-      <button onClick={signUpDB}>Sign Up</button>
+      <button onClick={updateArry}>Sign Up</button>
       {/* <button disabled={auth.currentUser} onClick={signUpDB}>Sign Up</button> */}
+
+
+        <div className="submitContainer">
+        </div>
+
     </>
   );
 }
