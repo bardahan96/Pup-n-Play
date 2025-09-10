@@ -3,6 +3,7 @@ import HomePage from "../HomePage/HomePage";
 import UserWrapper from "./context/UserWrapper";
 import SignUp from "../Auth/SignUp";
 import Login from "../Auth/Login";
+import SignOut from "../Auth/SignOut";
 
 export default function DiegoApp() {
 
@@ -14,7 +15,7 @@ export default function DiegoApp() {
 
                 <Routes>
                     <Route path="/:user" element={<UserWrapper/>}/>
-                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/login" element={<><Login/> <SignOut/></>}/>
                 </Routes>
                     <HomePage/>
 
