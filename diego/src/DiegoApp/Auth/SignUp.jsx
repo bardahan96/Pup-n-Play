@@ -3,37 +3,28 @@ import { auth } from "../config/firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import "./AuthStyle/AuthStyle.css";
 import { DogContext } from "../app/context/DogContext";
+import diegoImg from '../../assets/diego.png'
+
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [size, setSize] = useState("Small");
-  const [age, setAge] = useState(0);
+  // const [size, setSize] = useState("Small");
+  // const [age, setAge] = useState(0);
 
   // onchageDogData- function that take and sets the data of the dog
   const { dog,setDogs, dogs,  onChangeDogData } = useContext(DogContext)
-
-  console.log(auth?.currentUser?.email); //this is the way we cann access to the current user!!!!
-  console.log(size);
-  //   name: "",
-  //     id: "",
-  //     imgs: null,
-  //     age: "",
-  //     preferences: "",
-  //     descrption: "",
-  //     likes: [],
-  //     location: ""
-
   async function signUpDB() {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
     } catch (error) {
       console.error(error);
-      //TODO: להוסיף בדיקה של אימייל קיים,אימייל לא תקין
     }
   }
-function updateArry () {
+
+
+function SignUp () {
   setDogs(prev => [...prev , dog])
 }
   useEffect(() => {
@@ -42,7 +33,93 @@ function updateArry () {
 
   return (
     <>
-      <input
+
+      <div className="signUpContainer">
+      
+          <div className="signUpForm">
+            <img src={diegoImg} alt="" />
+
+            <div className="formInput">
+              <label htmlFor="username">Username</label>
+              <input type="text" id="username" onChange={(e) => {
+                setName(e.target.value)
+              }}
+              value={name}
+              placeholder="please enter your name" />
+            </div>
+
+            <div className="formInput">
+              <label htmlFor="password">Username</label>
+              <input type="text" id="password" onChange={(e) => {
+                setPassword(e.target.value)
+              }}
+              value={name}
+              placeholder="please enter your name" />
+            </div>
+
+              <div className="formInput">
+                <label htmlFor="email">Email</label>
+                <input type="text" id="email" onChange={(e) => setEmail(e.target.value)}
+                value={email} />
+              </div>
+
+
+              <div className="formInput">
+                <label htmlFor="dogName">dog name:</label>
+                <input type="text" id="dogName" name="name" value={dog.name} onChange={onChangeDogData} />
+              </div>
+
+            <div className="formInput">
+                <label htmlFor="description">description :</label>
+                <input type="text"
+                id="description" 
+                value={dog.description}
+                name="description"
+                onChange={onChangeDogData}/>
+            </div>
+
+            <div className="formInput">
+                <label htmlFor="preferences">preferences :</label>
+                <input type="text" 
+                id="preferences"
+                 value={dog.preferences}
+                 name="preferences"
+                 onChange={onChangeDogData}/>
+            </div>
+
+            <div className="formInput">
+                <label htmlFor="age">Age</label>
+                <input type="range"  onChange={onChangeDogData} value={dog.age}
+                name="age"
+                min="0"
+                max="30"
+                step="0.1"
+                />
+                <span>{dog.age}</span>
+            </div>
+
+            <div className="formInput">
+                <label htmlFor="size">Size</label>
+                <select onChange={onChangeDogData} name="size" id="size">
+                    <option value="small">small</option>
+                    <option value="medium">medium</option>
+                    <option value="large">large</option>
+                </select>
+            </div>
+
+            <div className="formInput">
+                <label htmlFor="uploadImgs">Upload img</label>
+                <input type="file" />
+            </div>
+
+
+              <button onClick={SignUp}>Sign Up</button>
+
+
+          </div>
+      </div>
+
+      {/* <input
         type="text"
         value={name}
         placeholder="Name"
@@ -111,8 +188,7 @@ function updateArry () {
         step="0.1"
         onChange={onChangeDogData}
       />
-
-       {/* img need to make */}
+       {/* img need to make 
        <div className="preferencesContainer">
           <label htmlFor="preferences">preferences :</label>
        <input type="text" 
@@ -141,7 +217,7 @@ function updateArry () {
       {email}
       {password}
       <button onClick={updateArry}>Sign Up</button>
-      {/* <button disabled={auth.currentUser} onClick={signUpDB}>Sign Up</button> */}
+      <button disabled={auth.currentUser} onClick={signUpDB}>Sign Up</button> */}
 
 
         <div className="submitContainer">

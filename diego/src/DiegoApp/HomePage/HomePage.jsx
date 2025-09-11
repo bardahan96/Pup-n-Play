@@ -12,16 +12,15 @@ export default function HomePage() {
         location: "Haifa",
     })
 
+
+    const { dogs } = useContext(DogContext)
+
+    console.log("dogs in homepage",dogs);
     const { setIsPop, isPop } = useContext(DogContext)
 
     function openModal () {
         setIsPop(true)
     }
-    useEffect(() => {
-        console.log(isPop);
-    })
-
-
 
     return (
         <>
@@ -37,9 +36,18 @@ export default function HomePage() {
                             <img src="https://images.dog.ceo/breeds/hound-blood/n02088466_7046.jpg" alt="" />
                         </div>
                             <DescrptionList/>
+                            
+
+                     <div className='handleLikesContainer'>
+                    <button className='likeBtn homePageBtn'>Like</button>
+                    <button className='passBtn homePageBtn'>Pass</button>
                     </div>
+
+                    </div>
+
                 </div>
                 <DogImgModal/>
+
 
             </div>
 

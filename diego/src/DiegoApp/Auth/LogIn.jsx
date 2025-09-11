@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { auth } from "../config/firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import "./AuthStyle/AuthStyle.css";
+
+
 export default function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
