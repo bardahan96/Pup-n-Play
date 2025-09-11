@@ -20,5 +20,16 @@ export default function UserProvider({ children }) {
     password: "",
   });
 
-  return <UserContext.Provider value={{ user, setuser, users, setUsers }}>{children}</UserContext.Provider>;
+  async function signUpDB() {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  
+ 
+
+  return <UserContext.Provider value={{ user, setuser, users, setUsers ,signUpDB}}>{children}</UserContext.Provider>;
 }
