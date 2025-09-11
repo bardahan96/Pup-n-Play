@@ -1,0 +1,8 @@
+
+.webWrraper{
+    background-color: var(--primaryBackgroundColor);
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

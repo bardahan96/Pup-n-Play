@@ -6,6 +6,8 @@ import {db} from "../config/firebase"
 import { getDocs, collection, addDoc, doc, setDoc, updateDoc } from "firebase/firestore";
 
 
+
+
 export default function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

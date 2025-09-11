@@ -93,5 +93,28 @@
   
       }
     }
+
+    .handleLikesContainer{
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      button{
+        width: 40%;
+        white-space: balance;
+        align-self: flex-start;
+        background-color: var(--secondaryColor);
+        color: white;
+        border: none;
+        padding: 0.4em 0em;
+        border-radius: 5px;
+        cursor: pointer;
+  
+        &:hover{
+          box-shadow: var(--secondaryBoxShadow);
+          box-shadow: 1px 1px 2px ;
+        }
+      }
+    }
   }
   
