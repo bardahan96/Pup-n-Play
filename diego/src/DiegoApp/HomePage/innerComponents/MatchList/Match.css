@@ -1,0 +1,33 @@
+.match {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.its-a-match {
+  font-size: 24px;
+}
+
+.match-img {
+  height: 360px;
+  width: 360px;
+}
+
+.match-row {
+  display: flex;
+}
+
+.circle {
+  border: 1px solid black;
+  border-radius: 100px;
+  height: 100px;
+  width: 100px;
+}
+
+.user1-img {
+  position: absolute;
+}
+.user2-img {
+  position: absolute;
+}
