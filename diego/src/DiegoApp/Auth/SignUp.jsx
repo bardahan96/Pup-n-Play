@@ -1,30 +1,17 @@
 import { useContext, useEffect, useState } from "react";
-import { auth } from "../config/firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+// import { auth } from "../config/firebase";
+// import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import "./AuthStyle/AuthStyle.css";
 import { DogContext } from "../app/context/DogContext";
+import { UserContext } from "../app/context/UserContext";
 
 export default function SignUp() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [size, setSize] = useState("Small");
-  const [age, setAge] = useState(0);
+  const {user, setuser, users, setUsers}=useContext(UserContext)
+  
 
   // onchageDogData- function that take and sets the data of the dog
-  const { dog,setDogs, dogs,  onChangeDogData } = useContext(DogContext)
 
-  console.log(auth?.currentUser?.email); //this is the way we cann access to the current user!!!!
-  console.log(size);
-  //   name: "",
-  //     id: "",
-  //     imgs: null,
-  //     age: "",
-  //     preferences: "",
-  //     descrption: "",
-  //     likes: [],
-  //     location: ""
-
+  
   async function signUpDB() {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
