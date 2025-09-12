@@ -1,8 +1,10 @@
+import { collection, getDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { createContext } from "react";
 import { useParams } from "react-router";
 import { auth } from "../config/firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { db } from "../../config/firebase";
 
 export const UserContext = createContext();
 
@@ -29,7 +31,28 @@ export default function UserProvider({ children }) {
   }
 
   
- 
+   function onChangeDogData(e) {
+    const field = e.currentTarget.name;
+    const value = e.currentTarget.value;
+    setDog((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  }
+  useEffect(() => {
+    console.log("dog state data", dog);
+  }, [dog]);
 
-  return <UserContext.Provider value={{ user, setuser, users, setUsers ,signUpDB}}>{children}</UserContext.Provider>;
+  useEffect(() => {
+    console.log("dogs array", dogs);
+  }, [dogs]);
+
+  //img modal swiper
+  const [isPop, setIsPop] = useState(false);
+
+  //function to likeBtn - insert like into the array
+
+  //update form - to the dog state  and than to the dogs state
+
+  return <UserContext.Provider value={{ isPop, setDogs, dogs, params, setIsPop, dog, onChangeDogData }}>{children}</UserContext.Provider>;
 }

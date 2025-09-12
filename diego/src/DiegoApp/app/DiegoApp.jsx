@@ -1,12 +1,12 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router";
 import HomePage from "../HomePage/HomePage";
-// import UserWrapper from "./context/UserWrapper";
 import SignUp from "../Auth/SignUp";
-import LogIn from "../Auth/Login";
+// import LogIn from "../Auth/Login";
 import SignOut from "../Auth/SignOut";
 import { useState } from "react";
 import './mainStyle/diegoAppStyle.css'
 import UserWrapper from "./context/UserWrapper";
+import LogIn from "../Auth/LogIn";
 
 
 export default function DiegoApp() {
@@ -17,7 +17,7 @@ export default function DiegoApp() {
            <BrowserRouter>
             <Routes>
                 <Route path="/" element={<UserWrapper/>}>
-                    <Route path="/" element={<LogIn/>}/>
+                    <Route path="/LogIn" element={<LogIn/>}/>
                     <Route path="/:signup" element={<SignUp/>}/>
                     <Route path="/home" element={<HomePage/>} />
                 </Route>

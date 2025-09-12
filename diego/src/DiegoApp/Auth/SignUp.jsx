@@ -9,7 +9,22 @@ export default function SignUp() {
   const { user, setuser, users, setUsers ,signUpDB} = useContext(UserContext);
 
   // onchageDogData- function that take and sets the data of the dog
+  const { dog,setDogs, dogs,  onChangeDogData } = useContext(DogContext)
+  async function signUpDB() {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
+
+function SignUp () {
+  setDogs(prev => [...prev , dog])
+}
+  useEffect(() => {
+    SignUp()
+  }, [signUpDB])
 
   return (
     <>
@@ -83,8 +98,10 @@ export default function SignUp() {
             <input type="file" />
           </div>
 
-          <button onClick={SignUp}>Sign Up</button>
-        </div>
+              <button onClick={signUpDB}>Sign Up</button>
+
+
+          </div>
       </div>
 
       {/* <input
