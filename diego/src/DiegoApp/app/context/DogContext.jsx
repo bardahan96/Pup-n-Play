@@ -15,7 +15,7 @@ export default function DogProvider({ children }) {
     id: "",
     imgs: null,
     age: "",
-    preferences: "",
+    bread: "",
     description: "",
     likes: [],
     location: "",

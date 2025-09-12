@@ -1,21 +1,51 @@
 import { useContext, useEffect, useState } from "react";
+import { collection, addDoc, setDoc,doc } from "firebase/firestore";
+import { db } from "../config/firebase";
 // import { auth } from "../config/firebase";
 // import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import "./AuthStyle/AuthStyle.css";
 import { DogContext } from "../app/context/DogContext";
 import { UserContext } from "../app/context/UserContext";
-// import {} from "../../assets/Diego.png"
 export default function SignUp() {
   // onchageDogData- function that take and sets the data of the dog
   const { dog, setDogs, dogs, onChangeDogData } = useContext(DogContext);
 
   const { user, setuser, users, setUsers, signUpDB, onChangeUserData } = useContext(UserContext);
-  
- function handleSignUp() {
+
+  async function addDogForUser() {
+    try {
+      // const userID = user.id;
+      // if (!userID) {
+      //   console.error("No user logged in");
+      //   return;
+      // }
+
+      const userDogsCollectionRef = doc(db, "dogs", dog.id);
+
+      await setDoc(userDogsCollectionRef, {
+        name:dog.name,
+        size: dog.size,
+        id: dog.id,
+        imgs: null,
+        age: dog.age,
+        bread: dog.bread,
+        description: dog.description,
+        likes: dog.likes,
+        location: dog.location,
+      });
+
+      console.log("Dog added!");
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  function handleSignUp() {
     // מוסיפים כלב פעם אחת בלחיצה
-    setDogs(prev => [...prev, dog]);
+    setDogs((prev) => [...prev, dog]);
     // מפעילים את רישום המשתמש (DB)
     signUpDB();
+    addDogForUser();
   }
 
   return (
@@ -28,7 +58,6 @@ export default function SignUp() {
             <label htmlFor="username">Username</label>
             <input type="text" id="username" name="username" onChange={onChangeUserData} value={user.username} placeholder="please enter your name" />
           </div>
-
 
           <div className="formInput">
             <label htmlFor="email">Email</label>
@@ -51,8 +80,8 @@ export default function SignUp() {
           </div>
 
           <div className="formInput">
-            <label htmlFor="preferences">preferences :</label>
-            <input type="text" id="preferences" value={dog.preferences} name="preferences" onChange={onChangeDogData} />
+            <label htmlFor="preferences">bread :</label>
+            <input type="text" id="preferences" value={dog.bread} name="bread" onChange={onChangeDogData} />
           </div>
 
           <div className="formInput">

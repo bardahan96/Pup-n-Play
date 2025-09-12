@@ -1,5 +1,5 @@
-import { collection, getDoc } from "firebase/firestore";
-import { useState, useEffect } from "react";
+import { collection, getDoc, addDoc } from "firebase/firestore";
+import { useState, useEffect, useRef } from "react";
 import { createContext } from "react";
 import { useParams } from "react-router";
 // import { auth } from "../config/firebase";
@@ -15,7 +15,7 @@ export default function UserProvider({ children }) {
   const params = useParams(null);
 
   const [users, setUsers] = useState([]);
-
+  const idRef = useRef("");
   const [user, setUser] = useState({
     username: "",
     id: "",
@@ -33,20 +33,22 @@ export default function UserProvider({ children }) {
   }
 
   async function signUpDB() {
-  try {
-    // await createUserWithEmailAndPassword(auth, user.email, user.password);
+    try {
+      await createUserWithEmailAndPassword(auth, user.email, user.password);
 
-    const newUser = {
-      ...user,
-      id: auth?.currentUser?.uid ?? user.id, // fallback אם אין currentUser
-    };
+      const newUser = {
+        ...user,
+        id: auth.currentUser.uid, // fallback אם אין currentUser
+      };
 
-    setUser(newUser);
-    setUsers(prev => [...prev, newUser]);   // ⬅️ שמירה נכונה למערך
-  } catch (error) {
-    console.error(error);
+      setUser(newUser);
+      setUsers((prev) => [...prev, newUser]); // ⬅️ שמירה נכונה למערך
+    } catch (error) {
+      console.error(error);
+    }
+    console.log(`signup DB-user`, user);
+    console.log(`signup DB-users`, users);
   }
-}
 
   return <UserContext.Provider value={{ params, user, setUser, users, setUsers, signUpDB, onChangeUserData }}>{children}</UserContext.Provider>;
 }
