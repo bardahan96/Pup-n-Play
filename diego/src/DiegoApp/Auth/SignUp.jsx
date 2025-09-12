@@ -28,8 +28,8 @@ function SignUp () {
   setDogs(prev => [...prev , dog])
 }
   useEffect(() => {
-    signUpDB()
-  }, [dogs])
+    SignUp()
+  }, [signUpDB])
 
   return (
     <>
@@ -113,7 +113,7 @@ function SignUp () {
             </div>
 
 
-              <button onClick={SignUp}>Sign Up</button>
+              <button onClick={signUpDB}>Sign Up</button>
 
 
           </div>

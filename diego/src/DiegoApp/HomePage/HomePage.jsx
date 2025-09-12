@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from 'react'
 import './HomePageStyle/homePageStyle.css'
 import DescrptionList from './HomePageComponents/DescrptionList'
-import { DogContext } from '../app/context/DogContext'
+
 import DogImgModal from './HomePageComponents/DogImgModal'
+import { DogContext } from '../app/context/DogContext'
 
 export default function HomePage() {
 
@@ -13,9 +14,8 @@ export default function HomePage() {
     })
 
 
-    const { dogs } = useContext(DogContext)
+    
 
-    console.log("dogs in homepage",dogs);
     const { setIsPop, isPop } = useContext(DogContext)
 
     function openModal () {
