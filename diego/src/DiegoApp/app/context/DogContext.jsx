@@ -12,7 +12,7 @@ export default function DogProvider({ children }) {
   const [dog, setDog] = useState({
     name: "",
     size: "",
-    id: "",
+    id: Date.now(),
     imgs: null,
     age: "",
     bread: "",

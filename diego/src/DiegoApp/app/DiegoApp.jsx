@@ -17,7 +17,8 @@ export default function DiegoApp() {
            <BrowserRouter>
             <Routes>
                 <Route path="/" element={<UserWrapper/>}>
-                    <Route path="/LogIn" element={<LogIn/>}/>
+                    <Route path="/logIn" element={<LogIn/>}/>
+                    <Route path="/signOut" element={<SignOut/>}/>
                     <Route path="/signup" element={<SignUp/>}/>
                     <Route path="/home" element={<HomePage/>} />
                 </Route>

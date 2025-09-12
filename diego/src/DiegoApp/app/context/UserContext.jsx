@@ -38,11 +38,11 @@ export default function UserProvider({ children }) {
 
       const newUser = {
         ...user,
-        id: auth.currentUser.uid, // fallback אם אין currentUser
+        id: auth.currentUser.uid, 
       };
 
       setUser(newUser);
-      setUsers((prev) => [...prev, newUser]); // ⬅️ שמירה נכונה למערך
+      setUsers((prev) => [...prev, newUser]); 
     } catch (error) {
       console.error(error);
     }

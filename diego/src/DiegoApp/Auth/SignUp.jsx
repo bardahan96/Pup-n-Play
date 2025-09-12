@@ -6,21 +6,20 @@ import { db } from "../config/firebase";
 import "./AuthStyle/AuthStyle.css";
 import { DogContext } from "../app/context/DogContext";
 import { UserContext } from "../app/context/UserContext";
+import LogIn from "./LogIn";
+import { useNavigate } from "react-router";
 export default function SignUp() {
   // onchageDogData- function that take and sets the data of the dog
   const { dog, setDogs, dogs, onChangeDogData } = useContext(DogContext);
 
   const { user, setuser, users, setUsers, signUpDB, onChangeUserData } = useContext(UserContext);
 
+  const navigate=useNavigate()
   async function addDogForUser() {
     try {
-      // const userID = user.id;
-      // if (!userID) {
-      //   console.error("No user logged in");
-      //   return;
-      // }
+      
 
-      const userDogsCollectionRef = doc(db, "dogs", dog.id);
+      const userDogsCollectionRef = doc(db, "dogs", String(dog.id));
 
       await setDoc(userDogsCollectionRef, {
         name:dog.name,
@@ -106,8 +105,11 @@ export default function SignUp() {
           </div>
 
           <button onClick={handleSignUp}>Sign Up</button>
+              <button onClick={()=>navigate("/logIn")}>Login</button> 
         </div>
+
       </div>
+       
 
       {/* <input
         type="text"
