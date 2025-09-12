@@ -9,15 +9,44 @@ export default function LogIn() {
   const [password, setPassword] = useState("");
 
   async function signInDB() {
+    console.log("user ");
+    
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       console.error(error);
     }
   }
+
+
+
+async function addDogForUser() {
+  try {
+    const userID = auth.currentUser?.uid;
+    if (!userID) {
+      console.error("No user logged in");
+      return;
+    }
+
+    const userDogsCollectionRef = collection(db, "dogs", userID, "userDogs");
+
+    await addDoc(userDogsCollectionRef, {
+      name: "Diego",
+      breed: "Pudle",
+      age: 2,
+      
+    });
+
+    console.log("Dog added!");
+  } catch (err) {
+    console.error(err);
+  }
+}
+
   return (
     
     <div className="login-page-container">
+       {auth?.currentUser?.email}
         <img src="../../assets/Diego.PNG" alt="dog" sizes="10px"  />
       <div className="email-pass-container">
         <input
@@ -38,6 +67,7 @@ export default function LogIn() {
         />
       </div>
       <button onClick={signInDB}> log in</button>
+      <button onClick={addDogForUser}> add dog</button>
     </div>
     
   );

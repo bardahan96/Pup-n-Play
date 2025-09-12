@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "../HomePage/HomePage";
 // import UserWrapper from "./context/UserWrapper";
 import SignUp from "../Auth/SignUp";
@@ -6,6 +6,8 @@ import { useState } from "react";
 import './mainStyle/diegoAppStyle.css'
 import UserWrapper from "./context/UserWrapper";
 import LogIn from "../Auth/LogIn";
+import Login from "../Auth/Login";
+import SignOut from "../Auth/SignOut";
 
 export default function DiegoApp() {
 
