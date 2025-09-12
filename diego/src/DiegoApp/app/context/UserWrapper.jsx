@@ -1,4 +1,5 @@
 import { Outlet, useParams } from "react-router"
+import { useContext } from "react"
 import { DogContext } from "./DogContext"
 
 export default function UserWrapper() {

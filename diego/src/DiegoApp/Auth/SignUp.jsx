@@ -4,63 +4,40 @@ import { useContext, useEffect, useState } from "react";
 import "./AuthStyle/AuthStyle.css";
 import { DogContext } from "../app/context/DogContext";
 import { UserContext } from "../app/context/UserContext";
-
+// import {} from "../../assets/Diego.png"
 export default function SignUp() {
-  const { user, setuser, users, setUsers ,signUpDB} = useContext(UserContext);
-
   // onchageDogData- function that take and sets the data of the dog
-  const { dog,setDogs, dogs,  onChangeDogData } = useContext(DogContext)
-  async function signUpDB() {
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-    } catch (error) {
-      console.error(error);
-    }
+  const { dog, setDogs, dogs, onChangeDogData } = useContext(DogContext);
+
+  const { user, setuser, users, setUsers, signUpDB, onChangeUserData } = useContext(UserContext);
+  
+ function handleSignUp() {
+    // מוסיפים כלב פעם אחת בלחיצה
+    setDogs(prev => [...prev, dog]);
+    // מפעילים את רישום המשתמש (DB)
+    signUpDB();
   }
-
-
-function SignUp () {
-  setDogs(prev => [...prev , dog])
-}
-  useEffect(() => {
-    SignUp()
-  }, [signUpDB])
 
   return (
     <>
       <div className="signUpContainer">
         <div className="signUpForm">
-          <img src={diegoImg} alt="" />
+          <img src={"../../assets/Diego.png"} alt="" />
 
           <div className="formInput">
             <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-              value={name}
-              placeholder="please enter your name"
-            />
+            <input type="text" id="username" name="username" onChange={onChangeUserData} value={user.username} placeholder="please enter your name" />
           </div>
 
-          <div className="formInput">
-            <label htmlFor="password">Username</label>
-            <input
-              type="text"
-              id="password"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-              value={name}
-              placeholder="please enter your name"
-            />
-          </div>
 
           <div className="formInput">
             <label htmlFor="email">Email</label>
-            <input type="text" id="email" onChange={(e) => setEmail(e.target.value)} value={email} />
+            <input type="text" id="email" name="email" onChange={onChangeUserData} value={user.email} />
+          </div>
+
+          <div className="formInput">
+            <label htmlFor="password">Password</label>
+            <input type="text" id="password" name="password" onChange={onChangeUserData} value={user.password} placeholder="please enter your name" />
           </div>
 
           <div className="formInput">
@@ -87,6 +64,7 @@ function SignUp () {
           <div className="formInput">
             <label htmlFor="size">Size</label>
             <select onChange={onChangeDogData} name="size" id="size">
+              <option value="">Select</option>
               <option value="small">small</option>
               <option value="medium">medium</option>
               <option value="large">large</option>
@@ -98,10 +76,8 @@ function SignUp () {
             <input type="file" />
           </div>
 
-              <button onClick={signUpDB}>Sign Up</button>
-
-
-          </div>
+          <button onClick={handleSignUp}>Sign Up</button>
+        </div>
       </div>
 
       {/* <input
