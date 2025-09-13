@@ -5,14 +5,16 @@ export default function UserWrapper() {
 
     const params = useParams(null)
 
-    const { dogs } = useContext(DogContext)
+    // const { dogs } = useContext(DogContext)
 
     
     
 
     return (
         <>
+        <Header/>
         <Outlet/>
+        
         </>
     )
     

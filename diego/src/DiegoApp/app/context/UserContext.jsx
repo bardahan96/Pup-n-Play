@@ -1,21 +1,20 @@
 import { collection, getDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { createContext } from "react";
-import { useParams } from "react-router";
-import { db } from "../../config/firebase";
-import { auth } from "../config/firebase";
+
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { auth, db } from "../../config/firebase";
 
 export const UserContext = createContext();
 
 export default function UserProvider({ children }) {
   console.log(auth?.currentUser?.email); //this is the way we cann access to the current user!!!!
 
-  const params = useParams(null);
+
 
   const [users, setUsers] = useState([]);
 
-  const [user, setuser] = useState({
+  const [user, setUser] = useState({
     name: "",
     id: "",
     email: "",
@@ -24,11 +23,30 @@ export default function UserProvider({ children }) {
 
   async function signUpDB() {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      await createUserWithEmailAndPassword(auth, user.email, user.password);
     } catch (error) {
       console.error(error);
     }
   }
+
+  function onChangeUserData (e) {
+    const field = e.currentTarget.name;
+    const value = e.currentTarget.value;
+    setUser(prev => ({
+      ...prev, [field]: value
+    }))
+  }
+
+  useEffect(() => {
+    console.log("user : ", user);
+  }, [user])
+
+  useEffect(() => {
+    console.log(auth?.currentUser?.email);
+
+  })
+
+
 
   
  
@@ -42,5 +60,5 @@ export default function UserProvider({ children }) {
 
  
 
-  return <UserContext.Provider value={{ isPop, setDogs, dogs, params, setIsPop, dog, onChangeDogData }}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={{ signUpDB , onChangeUserData}}>{children}</UserContext.Provider>;
 }

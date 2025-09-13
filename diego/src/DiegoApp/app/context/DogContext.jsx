@@ -8,7 +8,7 @@ export const DogContext = createContext();
 
 export default function DogProvider({children}) {
 
-    const params = useParams(null)
+    
 
 const [dogs, setDogs] = useState([])
 
@@ -30,15 +30,23 @@ function onChangeDogData (e) {
     setDog(prev => ({
         ...prev, [field]: value
     }) )
-
 }
-useEffect(() => {
-    console.log("dog state data",dog);
-}, [dog])
 
-useEffect(() => {
-    console.log("dogs array", dogs);
-}, [dogs])
+
+myDogData - genery of UserActivation
+
+dogShown = {
+    size: , imgs: , age: 
+}
+
+
+// useEffect(() => {
+//     console.log("dog state data",dog);
+// }, [dog])
+
+// useEffect(() => {
+//     console.log("dogs array", dogs);
+// }, [dogs])
 
 
 //img modal swiper
@@ -54,7 +62,7 @@ const [isPop, setIsPop] = useState(false)
 
 
     return (
-        <DogContext.Provider value={{isPop, setDogs,dogs,  params,  setIsPop ,dog, onChangeDogData}} >
+        <DogContext.Provider value={{isPop, setDogs, dogs,  setIsPop ,dog, onChangeDogData}} >
             {children}
         </DogContext.Provider>
     )
