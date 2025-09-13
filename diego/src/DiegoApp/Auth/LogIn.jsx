@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { auth } from "../config/firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import "./AuthStyle/AuthStyle.css";
+import {db} from "../config/firebase"
+import { getDocs, collection, addDoc, doc, setDoc, updateDoc } from "firebase/firestore";
+
+
 
 
 export default function LogIn() {

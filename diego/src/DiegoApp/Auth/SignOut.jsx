@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import { auth } from "../config/firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-
+import { UserContext } from "../app/context/UserContext";
 export default function SignOut() {
     async function signOutDB() {
         
