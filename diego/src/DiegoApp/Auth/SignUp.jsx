@@ -92,7 +92,7 @@ export default function SignUp() {
           <div className="formInput">
             <label htmlFor="size">Size</label>
             <select onChange={onChangeDogData} name="size" id="size">
-              <option value="">Select</option>
+              <option disabled={true} value="">Select</option>
               <option value="small">small</option>
               <option value="medium">medium</option>
               <option value="large">large</option>
