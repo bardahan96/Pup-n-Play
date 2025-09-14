@@ -3,27 +3,41 @@ import HomePage from "../HomePage/HomePage";
 import SignUp from "../Auth/SignUp";
 // import LogIn from "../Auth/Login";
 import SignOut from "../Auth/SignOut";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import './mainStyle/diegoAppStyle.css'
 import UserWrapper from "./context/UserWrapper";
 import LogIn from "../Auth/LogIn";
-import SignOut from "../Auth/SignOut";
+import SignDog from "../Auth/SignDog";
+import { DogContext } from "./context/DogContext";
+import { UserContext } from "./context/UserContext";
 
 
 export default function DiegoApp() {
+
+    const { fetchDogsFromDB , dogs } = useContext(DogContext)
+    const { user } = useContext(UserContext)
+
+    useEffect(() => {
+        fetchDogsFromDB()
+    }, [])
+
+    useEffect(() => {
+        console.log("dogs array: ",dogs);
+    }, [dogs])
 
 
     return (
         <div className="webWrraper">
            <BrowserRouter>
 
-           {/* header */}
+           
             <Routes>
                 <Route path="/" element={<UserWrapper/>}>
-                    <Route path="/logIn" element={<LogIn/>}/>
+                    <Route path="" element={<LogIn/>}/>
                     <Route path="/signOut" element={<SignOut/>}/>
                     <Route path="/signup" element={<SignUp/>}/>
-                    <Route path="/home" element={<HomePage/>} />
+                    <Route path={`/:${user.username}/createDogForm`} element={<SignDog/>}/>
+                    <Route path={`/:${user.username}/home`} element={<HomePage/>} />
                 </Route>
             </Routes>
 
@@ -31,7 +45,6 @@ export default function DiegoApp() {
            </BrowserRouter>
 
 
-           <NavLink to="home" >logIN</NavLink>
         </div>
     )
     

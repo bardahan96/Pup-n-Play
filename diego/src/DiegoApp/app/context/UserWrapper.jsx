@@ -1,5 +1,5 @@
 import { Outlet, useParams } from "react-router"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { DogContext } from "./DogContext"
 
 export default function UserWrapper() {
@@ -8,14 +8,17 @@ export default function UserWrapper() {
 
     // const { dogs } = useContext(DogContext)
 
+    useEffect(() => {
+        console.log("params: ", params);
+    }, params)
+
     
     
 
     return (
         <>
-        <Header/>
         <Outlet/>
-        
+
         </>
     )
     

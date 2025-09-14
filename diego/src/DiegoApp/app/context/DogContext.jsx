@@ -1,18 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { createContext } from "react";
 import { useParams } from "react-router";
+import { db } from "../../config/firebase";
+import { getDocs, setDoc, collection, doc } from "firebase/firestore";
+import { UserContext } from "./UserContext";
+
 
 export const DogContext = createContext();
 
+
+
 export default function DogProvider({ children }) {
   const params = useParams(null);
+
+  const { auth , user } = useContext(UserContext)
 
   const [dogs, setDogs] = useState([]);
 
   const [dog, setDog] = useState({
     name: "",
     size: "",
-    id: Date.now(),
+    id: user.id,
     imgs: null,
     age: "",
     bread: "",
@@ -20,6 +28,37 @@ export default function DogProvider({ children }) {
     likes: [],
     location: "",
   });
+
+
+  async function fetchDogsFromDB () {
+    const snap = await getDocs(collection(db, "dogs"));
+    const dogData = snap.docs.map(doc => ({id: doc.id, ...doc.data()}))
+    setDogs(prev => [...prev, ...dogData]);
+  }
+
+  async function addDogForUser() {
+    try {
+      
+
+      const userDogsCollectionRef = doc(db, "dogs", dog.id);
+
+      await setDoc(userDogsCollectionRef, {
+        name:dog.name,
+        size: dog.size,
+        id: dog.id,
+        imgs: null,
+        age: dog.age,
+        bread: dog.bread,
+        description: dog.description,
+        likes: dog.likes,
+        location: dog.location,
+      });
+
+      console.log("Dog added!");
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   function onChangeDogData(e) {
     const field = e.currentTarget.name;
@@ -29,13 +68,15 @@ export default function DogProvider({ children }) {
       [field]: value,
     }));
   }
-  useEffect(() => {
-    console.log("dog state data", dog);
-  }, [dog]);
 
-  useEffect(() => {
-    console.log("dogs array", dogs);
-  }, [dogs]);
+
+  //the logged in data informatino  for rendering
+  
+  const  myDogData = dogs.find((dog) => dog.id == user.id) ;
+
+
+  const dogsToMeet = dogs.filter((dog) => dog.id !== user.id);
+
 
   //img modal swiper
   const [isPop, setIsPop] = useState(false);
@@ -44,5 +85,5 @@ export default function DogProvider({ children }) {
 
   //update form - to the dog state  and than to the dogs state
 
-  return <DogContext.Provider value={{ isPop, setDogs, dogs, params, setIsPop, dog, setDog, onChangeDogData }}>{children}</DogContext.Provider>;
+  return <DogContext.Provider value={{myDogData, dogsToMeet, fetchDogsFromDB ,addDogForUser, isPop,  dogs, setIsPop, dog,  onChangeDogData }}>{children}</DogContext.Provider>;
 }
