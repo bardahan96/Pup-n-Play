@@ -15,7 +15,11 @@ import { UserContext } from "./context/UserContext";
 export default function DiegoApp() {
 
     const { fetchDogsFromDB , dogs } = useContext(DogContext)
-    const { user } = useContext(UserContext)
+    const { user, auth } = useContext(UserContext)
+
+    useEffect(() => {
+        console.log("auth: ",auth.currentUser);
+    },[])
 
     useEffect(() => {
         fetchDogsFromDB()

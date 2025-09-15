@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { db } from "../../config/firebase";
 import { getDocs, setDoc, collection, doc } from "firebase/firestore";
 import { UserContext } from "./UserContext";
+import { auth } from "../../config/firebase";
 
 
 export const DogContext = createContext();
@@ -20,7 +21,7 @@ export default function DogProvider({ children }) {
   const [dog, setDog] = useState({
     name: "",
     size: "",
-    id: user.uid,
+    id: auth?.currentUser?.uid,
     imgs: [],
     age: "",
     bread: "",
