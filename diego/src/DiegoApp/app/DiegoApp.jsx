@@ -1,12 +1,7 @@
 import { BrowserRouter, NavLink, Route, Routes } from "react-router";
 import HomePage from "../HomePage/HomePage";
 import SignUp from "../Auth/SignUp";
-// import LogIn from "../Auth/Login";
 import SignOut from "../Auth/SignOut";
-import { useState } from "react";
-import "./mainStyle/diegoAppStyle.css";
-import UserWrapper from "./context/UserWrapper";
-import LogIn from "../Auth/LogIn";
 import Footer from "../Theme/Footer";
 import Header from "../Theme/Header";
 import Match from "../HomePage/innerComponents/MatchList/Match";

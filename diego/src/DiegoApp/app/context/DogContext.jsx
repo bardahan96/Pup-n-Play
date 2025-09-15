@@ -86,6 +86,9 @@ export default function DogProvider({ children }) {
       return [];
     }
   }
+  const  myDogData = useMemo(() => {
+    return  dogs.find((dog) => dog.id == user.id) ;
+  }, [dogs])
 
   //img modal swiper
   const [isPop, setIsPop] = useState(false);

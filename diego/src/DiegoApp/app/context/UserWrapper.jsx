@@ -10,7 +10,7 @@ export default function UserWrapper() {
 
     useEffect(() => {
         console.log("params: ", params);
-    }, params)
+    }, [params])
 
     
     
