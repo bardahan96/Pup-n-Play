@@ -10,9 +10,9 @@ import { db } from "../../config/firebase";
 export const UserContext = createContext();
 
 export default function UserProvider({ children }) {
-  console.log(auth?.currentUser?.email); //this is the way we cann access to the current user!!!!
+  console.log("user id:",auth?.currentUser?.uid); //this is the way we cann access to the current user!!!!
 
-  const params = useParams(null);
+
 
   const [users, setUsers] = useState([]);
   const idRef = useRef("");
@@ -46,9 +46,7 @@ export default function UserProvider({ children }) {
     } catch (error) {
       console.error(error);
     }
-    console.log(`signup DB-user`, user);
-    console.log(`signup DB-users`, users);
   }
 
-  return <UserContext.Provider value={{ params, user, setUser, users, setUsers, signUpDB, onChangeUserData }}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={{auth, user, setUser, users, setUsers, signUpDB, onChangeUserData }}>{children}</UserContext.Provider>;
 }
