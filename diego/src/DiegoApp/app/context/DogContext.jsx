@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useMemo } from "react";
 import { createContext } from "react";
 import { useParams } from "react-router";
 import { db } from "../../config/firebase";
@@ -20,8 +20,8 @@ export default function DogProvider({ children }) {
   const [dog, setDog] = useState({
     name: "",
     size: "",
-    id: user.id,
-    imgs: null,
+    id: user.uid,
+    imgs: [],
     age: "",
     bread: "",
     description: "",
@@ -40,7 +40,7 @@ export default function DogProvider({ children }) {
     try {
       
 
-      const userDogsCollectionRef = doc(db, "dogs", dog.id);
+      const userDogsCollectionRef = doc(db, "dogs", String(dog.id));
 
       await setDoc(userDogsCollectionRef, {
         name:dog.name,
@@ -63,19 +63,24 @@ export default function DogProvider({ children }) {
   function onChangeDogData(e) {
     const field = e.currentTarget.name;
     const value = e.currentTarget.value;
+    const files = e.currentTarget.files;
     setDog((prev) => ({
       ...prev,
-      [field]: value,
+      [field]: files ? Array.from(files) : value,
     }));
   }
 
 
   //the logged in data informatino  for rendering
   
-  const  myDogData = dogs.find((dog) => dog.id == user.id) ;
+  const  myDogData = useMemo(() => {
+    return  dogs.find((dog) => dog.id == user.id) ;
+  }, [dogs])
 
 
-  const dogsToMeet = dogs.filter((dog) => dog.id !== user.id);
+  const dogsToMeet = useMemo(() => {
+    return dogs.filter((dog) => dog.id !== user.id);
+  }, [dogs])
 
 
   //img modal swiper
@@ -85,5 +90,5 @@ export default function DogProvider({ children }) {
 
   //update form - to the dog state  and than to the dogs state
 
-  return <DogContext.Provider value={{myDogData, dogsToMeet, fetchDogsFromDB ,addDogForUser, isPop,  dogs, setIsPop, dog,  onChangeDogData }}>{children}</DogContext.Provider>;
+  return <DogContext.Provider value={{myDogData, dogsToMeet, fetchDogsFromDB ,addDogForUser, isPop,  dogs, setIsPop, dog,setDog,   onChangeDogData }}>{children}</DogContext.Provider>;
 }

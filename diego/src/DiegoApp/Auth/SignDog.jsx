@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 
 import "./AuthStyle/AuthStyle.css";
 import { DogContext } from "../app/context/DogContext";
@@ -11,12 +11,17 @@ export default function SignDog() {
 
     const Navigate = useNavigate()
     const { user } = useContext(UserContext)
-    const { onChangeDogData , dog, dogs, addDogForUser } = useContext(DogContext);
+    const { onChangeDogData , dog,setDog, dogs, addDogForUser } = useContext(DogContext);
 
    async function submitDog () {
       await addDogForUser()
       Navigate(`/:${user.username}/home`)
     }
+
+  
+    useEffect(() => {
+      console.log("dog", dog);
+    },[dog])
 
     return (
         <>
@@ -55,7 +60,7 @@ export default function SignDog() {
 
           <div className="formInput">
             <label htmlFor="uploadImgs">Upload img</label>
-            <input type="file" />
+            <input type="file" name="imgs" multiple accept="=image/*" id="uploadImgs" onChange={onChangeDogData} />
           </div>
 
           <div className="formInput">
