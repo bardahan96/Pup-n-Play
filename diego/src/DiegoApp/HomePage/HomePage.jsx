@@ -4,17 +4,21 @@ import DescrptionList from './HomePageComponents/DescrptionList'
 
 import DogImgModal from './HomePageComponents/DogImgModal'
 import { DogContext } from '../app/context/DogContext'
+import { UserContext } from '../app/context/UserContext'
 
 export default function HomePage() {
 
-    //demo state (will be in context)
-    const [dog, setDog] = useState({
-        name: "Tiger",
-        location: "Haifa",
+    const { myDogData } = useContext(DogContext);
+    const { user } = useContext(UserContext);
+
+    useEffect(() => {
+        console.log("user:",user);
     })
 
+    useEffect(() => {
+        console.log("mydog data" , myDogData);
+    })
 
-    
 
     const { setIsPop, isPop } = useContext(DogContext)
 
@@ -30,7 +34,7 @@ export default function HomePage() {
 
                         <div className="main-profile-name">
                             <img src='https://images.dog.ceo/breeds/hound-blood/n02088466_7046.jpg' alt="" />
-                            <span>bar dahan</span>
+                            <span>s</span>
                         </div>
                         <div onClick={openModal} className="dog-main-img">
                             <img src="https://images.dog.ceo/breeds/hound-blood/n02088466_7046.jpg" alt="" />
