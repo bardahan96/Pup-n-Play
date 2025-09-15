@@ -6,15 +6,12 @@ import { getDocs, setDoc, collection, doc } from "firebase/firestore";
 import { UserContext } from "./UserContext";
 import { auth } from "../../config/firebase";
 
-
 export const DogContext = createContext();
-
-
 
 export default function DogProvider({ children }) {
   const params = useParams(null);
 
-  const { auth , user } = useContext(UserContext)
+  const { auth, user } = useContext(UserContext);
 
   const [dogs, setDogs] = useState([]);
 
@@ -30,21 +27,18 @@ export default function DogProvider({ children }) {
     location: "",
   });
 
-
-  async function fetchDogsFromDB () {
+  async function fetchDogsFromDB() {
     const snap = await getDocs(collection(db, "dogs"));
-    const dogData = snap.docs.map(doc => ({id: doc.id, ...doc.data()}))
-    setDogs(prev => [...prev, ...dogData]);
+    const dogData = snap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    setDogs((prev) => [...prev, ...dogData]);
   }
 
   async function addDogForUser() {
     try {
-      
-
       const userDogsCollectionRef = doc(db, "dogs", String(dog.id));
 
       await setDoc(userDogsCollectionRef, {
-        name:dog.name,
+        name: dog.name,
         size: dog.size,
         id: dog.id,
         imgs: null,
@@ -76,8 +70,22 @@ export default function DogProvider({ children }) {
 
   const dogsToMeet = useMemo(() => {
     return dogs.filter((dog) => dog.id !== user.id);
-  }, [dogs])
+  }, [dogs]);
 
+  async function getAllDogs() {
+    try {
+      const dogsCollectionRef = collection(db, "dogs");
+      const dogsSnapshot = await getDocs(dogsCollectionRef);
+
+      const dogsList = dogsSnapshot.docs.map((doc) => doc.data());
+      setDogs(dogsList);
+      console.log("Dogs fetched:", dogsList);
+      //   return dogsList;
+    } catch (error) {
+      console.error("Error fetching dogs:", error);
+      return [];
+    }
+  }
 
   //img modal swiper
   const [isPop, setIsPop] = useState(false);
@@ -86,5 +94,5 @@ export default function DogProvider({ children }) {
 
   //update form - to the dog state  and than to the dogs state
 
-  return <DogContext.Provider value={{myDogData, dogsToMeet, fetchDogsFromDB ,addDogForUser, isPop,  dogs, setIsPop, dog,setDog,   onChangeDogData }}>{children}</DogContext.Provider>;
+  return <DogContext.Provider value={{ myDogData, dogsToMeet, fetchDogsFromDB, addDogForUser, isPop, dogs, setIsPop, dog, setDog, onChangeDogData }}>{children}</DogContext.Provider>;
 }
