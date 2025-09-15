@@ -10,7 +10,7 @@ import LogIn from "./LogIn";
 import { useNavigate } from "react-router";
 export default function SignUp() {
   // onchageDogData- function that take and sets the data of the dog
-  const { dog, setDogs, dogs, onChangeDogData } = useContext(DogContext);
+  const { dog, setDogs, dogs, onChangeDogData ,getAllDogs} = useContext(DogContext);
 
   const { user, setuser, users, setUsers, signUpDB, onChangeUserData } = useContext(UserContext);
 
@@ -107,6 +107,7 @@ export default function SignUp() {
           <button onClick={handleSignUp}>Sign Up</button>
               <button onClick={()=>navigate("/logIn")}>Login</button> 
         </div>
+        <button onClick={()=>getAllDogs()}>get all dogs</button>
 
       </div>
        

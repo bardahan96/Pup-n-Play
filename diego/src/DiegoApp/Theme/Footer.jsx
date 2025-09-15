@@ -4,7 +4,7 @@ import Kennel from "./ThemeStyle/Icons/kennel.png";
 import Chat from "./ThemeStyle/Icons/conversation.png";
 import HeartIcon from "./ThemeStyle/Icons/Heart-icon.png";
 import ChatRoom from "../Chats/ChatRoom";
-
+import { NavLink } from "react-router";
 export default function Footer({ active = "home", onChange = () => {} }) {
   const items = [
     { key: "matches", label: "Matches", icon: HeartIcon, alt: "Matches" },
