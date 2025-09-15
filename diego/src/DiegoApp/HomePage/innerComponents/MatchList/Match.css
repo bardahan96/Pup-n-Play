@@ -16,6 +16,9 @@
 
 .match-row {
   display: flex;
+  position: relative; /* הורה ממוקם לאווטארים */
+  width: min(92vw, 420px);
+  margin-top: 4px;
 }
 
 .circle {
@@ -27,7 +30,13 @@
 
 .user1-img {
   position: absolute;
+  top: 6%;
+  left: 6%;
+  transform: translate(-15%, -15%);
 }
 .user2-img {
   position: absolute;
+  top: 6%;
+  right: 6%;
+  transform: translate(15%, -15%);
 }

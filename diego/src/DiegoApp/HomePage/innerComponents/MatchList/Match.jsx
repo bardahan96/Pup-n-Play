@@ -9,7 +9,7 @@ export default function Match() {
         <div className="match-row">
           <div className="user1-img circle">User1 photo</div>
           <img className="match-img" src={matchImg} alt="" />
-          <div className="user2-im circle">User2 photo</div>
+          <div className="user2-img circle">User2 photo</div>
         </div>
       </div>
     </>
