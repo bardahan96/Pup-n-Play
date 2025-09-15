@@ -10,7 +10,7 @@ import LogIn from "../Auth/LogIn";
 import Footer from "../Theme/Footer";
 import Header from "../Theme/Header";
 import Match from "../HomePage/innerComponents/MatchList/Match";
-import ChatList from "../Chats/ChatsList";
+import ChatsList from "../Chats/ChatsList";
 import ChatRoom from "../Chats/ChatRoom";
 
 export default function DiegoApp() {
@@ -27,7 +27,7 @@ export default function DiegoApp() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/home" element={<HomePage />} />
             <Route path="/ChatsList" element={<ChatsList />} />
-            <Route path="/ChatsRoom" element={<ChatRoom />} />
+            <Route path="/ChatRoom" element={<ChatRoom />} />
           </Route>
         </Routes>
         <Footer />
