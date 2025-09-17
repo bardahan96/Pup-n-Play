@@ -13,6 +13,11 @@ import { UserContext } from "./context/UserContext";
 
 
 export default function DiegoApp() {
+  return (
+    <div className="webWrraper">
+      <BrowserRouter>
+        <Header />
+        {/* <Match /> */}
 
     const { fetchDogsFromDB , dogs } = useContext(DogContext)
     const { user, auth } = useContext(UserContext)

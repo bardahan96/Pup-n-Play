@@ -1,6 +1,6 @@
-:root{
-  --primaryColor:  #373858;
-  --secondaryColor:  #465;
+:root {
+  --primaryColor: #373858;
+  --secondaryColor: #465;
   --primaryFontSize: 18px;
   --secondaryFontSize: 16px;
   --PrimaryFontHeadSize: 22px;
@@ -10,8 +10,7 @@
   --secondaryBoxShadow: 10px 4px 10px rgba(244, 244, 253, 0.27);
 }
 
-root{
+root {
   height: 100vh;
   width: 100vw;
 }
-
