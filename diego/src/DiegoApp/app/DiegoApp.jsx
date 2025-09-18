@@ -16,17 +16,6 @@ export default function DiegoApp() {
   const { fetchDogsFromDB, dogs } = useContext(DogContext);
   const { user, auth } = useContext(UserContext);
 
-  useEffect(() => {
-    console.log("auth: ", auth.currentUser);
-  }, []);
-
-  useEffect(() => {
-    fetchDogsFromDB();
-  }, []);
-
-  useEffect(() => {
-    console.log("dogs array: ", dogs);
-  }, [dogs]);
 
   return (
     <div className="webWrraper">
