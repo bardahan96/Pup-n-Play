@@ -1,6 +1,8 @@
 import { Outlet, useParams } from "react-router"
 import { useContext, useEffect } from "react"
 import { DogContext } from "./DogContext"
+import Header from "../../Theme/Header"
+import Footer from "../../Theme/Footer"
 
 export default function UserWrapper() {
 
@@ -8,17 +10,22 @@ export default function UserWrapper() {
 
     // const { dogs } = useContext(DogContext)
 
-    useEffect(() => {
-        console.log("params: ", params);
-    }, params)
+    // useEffect(() => {
+    //     console.log("params: ", params);
+    // }, [params])
 
     
     
 
     return (
         <>
-        <Outlet/>
-
+        
+            <Header/>
+            <div className="webWrraper-routes">
+                <Outlet/>
+            </div>
+            <Footer/>
+        
         </>
     )
     
