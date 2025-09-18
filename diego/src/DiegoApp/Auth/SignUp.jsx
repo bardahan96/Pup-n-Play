@@ -14,11 +14,7 @@ export default function SignUp() {
   
 
   function handleSignUp() {
-    signUpDB();
-
-    setSignedIn(true)
     navigate(`/:${user.username}/createDogForm`)
-    
   }
 
   function navToLogin () {

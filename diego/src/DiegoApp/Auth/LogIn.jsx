@@ -13,7 +13,7 @@ import { useNavigate } from "react-router";
 
 export default function LogIn() {
 
-  const { auth, user } = useContext(UserContext)
+  const { auth, user , signInDB} = useContext(UserContext)
   const navigate = useNavigate(null)
 
   const { signedIn, setSignedIn, getAllDogs } = useContext(DogContext)
@@ -22,21 +22,14 @@ export default function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  async function signInDB() {
-   
-    
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+
   
-  function signIn () {
-    signInDB()
-    setSignedIn(true)
-    navigate(`/:${user.username}/home`)
-    
+  async function signIn() {
+    const loggedUser = await signInDB(email, password);
+     const username = loggedUser?.username || 'user';
+    setSignedIn(true);
+     await getAllDogs();
+     navigate(`/${loggedUser.username || "user"}/home`);
   }
 
   function navToSignup () {
@@ -46,7 +39,9 @@ export default function LogIn() {
 
 
   useEffect(() => {
-    getAllDogs()
+    if(signedIn) {
+        getAllDogs()
+    }
 
   }, [signedIn])
 

@@ -5,20 +5,14 @@ import DescrptionList from './HomePageComponents/DescrptionList'
 import DogImgModal from './HomePageComponents/DogImgModal'
 import { DogContext } from '../app/context/DogContext'
 import { UserContext } from '../app/context/UserContext'
+import { Outlet } from 'react-router'
 
 export default function HomePage() {
 
-    const { myDogData } = useContext(DogContext);
+    const { myDogData ,dogs } = useContext(DogContext);
     const { user } = useContext(UserContext);
 
-    useEffect(() => {
-        console.log("user:",user);
-    })
-
-    useEffect(() => {
-        console.log("mydog data" , myDogData);
-    })
-
+  
 
     const { setIsPop, isPop } = useContext(DogContext)
 
@@ -36,18 +30,9 @@ export default function HomePage() {
 
                         <div className="main-profile-name">
                             <img src='https://images.dog.ceo/breeds/hound-blood/n02088466_7046.jpg' alt="" />
-                            <span>{myDogData.name}</span>
+                            <span>dan ahaefes</span>
                         </div>
-                        <div onClick={openModal} className="dog-main-img">
-                            <img src="https://images.dog.ceo/breeds/hound-blood/n02088466_7046.jpg" alt="" />
-                        </div>
-                            <DescrptionList/>
-                            
-
-                     <div className='handleLikesContainer'>
-                    <button className='likeBtn homePageBtn'>Like</button>
-                    <button className='passBtn homePageBtn'>Pass</button>
-                    </div>
+                            <Outlet/>
 
                     </div>
 

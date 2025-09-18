@@ -32,14 +32,16 @@ export default function DogProvider({ children }) {
   // ================= //
 
   //database function
-  async function addDogForUser() {
+  async function addDogForUser(uid) {
     try {
-      const userDogsCollectionRef = doc(db, "dogs", user.id);
+      const userDogsCollectionRef = doc(db, "dogs", uid);
+
+      console.log("userId", user.id);
 
       await setDoc(userDogsCollectionRef, {
         name: dog.name,
         size: dog.size,
-        id: user.id,
+        id: uid,
         imgs: null,
         age: dog.age,
         bread: dog.bread,
@@ -47,6 +49,8 @@ export default function DogProvider({ children }) {
         likes: dog.likes,
         location: dog.location,
       });
+
+      
     } catch (err) {
       console.error(err);
     }
@@ -54,7 +58,6 @@ export default function DogProvider({ children }) {
 
   async function getAllDogs() {
     try {
-      if (!signedIn) return;
       const dogsCollectionRef = collection(db, "dogs");
       const dogsSnapshot = await getDocs(dogsCollectionRef);
 
@@ -66,7 +69,6 @@ export default function DogProvider({ children }) {
       return [];
     }
   }
-
 
   // ================== //
 
@@ -80,31 +82,29 @@ export default function DogProvider({ children }) {
       [field]: files ? Array.from(files) : value,
     }));
   }
+
   
 
   // define variabls for dog use
-  const  myDogData = useMemo(() => {
-    return  dogs.find((dog) => dog.id == user.id) ;
-  }, [dogs, user.id, signedIn])
+  const myDogData = useMemo(() => {
+    if (!user?.id || dogs.length === 0) return null;
+    return dogs.find(d => d.id === user.id) ?? null;
+  }, [dogs, user?.id]);
+
+
 
   const dogsToMeet = useMemo(() => {
-    return dogs.filter((dog) => dog.id !== user.id)
-  }, [dogs, user.id , signedIn])
+    if (!user?.id) return [];
+    return dogs.filter(d => d.id !== user.id);
+  }, [dogs, user?.id]);
+
+  useEffect(() => {
+    console.log("dogs:", dogs);
+    console.log("my dog data", myDogData);
+    console.log("dogs to meet :", dogsToMeet);
+  }, [dogs, myDogData, dogsToMeet])
 
   // ============ //
 
-  useEffect(() => {
-    console.log("user.id:", user.id);
-    console.log("myDogData:", myDogData);
-    console.log("dogsToMeet:", dogsToMeet);
-    console.log("all dogs:", dogs);
-  }, [myDogData, dogsToMeet, user.id, dogs]);
-
-
-
-  //function to likeBtn - insert like into the array
-
-  //update form - to the dog state  and than to the dogs state
-
-  return <DogContext.Provider value={{getAllDogs,signedIn, setSignedIn,  myDogData,  addDogForUser, isPop, dogs, setIsPop, dog, onChangeDogData }}>{children}</DogContext.Provider>;
+  return <DogContext.Provider value={{getAllDogs,signedIn, setSignedIn,  addDogForUser,myDogData, isPop, dogs, setIsPop, dog, onChangeDogData }}>{children}</DogContext.Provider>;
 }

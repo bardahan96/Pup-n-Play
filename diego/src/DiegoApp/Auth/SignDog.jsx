@@ -10,12 +10,16 @@ export default function SignDog() {
 
 
     const navigate = useNavigate()
-    const { user } = useContext(UserContext)
-    const { onChangeDogData , dog,setDog, dogs, addDogForUser } = useContext(DogContext);
+    const { user, signUpDB } = useContext(UserContext)
+    const { onChangeDogData , dog,setSignedIn, addDogForUser ,getAllDogs} = useContext(DogContext);
 
    async function submitDog () {
-      await addDogForUser()
-      navigate(`/:${user.username}/home`)
+     const newUser = await signUpDB();
+        await addDogForUser(newUser.id);
+        setSignedIn(true);
+        await getAllDogs?.();
+        const username = newUser?.username || 'user';
+        navigate(`/${username}/home`);
     }
 
     return (
