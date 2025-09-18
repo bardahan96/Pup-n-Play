@@ -4,6 +4,7 @@ import "./AuthStyle/AuthStyle.css";
 import { DogContext } from "../app/context/DogContext";
 import { Navigate, useNavigate } from "react-router";
 import { UserContext } from "../app/context/UserContext";
+import { uploadFilesToCloudinary } from "../app/context/UploadToCloudinary";
 
 
 export default function SignDog() {
@@ -11,15 +12,20 @@ export default function SignDog() {
 
     const navigate = useNavigate()
     const { user, signUpDB } = useContext(UserContext)
-    const { onChangeDogData , dog,setSignedIn, addDogForUser ,getAllDogs} = useContext(DogContext);
+    const { onChangeDogData , dog,setSignedIn, addDogForUser ,getAllDogs, setDog} = useContext(DogContext);
 
-   async function submitDog () {
-     const newUser = await signUpDB();
-        await addDogForUser(newUser.id);
-        setSignedIn(true);
-        await getAllDogs?.();
-        const username = newUser?.username || 'user';
-        navigate(`/${username}/home`);
+    async function submitDog() {
+      const newUser = await signUpDB();
+      const urls = await uploadFilesToCloudinary(dog.imgs);
+    
+      const updatedDog = { ...dog, imgs: urls };
+      setDog(updatedDog);
+      await addDogForUser(newUser.id, updatedDog); // pass it directly
+    
+      setSignedIn(true);
+      await getAllDogs?.();
+      const username = newUser?.username || "user";
+      navigate(`/${username}/home`);
     }
 
     return (

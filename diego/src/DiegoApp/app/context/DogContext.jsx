@@ -32,25 +32,16 @@ export default function DogProvider({ children }) {
   // ================= //
 
   //database function
-  async function addDogForUser(uid) {
+  async function addDogForUser(uid, dogData = dog) {
     try {
       const userDogsCollectionRef = doc(db, "dogs", uid);
-
-      console.log("userId", user.id);
-
+  
       await setDoc(userDogsCollectionRef, {
-        name: dog.name,
-        size: dog.size,
+        ...dogData,
         id: uid,
-        imgs: null,
-        age: dog.age,
-        bread: dog.bread,
-        description: dog.description,
-        likes: dog.likes,
-        location: dog.location,
       });
-
-      
+  
+      console.log("Dog saved with imgs:", dogData.imgs);
     } catch (err) {
       console.error(err);
     }
@@ -63,7 +54,6 @@ export default function DogProvider({ children }) {
 
       const dogsList = dogsSnapshot.docs.map((doc) => doc.data());
       setDogs(dogsList);
-      //   return dogsList;
     } catch (error) {
       console.error("Error fetching dogs:", error);
       return [];
@@ -106,5 +96,5 @@ export default function DogProvider({ children }) {
 
   // ============ //
 
-  return <DogContext.Provider value={{getAllDogs,signedIn, setSignedIn,  addDogForUser,myDogData, isPop, dogs, setIsPop, dog, onChangeDogData }}>{children}</DogContext.Provider>;
+  return <DogContext.Provider value={{getAllDogs,signedIn,setDog, setSignedIn,  addDogForUser,myDogData, isPop, dogs, setIsPop, dog, onChangeDogData }}>{children}</DogContext.Provider>;
 }
