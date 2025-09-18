@@ -13,8 +13,8 @@ export default function Footer({ active = "home", onChange = () => {} }) {
   const { user } = useContext(UserContext)
   const items = [
     { key: "matches", label: "Matches", icon: HeartIcon, alt: "Matches" },
-    { key: "chat", label: "Chat", icon: Chat, alt: "Chat", nav: `${user.username}/ChatsList` },
-    { key: "home", label: "Home", icon: Kennel, alt: "Home" ,nav: `${/:${user.username}/home}` },
+    { key: "chat", label: "Chat", icon: Chat, alt: "Chat", nav: "ChatRoom" },
+    { key: "home", label: "Home", icon: Kennel, alt: "Home" },
     { key: "user", label: "User", icon: DogIcon, alt: "User" },
   ];
 
