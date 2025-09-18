@@ -39,6 +39,11 @@ export default function LogIn() {
     
   }
 
+  function navToSignup () {
+    navigate("/signup")
+  }
+
+
 
   useEffect(() => {
     getAllDogs()
@@ -76,7 +81,10 @@ export default function LogIn() {
           }}
         />
         </div>
-      <button onClick={signIn}> log in</button>
+            <div className="userForm-btns">
+                <button onClick={signIn}> log in</button>
+                <button onClick={navToSignup}> Sign Up</button>
+            </div>
       </div>
       
     </div>

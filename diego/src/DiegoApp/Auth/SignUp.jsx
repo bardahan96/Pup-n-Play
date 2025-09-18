@@ -21,6 +21,10 @@ export default function SignUp() {
     
   }
 
+  function navToLogin () {
+    navigate("/logIn")
+  }
+
   return (
     
       <div className="signUpContainer">
@@ -44,7 +48,7 @@ export default function SignUp() {
 
           <div className="userForm-btns">
             <button onClick={handleSignUp}>Sign Up</button>
-            <button onClick={()=>navigate("/logIn")}>Login</button> 
+            <button onClick={navToLogin}>Login</button> 
           </div>
         </div>
 

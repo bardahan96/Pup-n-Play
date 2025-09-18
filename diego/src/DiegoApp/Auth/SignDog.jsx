@@ -18,11 +18,6 @@ export default function SignDog() {
       navigate(`/:${user.username}/home`)
     }
 
-  
-    useEffect(() => {
-      console.log("dog", dog);
-    },[dog])
-
     return (
         <>
         <div className="signUpContainer">

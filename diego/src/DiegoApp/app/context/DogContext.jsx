@@ -10,8 +10,8 @@ export const DogContext = createContext();
 export default function DogProvider({ children }) {
 
   //import context from user
-  const { auth, user } = useContext(UserContext);
-  const userId = auth.currentUser?.uid || "";
+  const { user } = useContext(UserContext);
+
 
   //define states
   const [dogs, setDogs] = useState([]);
@@ -34,12 +34,12 @@ export default function DogProvider({ children }) {
   //database function
   async function addDogForUser() {
     try {
-      const userDogsCollectionRef = doc(db, "dogs", userId);
+      const userDogsCollectionRef = doc(db, "dogs", user.id);
 
       await setDoc(userDogsCollectionRef, {
         name: dog.name,
         size: dog.size,
-        id: userId,
+        id: user.id,
         imgs: null,
         age: dog.age,
         bread: dog.bread,
@@ -54,6 +54,7 @@ export default function DogProvider({ children }) {
 
   async function getAllDogs() {
     try {
+      if (!signedIn) return;
       const dogsCollectionRef = collection(db, "dogs");
       const dogsSnapshot = await getDocs(dogsCollectionRef);
 
@@ -66,9 +67,6 @@ export default function DogProvider({ children }) {
     }
   }
 
-  useEffect(() => {
-    console.log("dog data: ", dog);
-  }, [dogs])
 
   // ================== //
 
@@ -86,14 +84,23 @@ export default function DogProvider({ children }) {
 
   // define variabls for dog use
   const  myDogData = useMemo(() => {
-    return  dogs.find((dog) => dog.id == userId) ;
-  }, [dogs, userId])
+    return  dogs.find((dog) => dog.id == user.id) ;
+  }, [dogs, user.id, signedIn])
+
+  const dogsToMeet = useMemo(() => {
+    return dogs.filter((dog) => dog.id !== user.id)
+  }, [dogs, user.id , signedIn])
 
   // ============ //
 
   useEffect(() => {
-    console.log("my dog data : ",myDogData);
-  }, [signedIn])
+    console.log("user.id:", user.id);
+    console.log("myDogData:", myDogData);
+    console.log("dogsToMeet:", dogsToMeet);
+    console.log("all dogs:", dogs);
+  }, [myDogData, dogsToMeet, user.id, dogs]);
+
+
 
   //function to likeBtn - insert like into the array
 
