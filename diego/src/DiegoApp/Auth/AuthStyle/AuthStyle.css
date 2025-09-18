@@ -5,32 +5,41 @@
   --PrimaryFontHeadSize: 22px;
   --primaryBackgroundColor: #98f4; */
 .login-page-container{
-  margin-top: 100px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 50px;
+    gap: 20px;
+
+    img{
+      width: auto;
+      height: 200px;
+      border-radius: 8px;
+    }
+  
 }
   .email-pass-container{
     display: flex;
     flex-direction: column;
     gap: 20px;
-  }
-  img{
-    width: auto;
-    height: 200px;
-    margin: auto;
-    border-radius: 8px;
+    width: 194px;
+
+   
+
+    input::placeholder{
+      padding-left: 0.4em;
+
+    }
   }
 
   .signUpContainer{
-    background-color: var(--secondaryBackgroundColor);
-    padding: 2em;
-    border-radius: 8px ;
-    box-shadow: var(--primaryBoxShadow);
-    width: 60%;
+    display: flex;
+        flex-direction: column;
+        padding: 2em;
+        border-radius: 8px;
+        box-shadow: var(--primaryBoxShadow);
+        width: 40%;
+        gap: 20px;
   }
 
   .signUpForm{
@@ -39,21 +48,21 @@
     gap: 16px;
     color: var(--primaryColor);
 
-    button{
-      width: 40%;
-      white-space: balance;
-      align-self: flex-start;
-      background-color: var(--primaryColor);
-      color: white;
-      border: none;
-      padding: 0.4em 0em;
-      border-radius: 5px;
-      cursor: pointer;
+  }
 
-      &:hover{
-        box-shadow: var(--secondaryBoxShadow);
-        box-shadow: 1px 1px 2px ;
-      }
+  button{
+    white-space: balance;
+    align-self: flex-start;
+    background-color: var(--primaryColor);
+    color: white;
+    border: none;
+    padding: 0.4em 0em;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover{
+      box-shadow: var(--secondaryBoxShadow);
+      box-shadow: 1px 1px 2px ;
     }
   }
 
@@ -69,7 +78,7 @@
       width: 100%;
       border-radius: 4px;
       border: none;
-      padding: 0.1em;
+      padding: 0.3em 0.1em;
     }
 
     select{
@@ -81,4 +90,17 @@
     }
 
   
+  }
+
+  .userForm-btns{
+    display: flex;
+    justify-content: space-evenly;
+
+    
+    
+  }
+  .userForm-btns  button {
+      width: 25%;
+      
+      
   }

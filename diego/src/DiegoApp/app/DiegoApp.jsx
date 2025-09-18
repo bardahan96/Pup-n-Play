@@ -21,10 +21,6 @@ export default function DiegoApp() {
   }, []);
 
   useEffect(() => {
-    fetchDogsFromDB();
-  }, []);
-
-  useEffect(() => {
     console.log("dogs array: ", dogs);
   }, [dogs]);
 

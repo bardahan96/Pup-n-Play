@@ -1,25 +1,24 @@
-import { useContext, useEffect, useState } from "react";
-import { collection, addDoc, setDoc,doc } from "firebase/firestore";
-import { db } from "../config/firebase";
-// import { auth } from "../config/firebase";
-// import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import "./AuthStyle/AuthStyle.css";
-import { DogContext } from "../app/context/DogContext";
 import { UserContext } from "../app/context/UserContext";
 import LogIn from "./LogIn";
 import { useNavigate } from "react-router";
+import { useContext } from "react";
+import { DogContext } from "../app/context/DogContext";
 export default function SignUp() {
-  // onchageDogData- function that take and sets the data of the dog
-  const { dog, setDogs, dogs, onChangeDogData ,getAllDogs} = useContext(DogContext);
+  
 
   const { user, signUpDB, onChangeUserData } = useContext(UserContext);
+  const { signedIn, setSignedIn } = useContext(DogContext)
 
   const navigate=useNavigate()
   
 
   function handleSignUp() {
     signUpDB();
+
+    setSignedIn(true)
     navigate(`/:${user.username}/createDogForm`)
+    
   }
 
   return (
@@ -43,11 +42,11 @@ export default function SignUp() {
             <input type="text" id="password" name="password" onChange={onChangeUserData} value={user.password} placeholder="please enter your name" />
           </div>
 
-          
-          <button onClick={handleSignUp}>Sign Up</button>
-              <button onClick={()=>navigate("/logIn")}>Login</button> 
+          <div className="userForm-btns">
+            <button onClick={handleSignUp}>Sign Up</button>
+            <button onClick={()=>navigate("/logIn")}>Login</button> 
+          </div>
         </div>
-        <button onClick={()=>getAllDogs()}>get all dogs</button>
 
       </div>
        

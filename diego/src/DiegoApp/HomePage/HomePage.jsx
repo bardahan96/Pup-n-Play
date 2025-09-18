@@ -28,13 +28,15 @@ export default function HomePage() {
 
     return (
         <>
+
+        
             <div className="homePage-container">
                 <div className="main-profile">
                     <div className="main-profile-wrap">
 
                         <div className="main-profile-name">
                             <img src='https://images.dog.ceo/breeds/hound-blood/n02088466_7046.jpg' alt="" />
-                            <span>s</span>
+                            <span>{myDogData.name}</span>
                         </div>
                         <div onClick={openModal} className="dog-main-img">
                             <img src="https://images.dog.ceo/breeds/hound-blood/n02088466_7046.jpg" alt="" />

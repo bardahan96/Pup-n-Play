@@ -10,7 +10,12 @@
   --secondaryBoxShadow: 10px 4px 10px rgba(244, 244, 253, 0.27);
 }
 
-root {
-  height: 100vh;
+:root{
   width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body{
+  margin: 0;
 }

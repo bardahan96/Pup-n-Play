@@ -10,7 +10,6 @@ import { db } from "../../config/firebase";
 export const UserContext = createContext();
 
 export default function UserProvider({ children }) {
-  console.log("user id:",auth?.currentUser?.uid); //this is the way we cann access to the current user!!!!
 
 
 

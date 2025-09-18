@@ -9,13 +9,13 @@ import { UserContext } from "../app/context/UserContext";
 export default function SignDog() {
 
 
-    const Navigate = useNavigate()
+    const navigate = useNavigate()
     const { user } = useContext(UserContext)
     const { onChangeDogData , dog,setDog, dogs, addDogForUser } = useContext(DogContext);
 
    async function submitDog () {
       await addDogForUser()
-      Navigate(`/:${user.username}/home`)
+      navigate(`/:${user.username}/home`)
     }
 
   

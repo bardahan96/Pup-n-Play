@@ -1,9 +1,17 @@
 
 .webWrraper{
     background-color: var(--primaryBackgroundColor);
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
+    gap: 4em;
+    
+}
+
+.webWrraper-routes{
+    min-height: 80vh;
     align-items: center;
+    display: flex;
     justify-content: center;
 }

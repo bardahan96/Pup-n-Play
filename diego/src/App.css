@@ -3,3 +3,7 @@
 h1{
   color: var(--primaryColor);
 }
+img{
+  margin: 0;
+  height: auto;
+}
