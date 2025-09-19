@@ -11,7 +11,7 @@ export default function RenderDogs({ dogs }) {
   //   const {getAllDogs,signedIn, setSignedIn,  myDogData,  addDogForUser, isPop, dogs, setIsPop, dog, onChangeDogData } = useContext(DogContext)
     
   const [remainingDogs, setRemainingDogs] = useState([...dogs]); // עותק של הכלבים שטרם הוצגו
-  const [currentDog, setCurrentDog] = useState(null);
+  const [currentDog, setCurrentDog] = useState();
 
   console.log(remainingDogs);
 

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect } from "react";
 
 import "./AuthStyle/AuthStyle.css";
 import { DogContext } from "../app/context/DogContext";
@@ -6,39 +6,31 @@ import { Navigate, useNavigate } from "react-router";
 import { UserContext } from "../app/context/UserContext";
 import { uploadFilesToCloudinary } from "../app/context/UploadToCloudinary";
 
-
 export default function SignDog() {
+  const navigate = useNavigate();
+  const { user, signUpDB } = useContext(UserContext);
+  const { onChangeDogData, dog, setSignedIn, addDogForUser, getAllDogs, setDog } = useContext(DogContext);
 
+  async function submitDog() {
+    const newUser = await signUpDB();
+    const urls = await uploadFilesToCloudinary(dog.imgs);
 
-    const navigate = useNavigate()
-    const { user, signUpDB } = useContext(UserContext)
-    const { onChangeDogData , dog,setSignedIn, addDogForUser ,getAllDogs, setDog} = useContext(DogContext);
+    const updatedDog = { ...dog, imgs: urls };
+    setDog(updatedDog);
+    await addDogForUser(newUser.id, updatedDog); // pass it directly
 
-<<<<<<< HEAD
-   async function submitDog () {
-      await addDogForUser()
-      navigate(`/:${user?.username}/home`)
-=======
-    async function submitDog() {
-      const newUser = await signUpDB();
-      const urls = await uploadFilesToCloudinary(dog.imgs);
-    
-      const updatedDog = { ...dog, imgs: urls };
-      setDog(updatedDog);
-      await addDogForUser(newUser.id, updatedDog); // pass it directly
-    
-      setSignedIn(true);
-      await getAllDogs?.();
-      const username = newUser?.username || "user";
-      navigate(`/${username}/home`);
->>>>>>> origin/HomePage-branch
-    }
+    setSignedIn(true);
+    await getAllDogs?.();
+    const username = newUser?.username || "user";
+    navigate(`/${username}/home`);
+    console.log(`all dogs`, dogs);
+  }
 
-    return (
-        <>
-        <div className="signUpContainer">
+  return (
+    <>
+      <div className="signUpContainer">
         <div className="signUpForm">
-            <div className="formInput">
+          <div className="formInput">
             <label htmlFor="dogName">dog name:</label>
             <input type="text" id="dogName" name="name" value={dog.name} onChange={onChangeDogData} />
           </div>
@@ -62,7 +54,9 @@ export default function SignDog() {
           <div className="formInput">
             <label htmlFor="size">Size</label>
             <select onChange={onChangeDogData} name="size" id="size">
-              <option disabled={true} value="">Select</option>
+              <option disabled={true} value="">
+                Select
+              </option>
               <option value="small">small</option>
               <option value="medium">medium</option>
               <option value="large">large</option>
@@ -71,7 +65,7 @@ export default function SignDog() {
 
           <div className="formInput">
             <label htmlFor="uploadImgs">Upload img</label>
-            <input type="file" name="imgs" multiple accept="image/*" id="uploadImgs" onChange={onChangeDogData}/>
+            <input type="file" name="imgs" multiple accept="image/*" id="uploadImgs" onChange={onChangeDogData} />
           </div>
 
           <div className="formInput">
@@ -80,11 +74,8 @@ export default function SignDog() {
           </div>
 
           <button onClick={submitDog}>Submit</button>
-
         </div>
-        </div>
-
-        </>
-    )
-    
-};
+      </div>
+    </>
+  );
+}

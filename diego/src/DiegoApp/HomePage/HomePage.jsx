@@ -29,13 +29,8 @@ export default function HomePage() {
                     <div className="main-profile-wrap">
 
                         <div className="main-profile-name">
-<<<<<<< HEAD
-                            <img src='https://images.dog.ceo/breeds/hound-blood/n02088466_7046.jpg' alt="" />
-                            <span>{myDogData?.name}</span>
-=======
                             <img src={myDogData.imgs[0]} alt="" />
                             <span>{myDogData.name}</span>
->>>>>>> origin/HomePage-branch
                         </div>
                             <Outlet/>
 

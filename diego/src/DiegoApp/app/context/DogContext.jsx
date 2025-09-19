@@ -32,12 +32,7 @@ export default function DogProvider({ children }) {
   // ================= //
 
   //database function
-<<<<<<< HEAD
-  async function addDogForUser() {
-    console.log(`dogUserId:`,user.id)
-=======
   async function addDogForUser(uid, dogData = dog) {
->>>>>>> origin/HomePage-branch
     try {
       const userDogsCollectionRef = doc(db, "dogs", uid);
   
