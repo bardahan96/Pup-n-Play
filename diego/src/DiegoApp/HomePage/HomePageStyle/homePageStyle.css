@@ -12,7 +12,7 @@
         height: 90%;
         width: 90%;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         background-color: var(--primaryBackgroundColor);
         border-radius: 8px;
         box-shadow: var(--primaryBoxShadow);
@@ -34,12 +34,12 @@
 
           img {
             border-radius: 50%;
-            height: 33px;
-            width: 36px;
+            height: 64px;
+            width: 63px;
           }
 
           span {
-
+            font-weight: bold;
           }
         }
   

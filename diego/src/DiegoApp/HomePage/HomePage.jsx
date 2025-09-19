@@ -29,8 +29,8 @@ export default function HomePage() {
                     <div className="main-profile-wrap">
 
                         <div className="main-profile-name">
-                            <img src='https://images.dog.ceo/breeds/hound-blood/n02088466_7046.jpg' alt="" />
-                            <span>dan ahaefes</span>
+                            <img src={myDogData.imgs[0]} alt="" />
+                            <span>{myDogData.name}</span>
                         </div>
                             <Outlet/>
 

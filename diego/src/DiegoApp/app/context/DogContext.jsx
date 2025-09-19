@@ -67,10 +67,17 @@ export default function DogProvider({ children }) {
     const field = e.currentTarget.name;
     const value = e.currentTarget.value;
     const files = e.currentTarget.files;
-    setDog((prev) => ({
-      ...prev,
-      [field]: files ? Array.from(files) : value,
-    }));
+    const type = e.currentTarget.type;
+  
+    setDog(prev => {
+      if (field === "imgs" && files?.length) {
+        return {
+          ...prev,
+          imgs: [...(Array.isArray(prev.imgs) ? prev.imgs : []), ...Array.from(files)],
+        };
+      }
+      return { ...prev, [field]: value };
+    });
   }
 
   

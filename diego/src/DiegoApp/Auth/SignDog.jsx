@@ -65,7 +65,7 @@ export default function SignDog() {
 
           <div className="formInput">
             <label htmlFor="uploadImgs">Upload img</label>
-            <input type="file" name="imgs" multiple accept="=image/*" id="uploadImgs" onChange={onChangeDogData} />
+            <input type="file" name="imgs" multiple accept="image/*" id="uploadImgs" onChange={onChangeDogData}/>
           </div>
 
           <div className="formInput">
