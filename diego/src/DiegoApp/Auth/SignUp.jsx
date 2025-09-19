@@ -14,6 +14,8 @@ export default function SignUp() {
   
 
   function handleSignUp() {
+
+    console.log(`userMail`,user.username);
     signUpDB();
 
     setSignedIn(true)

@@ -11,6 +11,7 @@ import LogIn from "../Auth/LogIn";
 import SignDog from "../Auth/SignDog";
 import { DogContext } from "./context/DogContext";
 import { UserContext } from "./context/UserContext";
+import RenderDogs from "../HomePage/innerComponents/RenderDogs";
 
 export default function DiegoApp() {
   const { fetchDogsFromDB, dogs } = useContext(DogContext);
@@ -29,6 +30,8 @@ export default function DiegoApp() {
             <Route path={`/:${user.username}/home`} element={<HomePage />} />
             <Route path="/ChatsList" element={<ChatsList />} />
             <Route path="/ChatRoom" element={<ChatRoom />} />
+            {/* <Route path="/RenderDogs" element={<RenderDogs dogs={['a','b','c','d','e','f']} />} /> */}
+            <Route path="/RenderDogs" element={<RenderDogs dogs={dogs} />} />
           </Route>
         </Routes>
       </BrowserRouter>

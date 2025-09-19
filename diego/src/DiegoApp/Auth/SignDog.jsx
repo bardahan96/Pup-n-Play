@@ -15,7 +15,7 @@ export default function SignDog() {
 
    async function submitDog () {
       await addDogForUser()
-      navigate(`/:${user.username}/home`)
+      navigate(`/:${user?.username}/home`)
     }
 
     return (

@@ -33,6 +33,7 @@ export default function DogProvider({ children }) {
 
   //database function
   async function addDogForUser() {
+    console.log(`dogUserId:`,user.id)
     try {
       const userDogsCollectionRef = doc(db, "dogs", user.id);
 

@@ -36,7 +36,7 @@ export default function HomePage() {
 
                         <div className="main-profile-name">
                             <img src='https://images.dog.ceo/breeds/hound-blood/n02088466_7046.jpg' alt="" />
-                            <span>{myDogData.name}</span>
+                            <span>{myDogData?.name}</span>
                         </div>
                         <div onClick={openModal} className="dog-main-img">
                             <img src="https://images.dog.ceo/breeds/hound-blood/n02088466_7046.jpg" alt="" />
