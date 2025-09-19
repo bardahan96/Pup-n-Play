@@ -14,13 +14,15 @@ export default function SignUp() {
   
 
   function handleSignUp() {
+<<<<<<< HEAD
 
     console.log(`userMail`,user.username);
     signUpDB();
 
     setSignedIn(true)
+=======
+>>>>>>> origin/HomePage-branch
     navigate(`/:${user.username}/createDogForm`)
-    
   }
 
   function navToLogin () {

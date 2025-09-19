@@ -4,7 +4,7 @@ import { createContext } from "react";
 import { useParams } from "react-router";
 // import { auth } from "../config/firebase";
 import { auth } from "../../config/firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import { db } from "../../config/firebase";
 
 export const UserContext = createContext();
@@ -34,6 +34,7 @@ export default function UserProvider({ children }) {
   async function signUpDB() {
     try {
       await createUserWithEmailAndPassword(auth, user.email, user.password);
+      await updateProfile(auth.currentUser, { displayName: user.username });
 
       const newUser = {
         ...user,
@@ -42,10 +43,30 @@ export default function UserProvider({ children }) {
 
       setUser(newUser);
       setUsers((prev) => [...prev, newUser]); 
+
+      return newUser
+
     } catch (error) {
       console.error(error);
     }
   }
 
-  return <UserContext.Provider value={{auth, user, setUser, users, setUsers, signUpDB, onChangeUserData }}>{children}</UserContext.Provider>;
+  // inside UserContext.jsx
+async function signInDB(email, password) {
+  const cred = await signInWithEmailAndPassword(auth, email, password);
+  const fb = cred.user;
+
+  let username = fb.displayName || "";
+
+  const loggedUser = {
+    id: fb.uid,
+    email: fb.email,
+    username: username || user.username || "", 
+  };
+
+  setUser(loggedUser);
+  return loggedUser;
+}
+
+  return <UserContext.Provider value={{signInDB, auth, user, setUser, users, setUsers, signUpDB, onChangeUserData }}>{children}</UserContext.Provider>;
 }

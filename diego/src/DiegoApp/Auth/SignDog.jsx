@@ -4,18 +4,34 @@ import "./AuthStyle/AuthStyle.css";
 import { DogContext } from "../app/context/DogContext";
 import { Navigate, useNavigate } from "react-router";
 import { UserContext } from "../app/context/UserContext";
+import { uploadFilesToCloudinary } from "../app/context/UploadToCloudinary";
 
 
 export default function SignDog() {
 
 
     const navigate = useNavigate()
-    const { user } = useContext(UserContext)
-    const { onChangeDogData , dog,setDog, dogs, addDogForUser } = useContext(DogContext);
+    const { user, signUpDB } = useContext(UserContext)
+    const { onChangeDogData , dog,setSignedIn, addDogForUser ,getAllDogs, setDog} = useContext(DogContext);
 
+<<<<<<< HEAD
    async function submitDog () {
       await addDogForUser()
       navigate(`/:${user?.username}/home`)
+=======
+    async function submitDog() {
+      const newUser = await signUpDB();
+      const urls = await uploadFilesToCloudinary(dog.imgs);
+    
+      const updatedDog = { ...dog, imgs: urls };
+      setDog(updatedDog);
+      await addDogForUser(newUser.id, updatedDog); // pass it directly
+    
+      setSignedIn(true);
+      await getAllDogs?.();
+      const username = newUser?.username || "user";
+      navigate(`/${username}/home`);
+>>>>>>> origin/HomePage-branch
     }
 
     return (
@@ -55,7 +71,7 @@ export default function SignDog() {
 
           <div className="formInput">
             <label htmlFor="uploadImgs">Upload img</label>
-            <input type="file" name="imgs" multiple accept="=image/*" id="uploadImgs" onChange={onChangeDogData} />
+            <input type="file" name="imgs" multiple accept="image/*" id="uploadImgs" onChange={onChangeDogData}/>
           </div>
 
           <div className="formInput">

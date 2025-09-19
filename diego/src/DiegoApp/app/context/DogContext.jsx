@@ -32,22 +32,21 @@ export default function DogProvider({ children }) {
   // ================= //
 
   //database function
+<<<<<<< HEAD
   async function addDogForUser() {
     console.log(`dogUserId:`,user.id)
+=======
+  async function addDogForUser(uid, dogData = dog) {
+>>>>>>> origin/HomePage-branch
     try {
-      const userDogsCollectionRef = doc(db, "dogs", user.id);
-
+      const userDogsCollectionRef = doc(db, "dogs", uid);
+  
       await setDoc(userDogsCollectionRef, {
-        name: dog.name,
-        size: dog.size,
-        id: user.id,
-        imgs: null,
-        age: dog.age,
-        bread: dog.bread,
-        description: dog.description,
-        likes: dog.likes,
-        location: dog.location,
+        ...dogData,
+        id: uid,
       });
+  
+      console.log("Dog saved with imgs:", dogData.imgs);
     } catch (err) {
       console.error(err);
     }
@@ -55,19 +54,16 @@ export default function DogProvider({ children }) {
 
   async function getAllDogs() {
     try {
-      if (!signedIn) return;
       const dogsCollectionRef = collection(db, "dogs");
       const dogsSnapshot = await getDocs(dogsCollectionRef);
 
       const dogsList = dogsSnapshot.docs.map((doc) => doc.data());
       setDogs(dogsList);
-      //   return dogsList;
     } catch (error) {
       console.error("Error fetching dogs:", error);
       return [];
     }
   }
-
 
   // ================== //
 
@@ -76,36 +72,41 @@ export default function DogProvider({ children }) {
     const field = e.currentTarget.name;
     const value = e.currentTarget.value;
     const files = e.currentTarget.files;
-    setDog((prev) => ({
-      ...prev,
-      [field]: files ? Array.from(files) : value,
-    }));
+    const type = e.currentTarget.type;
+  
+    setDog(prev => {
+      if (field === "imgs" && files?.length) {
+        return {
+          ...prev,
+          imgs: [...(Array.isArray(prev.imgs) ? prev.imgs : []), ...Array.from(files)],
+        };
+      }
+      return { ...prev, [field]: value };
+    });
   }
+
   
 
   // define variabls for dog use
-  const  myDogData = useMemo(() => {
-    return  dogs.find((dog) => dog.id == user.id) ;
-  }, [dogs, user.id, signedIn])
+  const myDogData = useMemo(() => {
+    if (!user?.id || dogs.length === 0) return null;
+    return dogs.find(d => d.id === user.id) ?? null;
+  }, [dogs, user?.id]);
+
+
 
   const dogsToMeet = useMemo(() => {
-    return dogs.filter((dog) => dog.id !== user.id)
-  }, [dogs, user.id , signedIn])
+    if (!user?.id) return [];
+    return dogs.filter(d => d.id !== user.id);
+  }, [dogs, user?.id]);
+
+  useEffect(() => {
+    console.log("dogs:", dogs);
+    console.log("my dog data", myDogData);
+    console.log("dogs to meet :", dogsToMeet);
+  }, [dogs, myDogData, dogsToMeet])
 
   // ============ //
 
-  useEffect(() => {
-    console.log("user.id:", user.id);
-    console.log("myDogData:", myDogData);
-    console.log("dogsToMeet:", dogsToMeet);
-    console.log("all dogs:", dogs);
-  }, [myDogData, dogsToMeet, user.id, dogs]);
-
-
-
-  //function to likeBtn - insert like into the array
-
-  //update form - to the dog state  and than to the dogs state
-
-  return <DogContext.Provider value={{getAllDogs,signedIn, setSignedIn,  myDogData,  addDogForUser, isPop, dogs, setIsPop, dog, onChangeDogData }}>{children}</DogContext.Provider>;
+  return <DogContext.Provider value={{getAllDogs,signedIn,setDog, setSignedIn,  addDogForUser,myDogData, isPop, dogs, setIsPop, dog, onChangeDogData }}>{children}</DogContext.Provider>;
 }

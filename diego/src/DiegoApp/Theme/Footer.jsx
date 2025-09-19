@@ -6,7 +6,11 @@ import HeartIcon from "./ThemeStyle/Icons/Heart-icon.png";
 import ChatRoom from "../Chats/ChatRoom";
 import { NavLink } from "react-router";
 import SignOut from "../Auth/SignOut";
+import { useContext } from "react";
+import { UserContext } from "../app/context/UserContext";
 export default function Footer({ active = "home", onChange = () => {} }) {
+
+  const { user } = useContext(UserContext)
   const items = [
     { key: "matches", label: "Matches", icon: HeartIcon, alt: "Matches" },
     { key: "chat", label: "Chat", icon: Chat, alt: "Chat", nav: "ChatRoom" },
