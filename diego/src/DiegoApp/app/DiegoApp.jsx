@@ -12,38 +12,31 @@ import SignDog from "../Auth/SignDog";
 import { DogContext } from "./context/DogContext";
 import { UserContext } from "./context/UserContext";
 import RenderDogs from "../HomePage/innerComponents/RenderDogs";
+import ConnectedUser from "./context/ConnectedUser";
 
 export default function DiegoApp() {
-  const { fetchDogsFromDB, dogs, signedIn } = useContext(DogContext);
-  const { user, auth } = useContext(UserContext);
+  const { dogs} = useContext(DogContext);
 
 
- // define variabls for dog use
- const  myDogData = useMemo(() => {
-  console.log("user id :", user.id);
-  return  dogs.find((dog) => dog.id == user.id) ;
-}, [dogs, user?.id])
-
-  useEffect(() => {
-    console.log("my dog data :",myDogData);
-  },[dogs])
+//  
 
 
   return (
     <div className="webWrraper">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<UserWrapper />}>
-            <Route path="" element={<LogIn />} />
-            <Route path="/signOut" element={<SignOut />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/:username/createDogForm" element={<SignDog />} />
-           <Route path="/:username/home" element={<HomePage />} />
-            
-            <Route path={`${user.username}/ChatsList`} element={<ChatsList />} />
-            <Route path="/ChatRoom" element={<ChatRoom />} />
-            {/* <Route path="/RenderDogs" element={<RenderDogs dogs={['a','b','c','d','e','f']} />} /> */}
-            <Route path="/RenderDogs" element={<RenderDogs dogs={dogs} />} />
+          <Route path="" element={<UserWrapper />}>
+            <Route index element={<LogIn />} />
+            <Route path="signOut" element={<SignOut />} />
+            <Route path="signup" element={<SignUp />} />
+            <Route path=":username/createDogForm" element={<SignDog />} />
+            <Route element={<ConnectedUser/>}>
+                <Route path=":username/home" element={<HomePage />} />
+                {/* <Route path={`${user.username}/ChatsList`} element={<ChatsList />} />
+                <Route path="/ChatRoom" element={<ChatRoom />} /> */}
+                {/* <Route path="/RenderDogs" element={<RenderDogs dogs={['a','b','c','d','e','f']} />} /> */}
+                <Route path="RenderDogs" element={<RenderDogs dogs={dogs} />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

@@ -10,11 +10,12 @@ export const DogContext = createContext();
 export default function DogProvider({ children }) {
 
   //import context from user
-  const { user } = useContext(UserContext);
+  const { user , authReady } = useContext(UserContext);
 
 
   //define states
   const [dogs, setDogs] = useState([]);
+  //REMOVED: dogsLoading moved to ConnectedUser wrapper for better architecture
   const [dog, setDog] = useState({
     name: "",
     size: "",
@@ -26,7 +27,6 @@ export default function DogProvider({ children }) {
     likes: [],
     location: "",
   });
-  const [signedIn,setSignedIn] = useState(false)
   //img modal swiper
   const [isPop, setIsPop] = useState(false);
   // ================= //
@@ -49,6 +49,7 @@ export default function DogProvider({ children }) {
 
   async function getAllDogs() {
     try {
+      //REMOVED: Loading state management moved to ConnectedUser wrapper
       const dogsCollectionRef = collection(db, "dogs");
       const dogsSnapshot = await getDocs(dogsCollectionRef);
 
@@ -83,10 +84,10 @@ export default function DogProvider({ children }) {
   
 
   // define variabls for dog use
-  const myDogData = useMemo(() => {
-    if (!user?.id || dogs.length === 0) return null;
-    return dogs.find(d => d.id === user.id) ?? null;
-  }, [dogs, user?.id]);
+  const myDogData = useMemo(
+    () => (authReady && user?.id) ? dogs.find(d => d.id === user.id) : null,
+    [authReady, dogs, user?.id]
+  );
 
 
 
@@ -94,6 +95,8 @@ export default function DogProvider({ children }) {
     if (!user?.id) return [];
     return dogs.filter(d => d.id !== user.id);
   }, [dogs, user?.id]);
+
+
 
   useEffect(() => {
     console.log("dogs:", dogs);
@@ -103,5 +106,6 @@ export default function DogProvider({ children }) {
 
   // ============ //
 
-  return <DogContext.Provider value={{getAllDogs,signedIn,setDog, setSignedIn,  addDogForUser,myDogData, isPop, dogs, setIsPop, dog, onChangeDogData }}>{children}</DogContext.Provider>;
+  
+  return <DogContext.Provider value={{getAllDogs,setDog, addDogForUser,myDogData, isPop, dogs, setIsPop, dog, onChangeDogData, dogsToMeet }}>{children}</DogContext.Provider>;
 }

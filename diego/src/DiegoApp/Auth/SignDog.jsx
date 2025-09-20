@@ -8,8 +8,8 @@ import { uploadFilesToCloudinary } from "../app/context/UploadToCloudinary";
 
 export default function SignDog() {
   const navigate = useNavigate();
-  const { user, signUpDB } = useContext(UserContext);
-  const { onChangeDogData, dog, setSignedIn, addDogForUser, getAllDogs, setDog } = useContext(DogContext);
+  const { user, signUpDB, authReady } = useContext(UserContext);
+  const { onChangeDogData, dog,  addDogForUser,dogs,  getAllDogs, setDog } = useContext(DogContext);
 
   async function submitDog() {
     const newUser = await signUpDB();
@@ -17,14 +17,18 @@ export default function SignDog() {
 
     const updatedDog = { ...dog, imgs: urls };
     setDog(updatedDog);
-    await addDogForUser(newUser.id, updatedDog); // pass it directly
+    await addDogForUser(newUser.id, updatedDog); 
 
-    setSignedIn(true);
-    await getAllDogs?.();
-    const username = newUser?.username || "user";
-    navigate(`/${username}/home`);
-    console.log(`all dogs`, dogs);
+    if (authReady && newUser?.username) {
+         await getAllDogs();
+         navigate(`/${encodeURIComponent(newUser.username)}/home`, { replace: true });
+       }
+
   }
+
+
+
+
 
   return (
     <>

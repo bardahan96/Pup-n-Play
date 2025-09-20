@@ -20,7 +20,8 @@ export default function HomePage() {
         setIsPop(true)
     }
 
-    return (
+ 
+ return (
         <>
 
         
@@ -29,8 +30,9 @@ export default function HomePage() {
                     <div className="main-profile-wrap">
 
                         <div className="main-profile-name">
-                            <img src={myDogData.imgs[0]} alt="" />
-                            <span>{myDogData.name}</span>
+                            
+                            <img src={myDogData.imgs?.[0] || ''} alt="" />
+                            <span>{myDogData.name || 'No name'}</span>
                         </div>
                             <Outlet/>
 

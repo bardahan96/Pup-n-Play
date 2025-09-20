@@ -8,7 +8,7 @@ export default function SignUp() {
   
 
   const { user, signUpDB, onChangeUserData } = useContext(UserContext);
-  const { signedIn, setSignedIn } = useContext(DogContext)
+  
 
   const navigate=useNavigate()
   
