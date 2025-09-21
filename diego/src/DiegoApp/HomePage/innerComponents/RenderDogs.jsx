@@ -12,6 +12,7 @@ export default function RenderDogs() {
 
   const [remainingDogs, setRemainingDogs] = useState([...dogsToMeet]); // עותק של הכלבים שטרם הוצגו
   const [dogIMightLike, setDogIMightLike] = useState();
+  const [match, setMatch] = useState(false);
 
   console.log(remainingDogs);
   console.log(`dogs`, dogsToMeet);
@@ -24,7 +25,7 @@ export default function RenderDogs() {
       const dogRef = doc(db, "dogs", dogThatILike.id);
 
       await updateDoc(dogRef, {
-        likes: arrayUnion(currenUserId),
+        likes: arrayUnion(currenUserId.id),
       });
 
       console.log("Like added successfully");
@@ -33,12 +34,18 @@ export default function RenderDogs() {
     }
   }
 
-  function handleLike() {
+  async function handleLike() {
     console.log(`current dog user:`, dogIMightLike);
     console.log(`dog from list:`, myDogData);
 
-    addLikeToDog(myDogData, dogIMightLike);
+    await addLikeToDog(myDogData, dogIMightLike);
 
+    const isMatch = await checkIfMatch(myDogData, dogIMightLike);
+    if (isMatch) {
+      console.log("MATCH!!!");
+      setMatch(true);
+      return;
+    }
     handleNextDog();
   }
 
@@ -55,6 +62,13 @@ export default function RenderDogs() {
     setDogIMightLike(nextDog);
     setRemainingDogs((prev) => prev.filter((_, i) => i !== randomIndex));
   }
+  async function checkIfMatch(myDogData, dogIMightLike) {
+    console.log(`likes:`, dogIMightLike.likes);
+    if (dogIMightLike.likes.includes(myDogData.id)) {
+      return true;
+    }
+    return false;
+  }
 
   return (
     <>
@@ -62,13 +76,13 @@ export default function RenderDogs() {
         {dogIMightLike ? (
           <div>
             <h2>{dogIMightLike.name}</h2>
-            <img src={dogIMightLike.imageUrl} alt={dogIMightLike.name} width="200" />
+            <img src={dogIMightLike.imgs[0]} alt={dogIMightLike.name} width="200" />
             {/* הוסף עוד שדות כמו גזע, גיל, וכו' אם יש */}
           </div>
         ) : (
           <p>{remainingDogs.length === 0 ? "נגמרו הכלבים להצגה" : "לחץ כדי להתחיל"}</p>
         )}
-
+        {match && <h1>MATCHE!!!</h1>}
         {/* <button onClick={handleNextDog}>{remainingDogs.length === 0 ? "התחל מחדש" : "הצג כלב הבא"}</button> */}
         <button onClick={handleNextDog}>Dislike</button>
         <button onClick={handleLike}>Like</button>
