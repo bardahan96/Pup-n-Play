@@ -4,42 +4,45 @@ import { DogContext } from "../../app/context/DogContext";
 import { useState } from "react";
 import { db } from "../../config/firebase";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
-
+import { useEffect } from "react";
 
 export default function RenderDogs() {
-    // const { user, signUpDB, onChangeUserData } = useContext(UserContext);
-    const {getAllDogs,signedIn, setSignedIn,  myDogData,  addDogForUser, isPop, dogs,dogsToMeet, setIsPop, dog, onChangeDogData } = useContext(DogContext)
-    
+  // const { user, signUpDB, onChangeUserData } = useContext(UserContext);
+  const { getAllDogs, signedIn, setSignedIn, myDogData, addDogForUser, isPop, dogs, dogsToMeet, setIsPop, dog, onChangeDogData } = useContext(DogContext);
+
   const [remainingDogs, setRemainingDogs] = useState([...dogsToMeet]); // עותק של הכלבים שטרם הוצגו
   const [dogIMightLike, setDogIMightLike] = useState();
 
   console.log(remainingDogs);
-  console.log(`dogs`,dogsToMeet);
+  console.log(`dogs`, dogsToMeet);
+  useEffect(() => {
+    handleNextDog();
+  }, []);
 
   async function addLikeToDog(dogThatILike, currenUserId) {
-  try {
-    const dogRef = doc(db, "dogs", dogThatILike.id);
+    try {
+      const dogRef = doc(db, "dogs", dogThatILike.id);
 
-    await updateDoc(dogRef, {
-      likes: arrayUnion(currenUserId),
-    });
+      await updateDoc(dogRef, {
+        likes: arrayUnion(currenUserId),
+      });
 
-    console.log("Like added successfully");
-  } catch (error) {
-    console.error("Error adding like:", error);
+      console.log("Like added successfully");
+    } catch (error) {
+      console.error("Error adding like:", error);
+    }
   }
-}
 
-  function handleLike(){
-     console.log(`current dog user:`,dogIMightLike);
-     console.log(`dog from list:`,myDogData);
+  function handleLike() {
+    console.log(`current dog user:`, dogIMightLike);
+    console.log(`dog from list:`, myDogData);
 
-     addLikeToDog(myDogData,dogIMightLike) 
-     
+    addLikeToDog(myDogData, dogIMightLike);
+
     handleNextDog();
   }
 
-  const handleNextDog = () => {
+  function handleNextDog() {
     if (remainingDogs.length === 0) {
       setDogIMightLike(null); // כל הכלבים הוצגו
       return;
@@ -51,7 +54,7 @@ export default function RenderDogs() {
     // עדכון הכלב הנוכחי והסרתו מהרשימה
     setDogIMightLike(nextDog);
     setRemainingDogs((prev) => prev.filter((_, i) => i !== randomIndex));
-  };
+  }
 
   return (
     <>
