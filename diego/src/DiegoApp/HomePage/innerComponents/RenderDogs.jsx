@@ -6,18 +6,19 @@ import { db } from "../../config/firebase";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 
 
-export default function RenderDogs({ dogs }) {
+export default function RenderDogs() {
     // const { user, signUpDB, onChangeUserData } = useContext(UserContext);
-  //   const {getAllDogs,signedIn, setSignedIn,  myDogData,  addDogForUser, isPop, dogs, setIsPop, dog, onChangeDogData } = useContext(DogContext)
+    const {getAllDogs,signedIn, setSignedIn,  myDogData,  addDogForUser, isPop, dogs,dogsToMeet, setIsPop, dog, onChangeDogData } = useContext(DogContext)
     
-  const [remainingDogs, setRemainingDogs] = useState([...dogs]); // עותק של הכלבים שטרם הוצגו
-  const [currentDog, setCurrentDog] = useState();
+  const [remainingDogs, setRemainingDogs] = useState([...dogsToMeet]); // עותק של הכלבים שטרם הוצגו
+  const [dogIMightLike, setDogIMightLike] = useState();
 
   console.log(remainingDogs);
+  console.log(`dogs`,dogsToMeet);
 
   async function addLikeToDog(dogThatILike, currenUserId) {
   try {
-    const dogRef = doc(db, "dogs", dogThatILike);
+    const dogRef = doc(db, "dogs", dogThatILike.id);
 
     await updateDoc(dogRef, {
       likes: arrayUnion(currenUserId),
@@ -30,15 +31,17 @@ export default function RenderDogs({ dogs }) {
 }
 
   function handleLike(){
-     console.log("like");
-     addLikeToDog(currentDog,"VqFzxhGI8nbuzGQrzUMLiqOOpqn1") //(המשתמש הנוכחי, הכלב שעושים לו לייק)
+     console.log(`current dog user:`,dogIMightLike);
+     console.log(`dog from list:`,myDogData);
+
+     addLikeToDog(myDogData,dogIMightLike) 
      
     handleNextDog();
   }
 
   const handleNextDog = () => {
     if (remainingDogs.length === 0) {
-      setCurrentDog(null); // כל הכלבים הוצגו
+      setDogIMightLike(null); // כל הכלבים הוצגו
       return;
     }
 
@@ -46,17 +49,17 @@ export default function RenderDogs({ dogs }) {
     const nextDog = remainingDogs[randomIndex];
 
     // עדכון הכלב הנוכחי והסרתו מהרשימה
-    setCurrentDog(nextDog);
+    setDogIMightLike(nextDog);
     setRemainingDogs((prev) => prev.filter((_, i) => i !== randomIndex));
   };
 
   return (
     <>
       <div>
-        {currentDog ? (
+        {dogIMightLike ? (
           <div>
-            <h2>{currentDog}</h2>
-            <img src={currentDog.imageUrl} alt={currentDog.name} width="200" />
+            <h2>{dogIMightLike.name}</h2>
+            <img src={dogIMightLike.imageUrl} alt={dogIMightLike.name} width="200" />
             {/* הוסף עוד שדות כמו גזע, גיל, וכו' אם יש */}
           </div>
         ) : (

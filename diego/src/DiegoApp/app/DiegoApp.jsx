@@ -35,7 +35,7 @@ export default function DiegoApp() {
                 {/* <Route path={`${user.username}/ChatsList`} element={<ChatsList />} />
                 <Route path="/ChatRoom" element={<ChatRoom />} /> */}
                 {/* <Route path="/RenderDogs" element={<RenderDogs dogs={['a','b','c','d','e','f']} />} /> */}
-                <Route path="RenderDogs" element={<RenderDogs dogs={dogs} />} />
+                <Route path="RenderDogs" element={<RenderDogs  />} />
             </Route>
           </Route>
         </Routes>
