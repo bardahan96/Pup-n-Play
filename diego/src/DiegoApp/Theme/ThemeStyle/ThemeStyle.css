@@ -14,7 +14,7 @@
   display: flex;
   justify-self: center;
   align-self: center;
-  height: calc( 120px);
+  height: calc(120px);
 }
 
 .back-btn {
@@ -30,6 +30,7 @@
 .back-arrow {
   height: 16px;
   width: 16px;
+  filter: invert(1);
 }
 
 .footer {
@@ -43,8 +44,6 @@
   padding: 0em 4em;
   box-sizing: border-box;
 }
-
-
 
 /* ---------- */
 /* --- Buttons --- */
@@ -82,15 +81,16 @@
 
 /* current tab */
 .btn--active {
-  background: rgba(255, 255, 255, 0.14);
+  background: var(--primaryColor);
   box-shadow: inset 0 6px 12px rgba(0, 0, 0, 0.08);
 }
 
 /* icon & label */
 .footer .btn__icon {
-  width: 28px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
   margin: 0;
+  filter: invert(1);
 }
 .footer .btn__label {
   line-height: 1;

@@ -19,7 +19,12 @@ export default function DogImgModal() {
   if (!isPop) return null;
 
   return (
-    <div className="dog-modal" role="dialog" aria-modal="true" aria-label="Dog images">
+    <div
+      className="dog-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Dog images"
+    >
       <div className="dog-modal__backdrop" onClick={() => setIsPop(false)} />
       <div className="dog-modal__panel">
         <Swiper
@@ -27,7 +32,7 @@ export default function DogImgModal() {
           modules={[EffectFade, Pagination, A11y]}
           slidesPerView={1}
           effect="fade"
-          fadeEffect={{ crossFade: true }}                      
+          fadeEffect={{ crossFade: true }}
           loop
         >
           {dogImg.map((src, i) => (
