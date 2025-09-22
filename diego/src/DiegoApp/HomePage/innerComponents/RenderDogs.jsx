@@ -9,7 +9,7 @@ import DogImgModal from "../HomePageComponents/DogImgModal";
 
 export default function RenderDogs() {
   // const { user, signUpDB, onChangeUserData } = useContext(UserContext);
-  const { getAllDogs, signedIn, setSignedIn, myDogData, addDogForUser, isPop, dogs, dogsToMeet, setIsPop, dog, onChangeDogData } = useContext(DogContext);
+  const { myDogData, dogsToMeet } = useContext(DogContext);
 
   const [remainingDogs, setRemainingDogs] = useState([...dogsToMeet]); // עותק של הכלבים שטרם הוצגו
   const [dogIMightLike, setDogIMightLike] = useState();
