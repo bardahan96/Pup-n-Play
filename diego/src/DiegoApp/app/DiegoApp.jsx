@@ -31,11 +31,12 @@ export default function DiegoApp() {
             <Route path="signup" element={<SignUp />} />
             <Route path=":username/createDogForm" element={<SignDog />} />
             <Route element={<ConnectedUser/>}>
-                <Route path=":username/home" element={<HomePage />} />
+                <Route path=":username/home" element={<HomePage />}> 
+                <Route index  element={<RenderDogs  />}/>
+                </Route>
                 {/* <Route path={`${user.username}/ChatsList`} element={<ChatsList />} />
                 <Route path="/ChatRoom" element={<ChatRoom />} /> */}
                 {/* <Route path="/RenderDogs" element={<RenderDogs dogs={['a','b','c','d','e','f']} />} /> */}
-                <Route path="RenderDogs" element={<RenderDogs  />} />
             </Route>
           </Route>
         </Routes>

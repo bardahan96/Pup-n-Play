@@ -34,7 +34,9 @@ export default function HomePage() {
                             <img src={myDogData.imgs?.[0] || ''} alt="" />
                             <span>{myDogData.name || 'No name'}</span>
                         </div>
+                        <div className="render_dogs_container">
                             <Outlet/>
+                        </div>
 
                     </div>
 
