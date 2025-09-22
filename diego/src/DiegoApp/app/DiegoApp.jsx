@@ -15,7 +15,7 @@ import RenderDogs from "../HomePage/innerComponents/RenderDogs";
 import ConnectedUser from "./context/ConnectedUser";
 
 export default function DiegoApp() {
-  const { dogs} = useContext(DogContext);
+  const { getAllDogs, dogs} = useContext(DogContext);
 
 
 //  

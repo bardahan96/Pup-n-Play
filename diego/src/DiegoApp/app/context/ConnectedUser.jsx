@@ -17,10 +17,8 @@ export default function ConnectedUser() {
         }
     }, [authReady, user?.id]);
 
-    if(!authReady) return <div></div>
+    if(!authReady || !dataLoaded) return <div></div>
     if (!user?.id) return <Navigate to="/" replace />;
-    
-    if (!dataLoaded) return <div></div>;
     
 
     return (
