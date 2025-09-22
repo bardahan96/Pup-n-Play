@@ -2,7 +2,6 @@
 .webWrraper{
     background-color: var(--primaryBackgroundColor);
     width: 100%;
-    
     display: flex;
     flex-direction: column;
     gap: 4em;
@@ -10,7 +9,7 @@
 }
 
 .webWrraper-routes{
-    min-height: 80vh;
+    min-height: 90vh;
     align-items: center;
     display: flex;
     justify-content: center;

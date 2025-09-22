@@ -7,6 +7,8 @@ import { UserContext } from "./UserContext"
 
 export default function UserWrapper() {
 
+    const { authReady, user } = useContext(UserContext)
+
 
     return (
         <>
@@ -15,7 +17,7 @@ export default function UserWrapper() {
             <div className="webWrraper-routes">
                 <Outlet/>
             </div>
-            <Footer/>
+            { user?.id && <Footer/>}
         
         </>
     )
