@@ -5,6 +5,7 @@ import { useState } from "react";
 import { db } from "../../config/firebase";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { useEffect } from "react";
+import DogImgModal from "../HomePageComponents/DogImgModal";
 
 export default function RenderDogs() {
   // const { user, signUpDB, onChangeUserData } = useContext(UserContext);
@@ -13,6 +14,15 @@ export default function RenderDogs() {
   const [remainingDogs, setRemainingDogs] = useState([...dogsToMeet]); // עותק של הכלבים שטרם הוצגו
   const [dogIMightLike, setDogIMightLike] = useState();
   const [match, setMatch] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  function openImages() {
+    setIsModalOpen(true);
+  }
+
+  function closeImages() {
+    setIsModalOpen(false);
+  }
 
   console.log(remainingDogs);
   console.log(`dogs`, dogsToMeet);
@@ -76,7 +86,7 @@ export default function RenderDogs() {
         {dogIMightLike ? (
           <div>
             <h2>{dogIMightLike.name}</h2>
-            <img src={dogIMightLike.imgs[0]} alt={dogIMightLike.name} width="200" />
+            <img src={dogIMightLike.imgs[0]} alt={dogIMightLike.name} width="200" onClick={openImages} style={{ cursor: "pointer" }} />
             {/* הוסף עוד שדות כמו גזע, גיל, וכו' אם יש */}
           </div>
         ) : (
@@ -86,6 +96,7 @@ export default function RenderDogs() {
         {/* <button onClick={handleNextDog}>{remainingDogs.length === 0 ? "התחל מחדש" : "הצג כלב הבא"}</button> */}
         <button onClick={handleNextDog}>Dislike</button>
         <button onClick={handleLike}>Like</button>
+        <DogImgModal isOpen={isModalOpen} images={dogIMightLike?.imgs || []} onClose={closeImages} />
       </div>
     </>
   );

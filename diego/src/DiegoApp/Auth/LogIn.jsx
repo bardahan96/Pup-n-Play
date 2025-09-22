@@ -4,7 +4,7 @@ import {  signInWithEmailAndPassword } from "firebase/auth";
 import "./AuthStyle/AuthStyle.css";
 
 import { DogContext } from "../app/context/DogContext";
-import diegoLogo from  '../../assets/diego.png'
+// import diegoLogo from  './AuthStyle/diego.png'
 import { UserContext } from "../app/context/UserContext";
 import { useNavigate } from "react-router";
 
@@ -44,7 +44,7 @@ export default function LogIn() {
   return (
     
     <div className="login-page-container">
-        <img src={diegoLogo} alt="dog" sizes="10px"  />
+        {/* <img src={diegoLogo} alt="dog" sizes="10px"  /> */}
       <div className="email-pass-container">
 
         <div className="formInput">
