@@ -21,7 +21,7 @@ export default function Footer({ active = "home", onChange = () => {} }) {
   return (
     <nav className="footer" role="navigation" aria-label="Bottom navigation">
       {items.map((item) => (
-        <NavLink to={item.nav}>
+        <NavLink to={item.nav} key={item.key}>
           {" "}
           <button
           

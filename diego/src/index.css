@@ -19,3 +19,17 @@
 body{
   margin: 0;
 }
+
+button{
+  cursor: pointer;
+
+  &:hover{
+    border: none;
+    box-shadow: none;
+    outline: none;
+    background-color: none;
+    color: none;
+    transform: none;
+    filter: none;
+  }
+}

@@ -6,8 +6,8 @@ import Footer from "../../Theme/Footer"
 import { UserContext } from "./UserContext"
 
 export default function UserWrapper() {
-    const { authReady } = useContext(UserContext)
 
+    const { authReady, user } = useContext(UserContext)
 
 
     return (
@@ -17,7 +17,7 @@ export default function UserWrapper() {
             <div className="webWrraper-routes">
                 <Outlet/>
             </div>
-            {authReady && <Footer/>}
+            { user?.id && <Footer/>}
         
         </>
     )
