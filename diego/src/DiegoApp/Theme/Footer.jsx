@@ -6,25 +6,25 @@ import HeartIcon from "./ThemeStyle/Icons/Heart-icon.png";
 import ChatRoom from "../Chats/ChatRoom";
 import { NavLink } from "react-router";
 import SignOut from "../Auth/SignOut";
-import { useContext } from "react";
-import { UserContext } from "../app/context/UserContext";
 export default function Footer({ active = "home", onChange = () => {} }) {
-
-  const { user } = useContext(UserContext)
   const items = [
     { key: "matches", label: "Matches", icon: HeartIcon, alt: "Matches" },
-    { key: "chat", label: "Chat", icon: Chat, alt: "Chat", nav: "ChatRoom" },
-    { key: "home", label: "Home", icon: Kennel, alt: "Home" },
+    { key: "chat", label: "Chat", icon: Chat, alt: "Chat", nav: "ChatsList" },
+    {
+      key: "home",
+      label: "Home",
+      icon: Kennel,
+      alt: "Home",
+      nav: "/:${user.username}/home`",
+    },
     { key: "user", label: "User", icon: DogIcon, alt: "User" },
   ];
 
   return (
     <nav className="footer" role="navigation" aria-label="Bottom navigation">
       {items.map((item) => (
-        <NavLink to={item.nav} key={item.key}>
-          {" "}
+        <NavLink to={item.nav}>
           <button
-          
             key={item.key}
             type="button"
             className={`btn ${active === item.key ? "btn--active" : ""}`}
@@ -33,9 +33,8 @@ export default function Footer({ active = "home", onChange = () => {} }) {
           >
             <img className="btn__icon" src={item.icon} alt={item.alt} />
             <span className="btn__label">{item.label}</span>
-          </button>{" "}
+          </button>
         </NavLink>
-
       ))}
     </nav>
   );
