@@ -13,6 +13,8 @@ import { DogContext } from "./context/DogContext";
 import { UserContext } from "./context/UserContext";
 import RenderDogs from "../HomePage/innerComponents/RenderDogs";
 import ConnectedUser from "./context/ConnectedUser";
+import Match from "../HomePage/innerComponents/MatchList/Match";
+import MatchList from "../HomePage/innerComponents/MatchList/MatchList";
 
 import AddressAutocomplete from "../Auth/AddressAutocomplete";
 
@@ -36,7 +38,9 @@ export default function DiegoApp() {
             <Route path=":username/createDogForm" element={<SignDog />} />
             <Route element={<ConnectedUser/>}>
                 <Route path=":username/home" element={<HomePage />}> 
-                <Route index  element={<RenderDogs  />}/>
+                  <Route index element={<RenderDogs />}/>
+                  <Route path="match" element={<Match />} />
+                  <Route path="matches" element={<MatchList />} />
                 </Route>
                 {/* <Route path={`${user.username}/ChatsList`} element={<ChatsList />} />
                 <Route path="/ChatRoom" element={<ChatRoom />} /> */}

@@ -10,7 +10,6 @@ export default function SignOut() {
   async function signOutDB() {
     try {
       await signOut(auth)
-      console.log("you signed out from :", auth);
       navigate('/')
     } catch (error) {
       console.error(error)

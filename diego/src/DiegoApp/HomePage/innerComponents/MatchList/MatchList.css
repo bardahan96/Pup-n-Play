@@ -1,0 +1,111 @@
+.match-list-container {
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.match-list-container h2 {
+  
+  color: var(--primaryColor);
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+.matches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.match-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.match-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.match-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.match-name {
+  font-weight: 600;
+  color: var(--primaryColor);
+  font-size: 1.1em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
+}
+
+.match-arrow {
+  font-size: 1.5em;
+  color: var(--primaryColor);
+  font-weight: bold;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.match-item:hover .match-arrow {
+  opacity: 1;
+}
+
+.no-matches {
+  text-align: center;
+  color: var(--primaryColor);
+  font-style: italic;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+  .match-list-container {
+    padding: 15px;
+  }
+  
+  .matches-list {
+    gap: 10px;
+  }
+  
+  .match-item {
+    padding: 12px 15px;
+  }
+  
+  .match-avatar {
+    width: 45px;
+    height: 45px;
+    margin-right: 12px;
+  }
+  
+  .match-name {
+    font-size: 1em;
+  }
+  
+  .match-arrow {
+    font-size: 1.3em;
+  }
+}

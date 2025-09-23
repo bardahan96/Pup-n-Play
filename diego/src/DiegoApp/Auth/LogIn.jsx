@@ -9,7 +9,7 @@ import { UserContext } from "../app/context/UserContext";
 import { useNavigate } from "react-router";
 import eyeOpen from "./AuthStyle/eyeOpen.svg";
 import eyeClosed from "./AuthStyle/eyeClosed.svg";
-import { ErrorHandlingContext } from "../app/context/ErrorHandlingContext";
+import { ErrorHandlingContext } from "../app/context/errorHandlingContext";
 
 
 
@@ -109,7 +109,7 @@ export default function LogIn() {
         </div>
         </div>
             <div className="userForm-btns">
-                <button onClick={signIn} disabled={!email || !password}> log in</button>
+                <button onClick={signIn} > log in</button>
                 <button onClick={navToSignup}> Sign Up</button>
             </div>
       </div>

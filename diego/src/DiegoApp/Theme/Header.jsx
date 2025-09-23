@@ -18,7 +18,7 @@ export default function Header() {
         
           <img className="back-arrow" src={back} alt="back" onClick={returnPrev} />
         
-        <div className="logo">
+        <div className="logoContainer">
           <img className="logo" src={logo} alt="" />
         </div>
         <SignOut/>
