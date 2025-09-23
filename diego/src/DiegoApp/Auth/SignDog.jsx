@@ -1,74 +1,131 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect } from "react";
 
 import "./AuthStyle/AuthStyle.css";
 import { DogContext } from "../app/context/DogContext";
 import { Navigate, useNavigate } from "react-router";
 import { UserContext } from "../app/context/UserContext";
-
+import { uploadFilesToCloudinary } from "../app/context/UploadToCloudinary";
+import DogName from "./SignDog/DogName";
+import DogPlace from "./SignDog/DogPlace";
+import DogPicture from "./SignDog/DogPicture";
+import DogDescription from "./SignDog/DogDescription";
 
 export default function SignDog() {
+  const navigate = useNavigate();
+  const { user, signUpDB, authReady } = useContext(UserContext);
+  const { onChangeDogData, dog, addDogForUser, dogs, getAllDogs, setDog } =
+    useContext(DogContext);
 
+  async function submitDog() {
+    const newUser = await signUpDB();
+    const urls = await uploadFilesToCloudinary(dog.imgs);
 
-    const navigate = useNavigate()
-    const { user } = useContext(UserContext)
-    const { onChangeDogData , dog,setDog, dogs, addDogForUser } = useContext(DogContext);
+    const updatedDog = { ...dog, imgs: urls };
+    setDog(updatedDog);
+    await addDogForUser(newUser.id, updatedDog);
 
-   async function submitDog () {
-      await addDogForUser()
-      navigate(`/:${user.username}/home`)
+    if (authReady && newUser?.username) {
+      await getAllDogs();
+      navigate(`/${encodeURIComponent(newUser.username)}/home`, {
+        replace: true,
+      });
     }
+  }
 
-    return (
-        <>
-        <div className="signUpContainer">
+  return (
+    <>
+      <div className="signUpContainer">
         <div className="signUpForm">
-            <div className="formInput">
-            <label htmlFor="dogName">dog name:</label>
-            <input type="text" id="dogName" name="name" value={dog.name} onChange={onChangeDogData} />
+          <DogName />
+          <DogPlace />
+          <DogPicture />
+          <DogDescription />
+
+          {/* <div className="formInput">
+            <label htmlFor="dogName">What is your dog's name?</label>
+            <input
+              type="text"
+              id="dogName"
+              name="name"
+              value={dog.name}
+              onChange={onChangeDogData}
+            />
           </div>
 
           <div className="formInput">
-            <label htmlFor="description">description :</label>
-            <input type="text" id="description" value={dog.description} name="description" onChange={onChangeDogData} />
+            <label htmlFor="description">Description:</label>
+            <input
+              type="text"
+              id="description"
+              value={dog.description}
+              name="description"
+              onChange={onChangeDogData}
+            />
           </div>
 
           <div className="formInput">
-            <label htmlFor="preferences">bread :</label>
-            <input type="text" id="preferences" value={dog.bread} name="bread" onChange={onChangeDogData} />
+            <label htmlFor="preferences">Bread:</label>
+            <input
+              type="text"
+              id="preferences"
+              value={dog.bread}
+              name="bread"
+              onChange={onChangeDogData}
+            />
           </div>
 
           <div className="formInput">
             <label htmlFor="age">Age</label>
-            <input type="range" onChange={onChangeDogData} value={dog.age} name="age" min="0" max="30" step="0.1" />
+            <input
+              type="range"
+              onChange={onChangeDogData}
+              value={dog.age}
+              name="age"
+              min="0"
+              max="30"
+              step="0.1"
+            />
             <span>{dog.age}</span>
           </div>
 
           <div className="formInput">
             <label htmlFor="size">Size</label>
             <select onChange={onChangeDogData} name="size" id="size">
-              <option disabled={true} value="">Select</option>
-              <option value="small">small</option>
-              <option value="medium">medium</option>
-              <option value="large">large</option>
+              <option disabled={true} value="">
+                Select
+              </option>
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
             </select>
           </div>
 
           <div className="formInput">
-            <label htmlFor="uploadImgs">Upload img</label>
-            <input type="file" name="imgs" multiple accept="=image/*" id="uploadImgs" onChange={onChangeDogData} />
+            <label htmlFor="uploadImgs">Upload your dogs best picture</label>
+            <input
+              type="file"
+              name="imgs"
+              multiple
+              accept="image/*"
+              id="uploadImgs"
+              onChange={onChangeDogData}
+            />
           </div>
 
           <div className="formInput">
-            <label htmlFor="location">Location :</label>
-            <input type="text" id="location" value={dog.location} name="location" onChange={onChangeDogData} />
-          </div>
+            <label htmlFor="location">Where are you from? </label>
+            <input
+              type="text"
+              id="location"
+              value={dog.location}
+              name="location"
+              onChange={onChangeDogData}
+            />
+          </div> */}
 
-          <button onClick={submitDog}>Submit</button>
-
+          {/* <button onClick={submitDog}>Submit</button> */}
         </div>
-        </div>
-
-        </>
-    )
-    
-};
+      </div>
+    </>
+  );
+}

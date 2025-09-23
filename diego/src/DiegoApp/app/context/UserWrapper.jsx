@@ -1,30 +1,26 @@
-import { Outlet, useParams } from "react-router"
+import { Outlet, useNavigate, useParams } from "react-router"
 import { useContext, useEffect } from "react"
 import { DogContext } from "./DogContext"
 import Header from "../../Theme/Header"
 import Footer from "../../Theme/Footer"
+import { UserContext } from "./UserContext"
+import { ErrorHandlingProvider } from "./errorHandlingContext"
 
 export default function UserWrapper() {
 
-    const params = useParams(null)
+    const {  user } = useContext(UserContext)
 
-    // const { dogs } = useContext(DogContext)
-
-    // useEffect(() => {
-    //     console.log("params: ", params);
-    // }, [params])
-
-    
-    
 
     return (
         <>
         
             <Header/>
-            <div className="webWrraper-routes">
-                <Outlet/>
-            </div>
-            <Footer/>
+            <ErrorHandlingProvider>
+                <div className="webWrraper-routes">
+                    <Outlet/>
+                </div>
+            </ErrorHandlingProvider>
+            { user?.id && <Footer/>}
         
         </>
     )

@@ -61,8 +61,6 @@
   color: var(--onPrimary, #fff);
   font-size: 12px;
   font-weight: 600;
-
-  /* smooth interactions */
   transition: transform 120ms ease, background-color 150ms ease,
     box-shadow 150ms ease, filter 150ms ease;
 }
@@ -103,4 +101,28 @@
 .back-btn:active {
   transform: translateY(1px) scale(0.96);
   filter: brightness(0.94);
+}
+
+/* Mobile header/footer paddings and heights */
+@media (max-width: 600px) {
+  .header {
+    height: 56px;
+    padding: 0 12px;
+  }
+  .logo {
+    height: 72px;
+  }
+  .footer {
+    height: 64px;
+    padding: 0 12px;
+  }
+  .footer .btn__icon {
+    width: 24px;
+    height: 24px;
+  }
+  .btn {
+    gap: 2px;
+    padding: 4px 2px;
+    font-size: 11px;
+  }
 }
