@@ -19,7 +19,7 @@ export default function DogImgModal({ isOpen, images, onClose }) {
           modules={[EffectFade, Pagination, A11y]}
           slidesPerView={1}
           effect="fade"
-          fadeEffect={{ crossFade: true }}                      
+          fadeEffect={{ crossFade: true }}
           loop
           pagination
         >

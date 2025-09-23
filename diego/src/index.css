@@ -1,23 +1,22 @@
 :root {
-  --primaryColor: #373858;
-  --secondaryColor: #465;
+  --primaryColor: rgb(138, 45, 59);
+  --secondaryColor: rgb(190, 91, 80);
   --primaryFontSize: 18px;
   --secondaryFontSize: 16px;
   --PrimaryFontHeadSize: 22px;
-  --primaryBackgroundColor: #98f4;
-  --secondaryBackgroundColor: rgba(79, 64, 161, 0.267);
-  --primaryBoxShadow: 0 4px 10px rgba(153, 136, 255, 0.27);
-  --secondaryBoxShadow: 10px 4px 10px rgba(244, 244, 253, 0.27);
-  --errorHandlingColor: #ffcece;
+  --primaryBackgroundColor: #fbdb93;
+  --secondaryBackgroundColor: rgba(100, 27, 46, 0.267);
+  --primaryBoxShadow: 0 4px 10px rgba(100, 27, 46, 0.27);
+  --secondaryBoxShadow: 10px 4px 10px rgba(253, 244, 244, 0.27);
 }
 
-:root{
+:root {
   width: 100vw;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-body{
+body {
   margin: 0;
 }
 
@@ -48,4 +47,7 @@ button{
     min-height: 100dvh;
     overflow-x: hidden;
   }
+}
+a {
+  text-decoration: none;
 }
