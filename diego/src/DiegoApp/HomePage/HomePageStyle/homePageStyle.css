@@ -8,6 +8,7 @@
     color: var(--primaryColor);
 }
 
+
 .homePage-container .main-profile {
     width: 92%;
     max-width: 500px;
@@ -189,7 +190,7 @@
   }
   
   .homePage-container .main-profile { 
-    height: 95%; 
+    /* height: 95%;  */
     width: 100%; 
     max-width: none;
     margin: 0;
