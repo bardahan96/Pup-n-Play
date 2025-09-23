@@ -41,7 +41,6 @@ export default function DogProvider({ children }) {
         id: uid,
       });
   
-      console.log("Dog saved with imgs:", dogData.imgs);
     } catch (err) {
       console.error(err);
     }
@@ -99,9 +98,6 @@ export default function DogProvider({ children }) {
 
 
   useEffect(() => {
-    console.log("dogs:", dogs);
-    console.log("my dog data", myDogData);
-    console.log("dogs to meet :", dogsToMeet);
   }, [dogs, myDogData, dogsToMeet])
 
   // ============ //

@@ -8,13 +8,18 @@
   justify-content: space-between;
   padding: 0em 4em;
   box-sizing: border-box;
-}
+
+  .logoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
 .logo {
-  display: flex;
-  justify-self: center;
-  align-self: center;
-  height: calc( 120px);
+  height: 120px;
+  position: relative;
+  top: 4px;
+  }
 }
 
 .back-btn {
@@ -27,11 +32,15 @@
   height: 33px;
 }
 
-.back-arrow { height: 16px; width: 16px; }
+.back-arrow {
+   height: 16px; 
+   width: 16px; 
+   filter: invert(1);
+  }
 
 .footer {
   background-color: var(--primaryColor);
-  height: 10vh;
+  height: 4vh;
   width: 100%;
   z-index: 1;
   display: flex;

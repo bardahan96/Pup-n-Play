@@ -9,28 +9,38 @@
 }
 
 .homePage-container .main-profile {
-    height: 92%;
     width: 92%;
+    max-width: 500px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
     background-color: var(--primaryBackgroundColor);
     border-radius: 8px;
     box-shadow: var(--primaryBoxShadow);
+    margin: 0 auto;
 }
 
 .main-profile .main-profile-wrap {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: flex-start;
     gap: 0.75em;
     padding: 1em;
     box-sizing: border-box;
+    width: 100%;
+
+
+    
 }
 
 .main-profile-wrap .main-profile-name {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5em;
+    width: 100%;
+    margin-bottom: 42px;
 }
 .main-profile-name img {
     border-radius: 50%;
@@ -97,18 +107,131 @@
   border-radius: 5px;
   cursor: pointer;
 }
-.handleLikesContainer button:hover{
-  box-shadow: var(--secondaryBoxShadow);
-  box-shadow: 1px 1px 2px ;
+
+
+.render_dogs_container{ 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.render_dogs_container{ border: 1px solid red; }
+/* Style for dog images in RenderDogs */
+.render_dogs_container img {
+    border-radius: 4px;
+}
+
+.button_container{
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Dog Info Styling */
+.dog_info {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.dog_info h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primaryColor);
+  text-align: center;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.dog_info .info_bubble {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: transparent;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  font-size: 0.9rem;
+}
+
+.dog_info .info_label {
+  font-weight: 500;
+  color: #6c757d;
+}
+
+.dog_info .info_value {
+  font-weight: 600;
+  color: var(--primaryColor);
+}
+
+.dog_info .description {
+  background: transparent;
+  padding: 8px 12px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  font-style: italic;
+  color: #495057;
+  line-height: 1.4;
+  width: 100%;
+}
+
 
 /* Mobile tweaks */
 @media (max-width: 600px) {
-  .homePage-container .main-profile { height: 94%; width: 94%; }
-  .main-profile .main-profile-wrap { gap: 0.75em; padding: 1em; }
+  .homePage-container {
+    padding: 10px;
+  }
+  
+  .homePage-container .main-profile { 
+    height: 95%; 
+    width: 100%; 
+    max-width: none;
+    margin: 0;
+  }
+  
+  .main-profile .main-profile-wrap { 
+    gap: 0.5em; 
+    padding: 0.75em; 
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .main-profile-wrap .main-profile-name {
+    justify-content: flex-start;
+    margin-bottom: 0.5em;
+  }
+  
   .main-profile-wrap .dog-main-img { padding: 0.5em; }
   .homePage-container .handleLikesContainer { margin-top: 14px; }
   .homePage-container .handleLikesContainer button { width: 48%; padding: 0.6em 0; }
+  
+  .render_dogs_container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .dog_info {
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .dog_info h2 {
+    font-size: 1.3rem;
+  }
+  
+  .dog_info .info_bubble {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
 }
+

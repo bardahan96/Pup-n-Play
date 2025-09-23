@@ -1,42 +1,41 @@
 .match {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .its-a-match {
   font-size: 24px;
-}
-
-.match-img {
-  height: 360px;
-  width: 360px;
+  margin-bottom: 8px;
 }
 
 .match-row {
   display: flex;
-  position: relative; /* הורה ממוקם לאווטארים */
+  align-items: center;       /* vertical align */
+  justify-content: center;   /* center the pair */
+  gap: 12px;                 /* space between circles */
   width: min(92vw, 420px);
-  margin-top: 4px;
+  margin: 4px 0 12px;
+}
+
+.user1-img,
+.user2-img {
+  /* no absolute positioning */
 }
 
 .circle {
-  border: 1px solid black;
-  border-radius: 100px;
-  height: 100px;
-  width: 100px;
+  /* keep both images identical size */
+  width: 66px !important;    /* override the inline style if needed */
+  height: 66px !important;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
 }
 
-.user1-img {
-  position: absolute;
-  top: 6%;
-  left: 6%;
-  transform: translate(-15%, -15%);
-}
-.user2-img {
-  position: absolute;
-  top: 6%;
-  right: 6%;
-  transform: translate(15%, -15%);
+.match-img {
+  width: 360px;
+  height: 360px;
+  max-width: 92vw;
+  object-fit: contain;
 }
