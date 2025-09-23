@@ -3,118 +3,112 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100dvh;
     width: 100vw;
     color: var(--primaryColor);
-    
-    
-    .main-profile {
-        height: 90%;
-        width: 90%;
-        display: flex;
-        justify-content: flex-start;
-        background-color: var(--primaryBackgroundColor);
-        border-radius: 8px;
-        box-shadow: var(--primaryBoxShadow);
-        
-      
-      .main-profile-wrap {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+}
 
-            gap: 1em;
-            padding: 1.5em;
-            box-sizing: border-box;
+.homePage-container .main-profile {
+    height: 92%;
+    width: 92%;
+    display: flex;
+    justify-content: flex-start;
+    background-color: var(--primaryBackgroundColor);
+    border-radius: 8px;
+    box-shadow: var(--primaryBoxShadow);
+}
 
-        .main-profile-name {
-            display: flex;
-            align-items: center;
-            gap: 0.5em;
+.main-profile .main-profile-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75em;
+    padding: 1em;
+    box-sizing: border-box;
+}
 
-          img {
-            border-radius: 50%;
-            height: 64px;
-            width: 63px;
-          }
+.main-profile-wrap .main-profile-name {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+.main-profile-name img {
+    border-radius: 50%;
+    height: 56px;
+    width: 56px;
+}
+.main-profile-name span { font-weight: bold; }
 
-          span {
-            font-weight: bold;
-          }
-        }
-  
-        .dog-main-img {
-            padding: 1em;
-            box-sizing: border-box;
-            box-shadow: var(--primaryBoxShadow);
-            background-color: var(--secondaryBackgroundColor);
-            border-radius: 8px;
-          img {
-            width: 100%;
+.main-profile-wrap .dog-main-img {
+    padding: 0.75em;
+    box-sizing: border-box;
+    box-shadow: var(--primaryBoxShadow);
+    background-color: var(--secondaryBackgroundColor);
+    border-radius: 8px;
+}
+.dog-main-img img { width: 100%; }
 
-          }
-        }
-  
-        .profile-descrption {
-            display: flex;
-            align-items: flex-start;
-            flex-direction: column;
-            gap: 0.5em;
+.main-profile-wrap .profile-descrption {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5em;
+}
+.profile-descrption .descrption-list{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-start;
+}
+.profile-descrption .profile-descrption-header{
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+}
+.profile-descrption .profile-descrption-header h3{ margin: 0; }
 
-            .descrption-list{
-                display: flex;
-                flex-direction: row;
-                align-items: flex-start;
-                justify-content: center;
-                gap: 6px;
-                flex-wrap: wrap;
-                width: 100%;
-                justify-content: flex-start;
-            }
+.profile-descrption .infoContainer,
+.profile-descrption .hobbies{
+    padding: 0.2em 0.75em;
+    background-color: rgb(244, 200, 255);
+    border-radius: 2em;
+    color: var(--primaryColor);
+    display: flex;
+}
 
-                .profile-descrption-header{
-                display: flex;
-                align-items: center;
-                gap: 1em;
-                h3{
-                    margin: 0;
-                }
-                }
+.homePage-container .handleLikesContainer{
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.handleLikesContainer button{
+  width: 44%;
+  white-space: balance;
+  align-self: flex-start;
+  background-color: var(--secondaryColor);
+  color: white;
+  border: none;
+  padding: 0.5em 0em;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.handleLikesContainer button:hover{
+  box-shadow: var(--secondaryBoxShadow);
+  box-shadow: 1px 1px 2px ;
+}
 
-                .infoContainer , .hobbies{
-                    padding: 0.2em 1em;
-                    background-color: rgb(244, 200, 255);
-                    border-radius: 2em;
-                    color: var(--primaryColor);
-                    display: flex;
+.render_dogs_container{ border: 1px solid red; }
 
-                }
-        }
-  
-      }
-    }
-
-    .handleLikesContainer{
-      margin-top: 30px;
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      button{
-        width: 40%;
-        white-space: balance;
-        align-self: flex-start;
-        background-color: var(--secondaryColor);
-        color: white;
-        border: none;
-        padding: 0.4em 0em;
-        border-radius: 5px;
-        cursor: pointer;
-  
-        &:hover{
-          box-shadow: var(--secondaryBoxShadow);
-          box-shadow: 1px 1px 2px ;
-        }
-      }
-    }
-  }
-  
+/* Mobile tweaks */
+@media (max-width: 600px) {
+  .homePage-container .main-profile { height: 94%; width: 94%; }
+  .main-profile .main-profile-wrap { gap: 0.75em; padding: 1em; }
+  .main-profile-wrap .dog-main-img { padding: 0.5em; }
+  .homePage-container .handleLikesContainer { margin-top: 14px; }
+  .homePage-container .handleLikesContainer button { width: 48%; padding: 0.6em 0; }
+}

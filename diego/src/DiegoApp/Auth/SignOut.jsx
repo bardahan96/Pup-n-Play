@@ -4,23 +4,24 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } f
 import { UserContext } from "../app/context/UserContext";
 import { Navigate, useNavigate } from "react-router";
 export default function SignOut() {
-
-      const navigate = useNavigate(null)
-    async function signOutDB() {
-        
-        try {
-            
-            await signOut(auth)
-            console.log("you signed out from :", auth);
-            navigate('/')
-        } catch (error) {
-            console.error(error)
-        }
-      }   
-      return(
-        <>
-              <button  style={{width: "33px", height: '33px', alignSelf: 'center'}} onClick={signOutDB}> log out</button>
-
-        </>
-      )
+  const { authReady, user } = useContext(UserContext)
+  const navigate = useNavigate(null)
+  
+  async function signOutDB() {
+    try {
+      await signOut(auth)
+      console.log("you signed out from :", auth);
+      navigate('/')
+    } catch (error) {
+      console.error(error)
+    }
+  }   
+  
+  return(
+    <>
+      {!authReady && <div style={{width: "33px", height: '33px', alignSelf: 'center'}}></div>}
+      {authReady && user?.id && <button style={{width: "33px", height: '33px', alignSelf: 'center'}} onClick={signOutDB}>log out</button>}
+      {authReady && !user?.id && <div style={{width: "33px", height: '33px', alignSelf: 'center'}}></div>}
+    </>
+  )
 }

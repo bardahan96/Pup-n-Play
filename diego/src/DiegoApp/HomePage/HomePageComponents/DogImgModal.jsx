@@ -1,5 +1,4 @@
-import { useContext, useState } from "react";
-import { DogContext } from "../../app/context/DogContext";
+import { useState } from "react";
 import "../HomePageStyle/DogImgModalStyle.css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,19 +7,12 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
-export default function DogImgModal() {
-  const { isPop, setIsPop } = useContext(DogContext);
-  const [dogImg] = useState([
-    "https://images.dog.ceo/breeds/bullterrier-staffordshire/n02093256_5325.jpg",
-    "https://images.dog.ceo/breeds/pembroke/n02113023_1816.jpg",
-    "https://images.dog.ceo/breeds/tervuren/maverick.jpg",
-  ]);
-
-  if (!isPop) return null;
+export default function DogImgModal({ isOpen, images, onClose }) {
+  if (!isOpen) return null;
 
   return (
     <div className="dog-modal" role="dialog" aria-modal="true" aria-label="Dog images">
-      <div className="dog-modal__backdrop" onClick={() => setIsPop(false)} />
+      <div className="dog-modal__backdrop" onClick={onClose} />
       <div className="dog-modal__panel">
         <Swiper
           className="dog-modal__swiper"
@@ -29,8 +21,9 @@ export default function DogImgModal() {
           effect="fade"
           fadeEffect={{ crossFade: true }}                      
           loop
+          pagination
         >
-          {dogImg.map((src, i) => (
+          {images?.map((src, i) => (
             <SwiperSlide key={i}>
               <img className="dog-modal__img" src={src} alt={`Dog ${i + 1}`} />
             </SwiperSlide>

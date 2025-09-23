@@ -8,6 +8,7 @@
   --secondaryBackgroundColor: rgba(79, 64, 161, 0.267);
   --primaryBoxShadow: 0 4px 10px rgba(153, 136, 255, 0.27);
   --secondaryBoxShadow: 10px 4px 10px rgba(244, 244, 253, 0.27);
+  --errorHandlingColor: #ffcece;
 }
 
 :root{
@@ -18,4 +19,33 @@
 
 body{
   margin: 0;
+}
+
+button{
+  cursor: pointer;
+
+  &:hover{
+    border: none;
+    box-shadow: none;
+    outline: none;
+    background-color: none;
+    color: none;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* Mobile spacing and height adjustments */
+@media (max-width: 600px) {
+  :root{
+    --primaryFontSize: 16px;
+    --secondaryFontSize: 14px;
+    --PrimaryFontHeadSize: 20px;
+  }
+
+  html, body {
+    width: 100vw;
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
 }

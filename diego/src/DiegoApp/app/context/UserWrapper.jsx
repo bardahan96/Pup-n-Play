@@ -4,18 +4,23 @@ import { DogContext } from "./DogContext"
 import Header from "../../Theme/Header"
 import Footer from "../../Theme/Footer"
 import { UserContext } from "./UserContext"
+import { ErrorHandlingProvider } from "./ErrorHandlingContext"
 
 export default function UserWrapper() {
+
+    const {  user } = useContext(UserContext)
 
 
     return (
         <>
         
             <Header/>
-            <div className="webWrraper-routes">
-                <Outlet/>
-            </div>
-            <Footer/>
+            <ErrorHandlingProvider>
+                <div className="webWrraper-routes">
+                    <Outlet/>
+                </div>
+            </ErrorHandlingProvider>
+            { user?.id && <Footer/>}
         
         </>
     )
