@@ -82,7 +82,7 @@ export default function RenderDogs() {
         ) : (
           <p>{remainingDogs.length === 0 ? "נגמרו הכלבים להצגה" : "לחץ כדי להתחיל"}</p>
         )}
-        {match && <h1>MATCHE!!!</h1>}
+        {match && <h1>MATCH!!!</h1>}
         {/* <button onClick={handleNextDog}>{remainingDogs.length === 0 ? "התחל מחדש" : "הצג כלב הבא"}</button> */}
         <button onClick={handleNextDog}>Dislike</button>
         <button onClick={handleLike}>Like</button>

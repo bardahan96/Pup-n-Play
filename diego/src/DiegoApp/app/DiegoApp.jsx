@@ -14,6 +14,9 @@ import { UserContext } from "./context/UserContext";
 import RenderDogs from "../HomePage/innerComponents/RenderDogs";
 import ConnectedUser from "./context/ConnectedUser";
 
+import AddressAutocomplete from "../Auth/AddressAutocomplete";
+
+
 export default function DiegoApp() {
   const { dogs} = useContext(DogContext);
 
@@ -28,6 +31,7 @@ export default function DiegoApp() {
           <Route path="" element={<UserWrapper />}>
             <Route index element={<LogIn />} />
             <Route path="signOut" element={<SignOut />} />
+            <Route path="google" element={<AddressAutocomplete />} />
             <Route path="signup" element={<SignUp />} />
             <Route path=":username/createDogForm" element={<SignDog />} />
             <Route element={<ConnectedUser/>}>
