@@ -11,14 +11,20 @@ export default function DogImgModal({ isOpen, images, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div className="dog-modal" role="dialog" aria-modal="true" aria-label="Dog images">
-      <div className="dog-modal__backdrop" onClick={onClose} />
+    <div
+      className="dog-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Dog images"
+    >
+      <div className="dog-modal__backdrop" onClick={() => setIsPop(false)} />
       <div className="dog-modal__panel">
         <Swiper
           className="dog-modal__swiper"
           modules={[EffectFade, Pagination, A11y]}
           slidesPerView={1}
           effect="fade"
+          fadeEffect={{ crossFade: true }}
           fadeEffect={{ crossFade: true }}
           loop
           pagination

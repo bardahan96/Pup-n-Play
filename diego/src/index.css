@@ -8,7 +8,6 @@
   --secondaryBackgroundColor: rgba(100, 27, 46, 0.267);
   --primaryBoxShadow: 0 4px 10px rgba(100, 27, 46, 0.27);
   --secondaryBoxShadow: 10px 4px 10px rgba(253, 244, 244, 0.27);
-  --errorHandlingColor: #f79494;
 }
 
 :root {
