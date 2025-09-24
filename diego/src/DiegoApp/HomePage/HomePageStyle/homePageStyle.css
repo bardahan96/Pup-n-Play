@@ -200,7 +200,7 @@
 .dog_info {
   display: flex;
   flex-direction: row;
-  gap: 6px;
+  gap: 18px;
   flex-wrap: wrap;
   margin: 0;
   padding: 0;

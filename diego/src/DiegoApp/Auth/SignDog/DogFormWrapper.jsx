@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Outlet, useNavigate, useParams } from "react-router";
 import { UserContext } from "../../app/context/UserContext";
 import { DogContext } from "../../app/context/DogContext";
-import { ErrorHandlingContext } from "../../app/context/ErrorHandlingContext";
+import { ErrorHandleContext } from "../../app/context/ErrorHandleContext";
 import { uploadFilesToCloudinary } from "../../app/context/UploadToCloudinary";
 
 export default function DogFormWrapper() {
@@ -10,7 +10,7 @@ export default function DogFormWrapper() {
   const { username } = useParams();
   const { signUpDB, authReady } = useContext(UserContext);
   const { dog, setDog, addDogForUser, getAllDogs } = useContext(DogContext);
-  const { validateDogName, validateDogPhotos, validateDogLocation, validateDogDescription } = useContext(ErrorHandlingContext);
+  const { validateDogName, validateDogPhotos, validateDogLocation, validateDogDescription } = useContext(ErrorHandleContext);
 
   async function submitDog() {
     // Validate all fields before submitting
