@@ -28,16 +28,12 @@ export default function Footer({ active = "home", onChange = () => {} }) {
         <NavLink 
           key={item.key}
           to={item.nav}
-          className={({ isActive }) => `btn ${isActive || active === item.key ? "btn--active" : ""}`}
+          className={({ isActive  }) => `btn ${isActive || active === item.key ? "btn--active" : ""}`}
           onClick={() => onChange(item.key)}
         >
-          <button
-            type="button"
-            aria-current={active === item.key ? "page" : undefined}
-          >
+          <div className="btn__icon_container">
             <img className="btn__icon" src={item.icon} alt={item.alt} />
-            <span className="btn__label">{item.label}</span>
-          </button>
+          </div>
         </NavLink>
       ))}
     </nav>

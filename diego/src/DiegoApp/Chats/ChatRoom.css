@@ -3,9 +3,9 @@
   --chat-primary: var(--primaryColor, #6d5dfc);
   --chat-ink: #0f172a; /* gray-900 */
   --chat-sub: #6b7280; /* gray-500 */
-  --chat-bg: #ffffff;
+  --chat-bg: var(--backgroundSecondary);
   --bubble-me: var(--chat-primary);
-  --bubble-them: #f3f4f6; /* gray-100 */
+  --bubble-them: var(--backgroundTertiary);
 }
 
 /* Layout skeleton: header / messages / composer */

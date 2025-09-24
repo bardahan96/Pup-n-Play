@@ -28,7 +28,7 @@ export default function SignUp() {
   function handleSignUp() {
     const isValid = validateSignup({ username: user.username, email: user.email, password: user.password });
     if (!isValid) return;
-    navigate(`/:${user.username}/createDogForm`)
+    navigate(`/${encodeURIComponent(user.username)}/createDogName`)
   }
 
   function navToLogin () {

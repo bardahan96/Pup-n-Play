@@ -6,6 +6,7 @@
     height: 100dvh;
     width: 100vw;
     color: var(--primaryColor);
+    text-transform: capitalize;
 }
 
 
@@ -15,7 +16,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--primaryBackgroundColor);
+    background-color: var(--backgroundSecondary);
     border-radius: 8px;
     box-shadow: var(--primaryBoxShadow);
     margin: 0 auto;
@@ -47,6 +48,7 @@
     border-radius: 50%;
     height: 56px;
     width: 56px;
+    border: 1px solid;
 }
 .main-profile-name span { font-weight: bold; }
 
@@ -54,7 +56,7 @@
     padding: 0.75em;
     box-sizing: border-box;
     box-shadow: var(--primaryBoxShadow);
-    background-color: var(--secondaryBackgroundColor);
+    background-color: var(--backgroundTertiary);
     border-radius: 8px;
 }
 .dog-main-img img { width: 100%; }
@@ -115,6 +117,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-transform: capitalize;
 }
 
 /* Style for dog images in RenderDogs */
@@ -122,11 +125,29 @@
     border-radius: 4px;
 }
 
+/* Center the currently rendered dog image */
+.dogForRender_img_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Constrain current dog image */
+.dogForRender_img {
+  width: 80%;
+  height: 160px;
+  margin-bottom: 1em;
+}
+
 .button_container{
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
   width: 100%;
+
+  button{
+    height: 28px;
+  }
 }
 
 /* Dog Info Styling */

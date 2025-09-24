@@ -1,20 +1,49 @@
-.webWrraper {
-  background-color: var(--primaryBackgroundColor);
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+
+.webWrraper{
+    background-color: var(--backgroundPrimary);
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
-.webWrraper-routes {
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  -webkit-overflow-scrolling: touch;
+/* White ChatGPT image watermark behind content */
+.webWrraper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("../../../assets/imgs/ChatGPT Image Sep 24, 2025, 09_03_20 AM.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    filter: brightness(0) invert(1);
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.webWrraper > * {
+    position: relative;
+    z-index: 1;
+}
+
+.webWrraper-routes{
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    -webkit-overflow-scrolling: touch;
+    /* background-color: var(--primaryBackgroundColor); */
+}
+
+.webWrraper-routes > * {
+    position: relative;
+    z-index: 1;
+    background-color: var(--backgroundPrimary);
 }
 
 @media (max-width: 600px) {

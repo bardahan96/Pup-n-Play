@@ -1,50 +1,43 @@
 import React from "react";
-import { useContext, useEffect } from "react";
-
+import { useContext } from "react";
+import { useOutletContext } from "react-router";
 import "../AuthStyle/AuthStyle.css";
 import { DogContext } from "../../app/context/DogContext";
-import { Navigate, useNavigate } from "react-router";
-import { UserContext } from "../../app/context/UserContext";
-import { uploadFilesToCloudinary } from "../../app/context/UploadToCloudinary";
+import { ErrorHandlingContext } from "../../app/context/errorHandlingContext";
 import AskingDogName from "../AuthStyle/AskingDogName2.png";
 
 function DogName() {
-  const navigate = useNavigate();
-  const { user, signUpDB, authReady } = useContext(UserContext);
-  const { onChangeDogData, dog, addDogForUser, dogs, getAllDogs, setDog } =
-    useContext(DogContext);
+  const { onChangeDogData, dog } = useContext(DogContext);
+  const { getFieldError, validateDogName } = useContext(ErrorHandlingContext);
+  const { goToDogPicture } = useOutletContext();
 
-  async function submitDog() {
-    const newUser = await signUpDB();
-    const urls = await uploadFilesToCloudinary(dog.imgs);
-
-    const updatedDog = { ...dog, imgs: urls };
-    setDog(updatedDog);
-    await addDogForUser(newUser.id, updatedDog);
-
-    if (authReady && newUser?.username) {
-      await getAllDogs();
-      navigate(`/${encodeURIComponent(newUser.username)}/home`, {
-        replace: true,
-      });
+  function handleNext() {
+    if (validateDogName({ name: dog.name })) {
+      goToDogPicture();
     }
   }
 
   return (
     <>
       <div className="formInput">
-        <label htmlFor="dogName">
-          Diego is asking what is your dog's name?
+        <label htmlFor="dogName" className="typing-label">
+          Diego Is Asking What Is Your Dog's Name?
         </label>
+        {getFieldError('dogName', 'name') && (
+          <div className="field-error" role="alert">
+            {getFieldError('dogName', 'name')}
+          </div>
+        )}
         <input
           type="text"
           id="dogName"
           name="name"
           value={dog.name}
           onChange={onChangeDogData}
+          placeholder="Enter your dog's name"
         />
-        <img className="asking-dog-name" src={AskingDogName} alt="" />
-        <button className="next-btn"> Next</button>
+        <img className="asking-dog-name sign-dog-img" src={AskingDogName} alt="" />
+        <button className="next-btn" onClick={handleNext}> Next</button>
       </div>
     </>
   );

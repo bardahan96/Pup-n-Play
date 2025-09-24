@@ -1,13 +1,52 @@
 :root {
-  --primaryColor: rgb(138, 45, 59);
-  --secondaryColor: rgb(190, 91, 80);
-  --primaryFontSize: 18px;
-  --secondaryFontSize: 16px;
-  --PrimaryFontHeadSize: 22px;
-  --primaryBackgroundColor: #fbdb93;
-  --secondaryBackgroundColor: rgba(100, 27, 46, 0.267);
-  --primaryBoxShadow: 0 4px 10px rgba(100, 27, 46, 0.27);
-  --secondaryBoxShadow: 10px 4px 10px rgba(253, 244, 244, 0.27);
+  /* Colors */
+  --primaryColor: #e94e77; /* A richer, more inviting pink/rose */
+  --secondaryColor: #f7a73f; /* A warm, inviting complementary orange/gold */
+  --accentColor: #72d5f2; /* A fresh, calming accent for highlights or interactions */
+  --textColor: #333333; /* Soft black for good readability */
+  --lightTextColor: #6c757d; /* Lighter text for secondary information */
+  --white: #ffffff; /* Pure white for clean backgrounds */
+  --darkOverlay: rgba(0, 0, 0, 0.6); /* For overlays, modals etc. */
+
+  /* Backgrounds */
+  --backgroundPrimary: linear-gradient(135deg, #fcefee 0%, #fcf8ed 100%); /* keep the warm subtle gradient */
+  --backgroundSecondary: #fffbea;  /* very light buttery yellow (soft, not harsh) */
+  --backgroundTertiary: #fff3c9;   /* pale golden shade for contrast blocks */
+  --backgroundDarkOverlay: rgba(0, 0, 0, 0.65); /* modal overlay */
+  
+
+  /* Typography */
+  --fontFamilyPrimary: 'Montserrat', sans-serif; /* Modern and clean sans-serif */
+  --fontFamilySecondary: 'Lora', serif; /* Elegant serif for headings or special text */
+  --baseFontSize: 16px;
+  --smallFontSize: 14px;
+  --mediumFontSize: 18px;
+  --largeFontSize: 24px;
+  --extraLargeFontSize: 36px; /* For main headlines */
+
+  /* Spacing */
+  --spacingUnit: 8px; /* Base unit for consistent padding and margins */
+  --spacingXs: calc(var(--spacingUnit) * 0.5); /* 4px */
+  --spacingSm: var(--spacingUnit); /* 8px */
+  --spacingMd: calc(var(--spacingUnit) * 2); /* 16px */
+  --spacingLg: calc(var(--spacingUnit) * 3); /* 24px */
+  --spacingXl: calc(var(--spacingUnit) * 4); /* 32px */
+
+  /* Borders & Shadows */
+  --borderRadius: 8px; /* Softly rounded corners */
+  --cardBorderRadius: 12px; /* Slightly more rounded for cards */
+  --primaryBoxShadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* A softer, more spread-out shadow */
+  --secondaryBoxShadow: 0 2px 8px rgba(0, 0, 0, 0.04); /* Lighter shadow for minor elements */
+  --inputBoxShadow: 0 1px 3px rgba(0, 0, 0, 0.06) inset; /* Subtle inner shadow for inputs */
+
+  /* Transitions */
+  --transitionSpeed: 0.3s;
+  --transitionEase: ease-in-out;
+
+  /* Error Handling */
+  --errorColor: #dc3545; /* Standard red for errors, clear and immediate */
+  --successColor: #28a745; /* Green for success messages */
+  --infoColor: #17a2b8; /* Blue for informational messages */
 }
 
 :root {
@@ -18,12 +57,12 @@
   background-color: var(--primaryBackgroundColor);
 }
 
-body, html {
-    height: 100dvh;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+body {
+  margin: 0;
+  font-family: "Futura PT", Futura, "Poppins", "Trebuchet MS", Arial, sans-serif;
+  color: var(--textColor);
 }
+
 button{
   cursor: pointer;
 
@@ -54,4 +93,25 @@ button{
 }
 a {
   text-decoration: none;
+}
+
+/* Headings use a contrasting font */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* Header colors */
+header,
+h1, h2, h3 {
+  color: var(--headerColor);
+}
+
+/* Labels use header color for visual consistency */
+label {
+  color: var(--headerColor);
+}
+
+/* Ensure form controls inherit body font across browsers */
+input, select, textarea, button {
+  font-family: inherit;
 }

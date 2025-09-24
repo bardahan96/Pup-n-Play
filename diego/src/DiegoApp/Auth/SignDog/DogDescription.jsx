@@ -1,60 +1,63 @@
 import React from "react";
-import { useContext, useEffect } from "react";
-
+import { useContext } from "react";
+import { useOutletContext } from "react-router";
 import "../AuthStyle/AuthStyle.css";
 import { DogContext } from "../../app/context/DogContext";
-import { Navigate, useNavigate } from "react-router";
-import { UserContext } from "../../app/context/UserContext";
-import { uploadFilesToCloudinary } from "../../app/context/UploadToCloudinary";
+import { ErrorHandlingContext } from "../../app/context/errorHandlingContext";
 import Dogs from "../AuthStyle/Dogs2.png";
+
 function DogDescription() {
-  const navigate = useNavigate();
-  const { user, signUpDB, authReady } = useContext(UserContext);
-  const { onChangeDogData, dog, addDogForUser, dogs, getAllDogs, setDog } =
-    useContext(DogContext);
+  const { onChangeDogData, dog } = useContext(DogContext);
+  const { getFieldError, validateDogDescription } = useContext(ErrorHandlingContext);
+  const { submitDog } = useOutletContext();
 
-  async function submitDog() {
-    const newUser = await signUpDB();
-    const urls = await uploadFilesToCloudinary(dog.imgs);
-
-    const updatedDog = { ...dog, imgs: urls };
-    setDog(updatedDog);
-    await addDogForUser(newUser.id, updatedDog);
-
-    if (authReady && newUser?.username) {
-      await getAllDogs();
-      navigate(`/${encodeURIComponent(newUser.username)}/home`, {
-        replace: true,
-      });
+  function handleSubmit() {
+    if (validateDogDescription({ 
+      description: dog.description, 
+      bread: dog.bread, 
+      size: dog.size 
+    })) {
+      submitDog();
     }
   }
   return (
     <div className="dog-description">
       <div className="formInput">
-        <label htmlFor="description">How would you describe {dog.name}?</label>
+        <label htmlFor="description" className="typing-label">How Would You Describe {dog.name}?</label>
+        {getFieldError('dogDescription', 'description') && (
+          <div className="field-error" role="alert">
+            {getFieldError('dogDescription', 'description')}
+          </div>
+        )}
         <input
           type="text"
           id="description"
           value={dog.description}
           name="description"
           onChange={onChangeDogData}
-          placeholder="Here you can tell what their hobbies are, their energy level, what they are looking for."
+          placeholder="Hobbies, energy level, and what they're looking for"
         />
       </div>
 
       <div className="formInput">
-        <label htmlFor="preferences">{dog.name}'s Bread:</label>
+        <label htmlFor="preferences" className="typing-label">{dog.name}'s Breed:</label>
+        {getFieldError('dogDescription', 'bread') && (
+          <div className="field-error" role="alert">
+            {getFieldError('dogDescription', 'bread')}
+          </div>
+        )}
         <input
           type="text"
           id="preferences"
           value={dog.bread}
           name="bread"
           onChange={onChangeDogData}
+          placeholder="e.g. Golden Retriever"
         />
       </div>
 
       <div className="formInput">
-        <label htmlFor="age"> {dog.name}'s Age:</label>
+        <label htmlFor="age" className="typing-label">{dog.name}'s Age:</label>
         <span>{dog.age}</span>
         <input
           type="range"
@@ -68,7 +71,12 @@ function DogDescription() {
       </div>
 
       <div className="formInput">
-        <label htmlFor="size">Size</label>
+        <label htmlFor="size" className="typing-label">Size</label>
+        {getFieldError('dogDescription', 'size') && (
+          <div className="field-error" role="alert">
+            {getFieldError('dogDescription', 'size')}
+          </div>
+        )}
         <select onChange={onChangeDogData} name="size" id="size">
           <option disabled={true} value="">
             Select
@@ -78,9 +86,9 @@ function DogDescription() {
           <option value="large">Large</option>
         </select>
       </div>
-      <img src={Dogs} alt="" />
+      <img className="sign-dog-img" src={Dogs} alt="" />
 
-      <button className="submit-btn" onClick={submitDog}>
+      <button className="submit-btn" onClick={handleSubmit}>
         Submit
       </button>
     </div>

@@ -12,7 +12,8 @@ export default function UserWrapper() {
 
 
     return (
-        <div className="webWrraper">
+        <>
+        
             <Header/>
             <ErrorHandlingProvider>
                 <div className="webWrraper-routes">
@@ -20,7 +21,8 @@ export default function UserWrapper() {
                 </div>
             </ErrorHandlingProvider>
             { user?.id && <Footer/>}
-        </div>
+        
+        </>
     )
     
 };
