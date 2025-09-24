@@ -23,6 +23,14 @@
   border-radius: 8px;
 }
 
+/* Make the signup logo match the login logo styling */
+.signUpContainer .diegoLogo {
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    align-self: center;
+}
+
 .email-pass-container {
   display: flex;
   flex-direction: column;

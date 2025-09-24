@@ -40,7 +40,7 @@ export default function SignUp() {
     
       <div className="signUpContainer">
         <div className="signUpForm">
-          <img src={diegoLogo} alt="Diego" />
+          <img className="diegoLogo" src={diegoLogo} alt="Diego" />
 
           <div className="formInput">
             <label htmlFor="username">Username</label>
