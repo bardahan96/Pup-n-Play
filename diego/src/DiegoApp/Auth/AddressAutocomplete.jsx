@@ -11,7 +11,7 @@ export default function AddressAutocomplete({ onSelectLocation }) {
     if (value.length < 3) return setSuggestions([]);
 
     try {
-      const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${value}`);
+      const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${value}&lang=en`);
       const data = await res.json();
       setSuggestions(data);
     } catch (err) {
@@ -27,6 +27,7 @@ export default function AddressAutocomplete({ onSelectLocation }) {
       lon: parseFloat(place.lon),
     };
     onSelectLocation(coordinates);
+    
   };
 
   // חישוב של מרחק - נוסיף את זה לקומפוננטה של אילת בהמך
