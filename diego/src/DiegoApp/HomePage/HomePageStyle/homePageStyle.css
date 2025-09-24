@@ -201,7 +201,7 @@
 .dog_info {
   display: flex;
   flex-direction: row;
-  gap: 6px;
+  gap: 18px;
   flex-wrap: wrap;
   margin: 0;
   padding: 0;
@@ -289,7 +289,7 @@
   }
   
   .dog_info {
-    gap: 6px;
+    gap: 18px;
     margin: 0;
     padding: 0;
   }

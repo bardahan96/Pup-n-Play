@@ -6,13 +6,14 @@ import { useState, useContext } from "react";
 import { DogContext } from "../app/context/DogContext";
 import eyeOpen from "./AuthStyle/eyeOpen.svg";
 import eyeClosed from "./AuthStyle/eyeClosed.svg";
-import { ErrorHandlingContext } from "../app/context/errorHandlingContext";
+import { ErrorHandleContext } from "../app/context/ErrorHandleContext";
+import diegoLogo from "../../assets/Diego.PNG";
 export default function SignUp() {
   
 
   const { user, signUpDB, onChangeUserData } = useContext(UserContext);
   const [showPassword, setShowPassword] = useState(false);
-  const { getFieldError, clearFieldError, validateSignup } = useContext(ErrorHandlingContext);
+  const { getFieldError, clearFieldError, validateSignup } = useContext(ErrorHandleContext);
   const usernameError = getFieldError('signup', 'username');
   const emailError = getFieldError('signup', 'email');
   const passwordError = getFieldError('signup', 'password');
@@ -39,7 +40,7 @@ export default function SignUp() {
     
       <div className="signUpContainer">
         <div className="signUpForm">
-          <img src={"../../assets/Diego.png"} alt="" />
+          <img className="diegoLogo" src={diegoLogo} alt="Diego" />
 
           <div className="formInput">
             <label htmlFor="username">Username</label>

@@ -9,7 +9,7 @@ import { UserContext } from "../app/context/UserContext";
 import { useNavigate } from "react-router";
 import eyeOpen from "./AuthStyle/eyeOpen.svg";
 import eyeClosed from "./AuthStyle/eyeClosed.svg";
-import { ErrorHandlingContext } from "../app/context/errorHandlingContext";
+import { ErrorHandleContext } from "../app/context/ErrorHandleContext";
 
 
 
@@ -20,7 +20,7 @@ export default function LogIn() {
   const { getAllDogs } = useContext(DogContext)
   const navigate = useNavigate(null)
   const [showPassword, setShowPassword] = useState(false);
-  const { setFieldError, clearFieldError, clearFormErrors, getFieldError, validateLogin } = useContext(ErrorHandlingContext);
+  const { setFieldError, clearFieldError, clearFormErrors, getFieldError, validateLogin } = useContext(ErrorHandleContext);
   const emailError = getFieldError('login', 'email');
   const passwordError = getFieldError('login', 'password');
 

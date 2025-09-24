@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import '../HomePageStyle/HomePageStyle.css'
+import '../HomePageStyle/homePageStyle.css'
 import { DogContext } from "../../app/context/DogContext"
 import DogImgModal from "./DogImgModal";
 

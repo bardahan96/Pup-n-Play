@@ -9,10 +9,17 @@
   --darkOverlay: rgba(0, 0, 0, 0.6); /* For overlays, modals etc. */
 
   /* Backgrounds */
-  --backgroundPrimary: linear-gradient(135deg, #8b5cf6 0%, #a855f7 25%, #c084fc 50%, #d8b4fe 75%, #e9d5ff 100%); /* Beautiful purple gradient with multiple tones */
-  --backgroundSecondary: #fffbea;  /* very light buttery yellow (soft, not harsh) */
-  --backgroundTertiary: #fff3c9;   /* pale golden shade for contrast blocks */
-  --backgroundDarkOverlay: rgba(0, 0, 0, 0.65); /* modal overlay */
+  --backgroundPrimary: linear-gradient(135deg, #fff5f8 0%, #fff7e9 100%);
+  /* soft blend between rosy white and creamy gold — gentle, warm, inviting */
+  
+  --backgroundSecondary: #ffffff;
+  /* clean white base for cards/sections, ensures clarity and contrast */
+  
+  --backgroundTertiary: #f0faff;
+  /* pale cyan wash, a quiet echo of the accent color for variety */
+  
+  --backgroundDarkOverlay: rgba(0, 0, 0, 0.6);
+  /* unchanged, matches your overlay token */
   
 
   /* Typography */

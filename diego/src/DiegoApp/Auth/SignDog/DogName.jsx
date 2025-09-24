@@ -3,12 +3,12 @@ import { useContext } from "react";
 import { useOutletContext } from "react-router";
 import "../AuthStyle/AuthStyle.css";
 import { DogContext } from "../../app/context/DogContext";
-import { ErrorHandlingContext } from "../../app/context/errorHandlingContext";
+import { ErrorHandleContext } from "../../app/context/ErrorHandleContext";
 import AskingDogName from "../AuthStyle/AskingDogName2.png";
 
 function DogName() {
   const { onChangeDogData, dog } = useContext(DogContext);
-  const { getFieldError, validateDogName } = useContext(ErrorHandlingContext);
+  const { getFieldError, validateDogName } = useContext(ErrorHandleContext);
   const { goToDogPicture } = useOutletContext();
 
   function handleNext() {

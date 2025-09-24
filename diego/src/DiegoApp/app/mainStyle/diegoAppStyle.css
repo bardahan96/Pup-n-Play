@@ -37,13 +37,18 @@
     display: flex;
     justify-content: center;
     -webkit-overflow-scrolling: touch;
-    /* background-color: var(--primaryBackgroundColor); */
-}
 
-.webWrraper-routes > * {
+  }
+  
+  .webWrraper-routes > * {
     position: relative;
     z-index: 1;
-    background-color: var(--backgroundPrimary);
+    background-color: var(bac);
+    
+    
+    input{
+      background-color: var(--backgroundTertiary);
+    }
 }
 
 @media (max-width: 600px) {
@@ -52,11 +57,12 @@
     overflow: hidden;
   }
 
-  .webWrraper-routes {
-    flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-    width: 100%;
-    -webkit-overflow-scrolling: touch;
-  }
+    .webWrraper-routes{
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        margin: auto;
+        width: 90%;
+        -webkit-overflow-scrolling: touch;
+    }
 }
