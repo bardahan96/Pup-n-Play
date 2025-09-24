@@ -3,14 +3,32 @@ import { useContext } from "react";
 import { useOutletContext } from "react-router";
 import "../AuthStyle/AuthStyle.css";
 import { DogContext } from "../../app/context/DogContext";
+import { ErrorHandlingContext } from "../../app/context/errorHandlingContext";
 import Dogs from "../AuthStyle/Dogs2.png";
+
 function DogDescription() {
   const { onChangeDogData, dog } = useContext(DogContext);
+  const { getFieldError, validateDogDescription } = useContext(ErrorHandlingContext);
   const { submitDog } = useOutletContext();
+
+  function handleSubmit() {
+    if (validateDogDescription({ 
+      description: dog.description, 
+      bread: dog.bread, 
+      size: dog.size 
+    })) {
+      submitDog();
+    }
+  }
   return (
     <div className="dog-description">
       <div className="formInput">
-        <label htmlFor="description">How Would You Describe {dog.name}?</label>
+        <label htmlFor="description" className="typing-label">How Would You Describe {dog.name}?</label>
+        {getFieldError('dogDescription', 'description') && (
+          <div className="field-error" role="alert">
+            {getFieldError('dogDescription', 'description')}
+          </div>
+        )}
         <input
           type="text"
           id="description"
@@ -22,7 +40,12 @@ function DogDescription() {
       </div>
 
       <div className="formInput">
-        <label htmlFor="preferences">{dog.name}'s Breed:</label>
+        <label htmlFor="preferences" className="typing-label">{dog.name}'s Breed:</label>
+        {getFieldError('dogDescription', 'bread') && (
+          <div className="field-error" role="alert">
+            {getFieldError('dogDescription', 'bread')}
+          </div>
+        )}
         <input
           type="text"
           id="preferences"
@@ -34,7 +57,7 @@ function DogDescription() {
       </div>
 
       <div className="formInput">
-        <label htmlFor="age">{dog.name}'s Age:</label>
+        <label htmlFor="age" className="typing-label">{dog.name}'s Age:</label>
         <span>{dog.age}</span>
         <input
           type="range"
@@ -48,7 +71,12 @@ function DogDescription() {
       </div>
 
       <div className="formInput">
-        <label htmlFor="size">Size</label>
+        <label htmlFor="size" className="typing-label">Size</label>
+        {getFieldError('dogDescription', 'size') && (
+          <div className="field-error" role="alert">
+            {getFieldError('dogDescription', 'size')}
+          </div>
+        )}
         <select onChange={onChangeDogData} name="size" id="size">
           <option disabled={true} value="">
             Select
@@ -60,7 +88,7 @@ function DogDescription() {
       </div>
       <img className="sign-dog-img" src={Dogs} alt="" />
 
-      <button className="submit-btn" onClick={submitDog}>
+      <button className="submit-btn" onClick={handleSubmit}>
         Submit
       </button>
     </div>

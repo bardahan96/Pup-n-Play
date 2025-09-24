@@ -112,7 +112,7 @@ export default function RenderDogs() {
         {dogIMightLike ? (
           <div>
             <div className="dogForRender_img_container">
-            <img className="dogForRender_img" src={dogIMightLike.imgs[0]} alt={dogIMightLike.name} width="200" onClick={openImages} style={{ cursor: "pointer" }} />
+            <img className="dogForRender_img" src={dogIMightLike.imgs[0]} alt={dogIMightLike.name} width="180" onClick={openImages} style={{ cursor: "pointer" }} />
             </div>
             <div className="dog_info">
               <h2>{dogIMightLike.name}</h2>

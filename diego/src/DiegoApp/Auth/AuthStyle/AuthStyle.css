@@ -15,7 +15,7 @@
   width: 100%;
   max-width: 420px;
   gap: 16px;
-  background-color: var(--primaryBackgroundColor);
+  background-color: var(--backgroundSecondary);
 }
 .login-page-container .diegoLogo {
   width: auto;
@@ -42,7 +42,7 @@
   width: 100%;
   max-width: 480px;
   gap: 16px;
-  background-color: var(--primaryBackgroundColor);
+  background-color: var(--backgroundSecondary);
 }
 
 .password-container {
@@ -105,6 +105,7 @@ button:focus {
   padding: 0.3em 0.1em;
   padding-left: 0.4em;
   margin-bottom: 16px;
+  background-color: var(--backgroundSecondary);
 }
 .formInput input::placeholder {
   padding-left: 0.4em;
@@ -112,12 +113,20 @@ button:focus {
 .formInput input:focus {
   outline: none;
 }
+
+/* File input styling */
+.formInput input[type="file"] {
+  background-color: var(--backgroundSecondary);
+  border: 1px solid var(--lightTextColor);
+  padding: 8px;
+}
 .formInput select {
   width: 100%;
   border-radius: 4px;
   border: none;
   padding: 0.1em;
   color: var(--primaryColor);
+  background-color: var(--backgroundSecondary);
 }
 
 .userForm-btns {
@@ -208,8 +217,8 @@ button:focus {
 /* Inline field error styles */
 .field-error {
   margin-bottom: 4px;
-  background: var(--errorHandlingColor);
-  color: #7a1111;
+  background: rgba(255, 145, 156, 0.599);
+  color: var(--errorColor);
   border: none;
   border-radius: 4px;
   padding: 4px 8px;
@@ -217,6 +226,7 @@ button:focus {
   line-height: 1.15;
   position: relative;
   display: inline-block;
+  width: fit-content;
   transform: translateY(-6px);
   opacity: 0;
   animation: fieldSlideUp 0.18s ease forwards;
@@ -232,7 +242,7 @@ button:focus {
   height: 0;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
-  border-top: 6px solid var(--errorHandlingColor);
+  border-top: 6px solid rgba(255, 145, 156, 0.599);
 }
 
 /* animate from slightly below to above, as it appears */

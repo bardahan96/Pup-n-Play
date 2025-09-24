@@ -1,6 +1,6 @@
 
 .webWrraper{
-    background-color: var(--primaryBackgroundColor);
+    background-color: var(--backgroundPrimary);
     width: 100%;
     height: 100vh;
     position: relative;
@@ -43,7 +43,7 @@
 .webWrraper-routes > * {
     position: relative;
     z-index: 1;
-    background-color: var(--primaryBackgroundColor);
+    background-color: var(--backgroundPrimary);
 }
 
 @media (max-width: 600px) {

@@ -104,6 +104,66 @@ export function ErrorHandlingProvider({ children }) {
     );
   }
 
+  // Dog form validation functions
+  function validateDogName({ name = '' }) {
+    return runValidation(
+      'dogName',
+      { name },
+      {
+        name: {
+          required: true,
+          minLength: 1,
+          messages: { required: 'Dog name is required', minLength: 'Please enter your dog\'s name' },
+        },
+      },
+    );
+  }
+
+  function validateDogPhotos({ imgs = [] }) {
+    if (!imgs || imgs.length === 0) {
+      setFieldError('dogPhotos', 'imgs', 'Please upload at least one photo of your dog');
+      return false;
+    }
+    clearFieldError('dogPhotos', 'imgs');
+    return true;
+  }
+
+  function validateDogLocation({ location = '' }) {
+    return runValidation(
+      'dogLocation',
+      { location },
+      {
+        location: {
+          required: true,
+          minLength: 1,
+          messages: { required: 'Location is required', minLength: 'Please enter your dog\'s location' },
+        },
+      },
+    );
+  }
+
+  function validateDogDescription({ description = '', bread = '', size = '' }) {
+    let valid = true;
+    clearFormErrors('dogDescription');
+
+    if (!description.trim()) {
+      setFieldError('dogDescription', 'description', 'Please describe your dog');
+      valid = false;
+    }
+
+    if (!bread.trim()) {
+      setFieldError('dogDescription', 'bread', 'Please enter your dog\'s breed');
+      valid = false;
+    }
+
+    if (!size) {
+      setFieldError('dogDescription', 'size', 'Please select your dog\'s size');
+      valid = false;
+    }
+
+    return valid;
+  }
+
   const value = useMemo(() => ({
     errorsByForm,
     setFieldError,
@@ -112,6 +172,10 @@ export function ErrorHandlingProvider({ children }) {
     getFieldError,
     validateLogin,
     validateSignup,
+    validateDogName,
+    validateDogPhotos,
+    validateDogLocation,
+    validateDogDescription,
   }), [errorsByForm]);
 
   return <ErrorHandlingContext.Provider value={value}>{children}</ErrorHandlingContext.Provider>;
