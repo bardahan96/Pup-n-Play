@@ -2,12 +2,14 @@
 .webWrraper{
     background-color: var(--backgroundPrimary);
     width: 100%;
-    /* height: 100vh; */
-      height: calc(var(--vh, 1vh) * 100);
+    height: 100vh;
+    
     position: relative;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    overflow-y: hidden;
+    
 }
 
 /* Purple-tinted ChatGPT image watermark behind content */
@@ -23,11 +25,13 @@
     opacity: 0.15;
     pointer-events: none;
     z-index: 0;
+    
 }
 
 .webWrraper > * {
     position: relative;
     z-index: 1;
+    
 }
 
 .webWrraper-routes{
@@ -37,7 +41,8 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    -webkit-overflow-scrolling: touch;
+    
+    /* no vendor prefix for scroller; let UA handle */
 
   }
   
@@ -54,7 +59,7 @@
 
 @media (max-width: 600px) {
   .webWrraper {
-    height: 100vh; 
+    
     overflow: hidden;
   }
 
@@ -64,6 +69,6 @@
         overflow-x: hidden;
         margin: auto;
         width: 90%;
-        -webkit-overflow-scrolling: touch;
+        /* no -webkit-overflow-scrolling */
     }
 }

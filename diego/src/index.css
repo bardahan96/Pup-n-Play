@@ -68,6 +68,7 @@ body {
   margin: 0;
   font-family: "Futura PT", Futura, "Poppins", "Trebuchet MS", Arial, sans-serif;
   color: var(--textColor);
+  overflow: hidden;
 }
 
 button{
@@ -121,4 +122,16 @@ label {
 /* Ensure form controls inherit body font across browsers */
 input, select, textarea, button {
   font-family: inherit;
+}
+
+
+/* Works for Chrome, Safari, Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Works for Firefox */
+* {
+  scrollbar-width: none;       
+  -ms-overflow-style: none;    
 }

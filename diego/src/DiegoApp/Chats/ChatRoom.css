@@ -167,6 +167,7 @@
   font-size: 14px;
   line-height: 1.35;
   resize: none;
+  box-sizing: border-box;
 }
 
 .composer__send {
@@ -180,6 +181,8 @@
   cursor: pointer;
   transition: transform 120ms ease, filter 150ms ease, box-shadow 150ms ease;
   box-shadow: 0 6px 14px rgba(109, 93, 252, 0.22);
+  box-sizing: border-box;
+  width: 100%;
 }
 .composer__send:active {
   transform: translateY(1px) scale(0.97);

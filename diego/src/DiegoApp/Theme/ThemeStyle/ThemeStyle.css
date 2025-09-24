@@ -8,6 +8,8 @@
   justify-content: space-between;
   padding: 0em 4em;
   box-sizing: border-box;
+  position: absolute;
+  top: 0;
 
   .logoContainer {
     display: flex;
@@ -99,9 +101,18 @@
 
 /* Mobile header/footer paddings and heights */
 @media (max-width: 600px) {
-  .header { height: 56px; padding: 0 12px; }
+  .header { height: 80px; padding: 0 12px; }
   .logo { height: 72px; }
-  .footer { height: 64px; padding: 0 12px; }
+  .footer {
+     height: 74px;
+     padding: 0 12px;
+     position: absolute;
+     bottom: 0;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     
+     }
   .footer .btn__icon { width: 22px; height: 22px; }
   .btn { gap: 2px; padding: 4px 2px; font-size: 11px; }
 }
