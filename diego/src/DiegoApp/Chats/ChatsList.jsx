@@ -48,7 +48,7 @@ export default function ChatList({ chats = mockChats }) {
 
         <ul className="chatList__items" role="list">
           {chats.map((chat) => (
-            <li key={chat.id} className="chatList__item" role="listitem">
+            <li onClick={navigate(``)} key={chat.id} className="chatList__item" role="listitem">
               <button
                 type="button"
                 className="chatItem"
