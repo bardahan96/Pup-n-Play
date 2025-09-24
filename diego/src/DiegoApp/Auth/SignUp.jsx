@@ -7,6 +7,7 @@ import { DogContext } from "../app/context/DogContext";
 import eyeOpen from "./AuthStyle/eyeOpen.svg";
 import eyeClosed from "./AuthStyle/eyeClosed.svg";
 import { ErrorHandleContext } from "../app/context/ErrorHandleContext";
+import diegoLogo from "../../assets/Diego.PNG";
 export default function SignUp() {
   
 
@@ -39,7 +40,7 @@ export default function SignUp() {
     
       <div className="signUpContainer">
         <div className="signUpForm">
-          <img src={"../../assets/Diego.png"} alt="" />
+          <img src={diegoLogo} alt="Diego" />
 
           <div className="formInput">
             <label htmlFor="username">Username</label>
