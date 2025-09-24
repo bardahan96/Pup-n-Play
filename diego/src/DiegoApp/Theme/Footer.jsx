@@ -31,13 +31,12 @@ export default function Footer({ active = "home", onChange = () => {} }) {
           className={({ isActive }) => `btn ${isActive || active === item.key ? "btn--active" : ""}`}
           onClick={() => onChange(item.key)}
         >
-          <button
+          <NavLink
             type="button"
             aria-current={active === item.key ? "page" : undefined}
           >
             <img className="btn__icon" src={item.icon} alt={item.alt} />
-            <span className="btn__label">{item.label}</span>
-          </button>
+          </NavLink>
         </NavLink>
       ))}
     </nav>

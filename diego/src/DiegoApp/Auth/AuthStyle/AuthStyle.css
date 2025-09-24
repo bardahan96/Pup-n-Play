@@ -15,6 +15,7 @@
   width: 100%;
   max-width: 420px;
   gap: 16px;
+  background-color: var(--primaryBackgroundColor);
 }
 .login-page-container .diegoLogo {
   width: auto;
@@ -41,6 +42,7 @@
   width: 100%;
   max-width: 480px;
   gap: 16px;
+  background-color: var(--primaryBackgroundColor);
 }
 
 .password-container {
@@ -52,6 +54,7 @@
   cursor: pointer;
   position: absolute;
   right: 8px;
+  top: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -100,6 +103,7 @@ button:focus {
   border-radius: 4px;
   border: none;
   padding: 0.3em 0.1em;
+  padding-left: 0.4em;
   margin-bottom: 16px;
 }
 .formInput input::placeholder {
@@ -252,6 +256,13 @@ button:focus {
 
 .asking-dog-name {
   height: auto;
+}
+
+/* Shared image sizing for Sign Dog steps */
+.sign-dog-img {
+  width: 220px;
+  height: auto;
+  object-fit: cover;
 }
 
 input[type="range"] {

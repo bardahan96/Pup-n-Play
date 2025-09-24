@@ -111,7 +111,9 @@ export default function RenderDogs() {
       <div>
         {dogIMightLike ? (
           <div>
-            <img src={dogIMightLike.imgs[0]} alt={dogIMightLike.name} width="200" onClick={openImages} style={{ cursor: "pointer" }} />
+            <div className="dogForRender_img_container">
+            <img className="dogForRender_img" src={dogIMightLike.imgs[0]} alt={dogIMightLike.name} width="200" onClick={openImages} style={{ cursor: "pointer" }} />
+            </div>
             <div className="dog_info">
               <h2>{dogIMightLike.name}</h2>
               <div className="info_bubble">
@@ -141,7 +143,7 @@ export default function RenderDogs() {
 
         <div className="button_container">
           <button onClick={handleNextDog}>Dislike</button>
-          <button onClick={handleLike}>Like</button>
+          <button onClick={handleLike}>♡</button>
         </div>
         <DogImgModal isOpen={isModalOpen} images={dogIMightLike?.imgs || []} onClose={closeImages} />
       </div>

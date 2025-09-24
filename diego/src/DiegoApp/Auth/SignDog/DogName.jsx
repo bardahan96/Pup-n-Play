@@ -1,40 +1,19 @@
 import React from "react";
-import { useContext, useEffect } from "react";
-
+import { useContext } from "react";
+import { useOutletContext } from "react-router";
 import "../AuthStyle/AuthStyle.css";
 import { DogContext } from "../../app/context/DogContext";
-import { Navigate, useNavigate } from "react-router";
-import { UserContext } from "../../app/context/UserContext";
-import { uploadFilesToCloudinary } from "../../app/context/UploadToCloudinary";
 import AskingDogName from "../AuthStyle/AskingDogName2.png";
 
 function DogName() {
-  const navigate = useNavigate();
-  const { user, signUpDB, authReady } = useContext(UserContext);
-  const { onChangeDogData, dog, addDogForUser, dogs, getAllDogs, setDog } =
-    useContext(DogContext);
-
-  async function submitDog() {
-    const newUser = await signUpDB();
-    const urls = await uploadFilesToCloudinary(dog.imgs);
-
-    const updatedDog = { ...dog, imgs: urls };
-    setDog(updatedDog);
-    await addDogForUser(newUser.id, updatedDog);
-
-    if (authReady && newUser?.username) {
-      await getAllDogs();
-      navigate(`/${encodeURIComponent(newUser.username)}/home`, {
-        replace: true,
-      });
-    }
-  }
+  const { onChangeDogData, dog } = useContext(DogContext);
+  const { goToDogPicture } = useOutletContext();
 
   return (
     <>
       <div className="formInput">
         <label htmlFor="dogName">
-          Diego is asking what is your dog's name?
+          Diego Is Asking What Is Your Dog's Name?
         </label>
         <input
           type="text"
@@ -42,9 +21,10 @@ function DogName() {
           name="name"
           value={dog.name}
           onChange={onChangeDogData}
+          placeholder="Enter your dog's name"
         />
-        <img className="asking-dog-name" src={AskingDogName} alt="" />
-        <button className="next-btn"> Next</button>
+        <img className="asking-dog-name sign-dog-img" src={AskingDogName} alt="" />
+        <button className="next-btn" onClick={goToDogPicture}> Next</button>
       </div>
     </>
   );
