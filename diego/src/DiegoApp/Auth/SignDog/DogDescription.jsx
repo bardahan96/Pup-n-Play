@@ -77,7 +77,7 @@ function DogDescription() {
             {getFieldError('dogDescription', 'size')}
           </div>
         )}
-        <select onChange={onChangeDogData} name="size" id="size">
+        <select onChange={onChangeDogData} name="size" id="size" value={dog.size || 'small'}>
           <option disabled={true} value="">
             Select
           </option>
