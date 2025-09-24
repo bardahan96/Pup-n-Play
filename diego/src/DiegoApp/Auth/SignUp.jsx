@@ -6,7 +6,7 @@ import { useState, useContext } from "react";
 import { DogContext } from "../app/context/DogContext";
 import eyeOpen from "./AuthStyle/eyeOpen.svg";
 import eyeClosed from "./AuthStyle/eyeClosed.svg";
-import { ErrorHandlingContext } from "../app/context/errorHandlingContext";
+import { ErrorHandlingContext } from "../app/context/ErrorHandlingContext";
 export default function SignUp() {
   
 

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Outlet, useNavigate, useParams } from "react-router";
 import { UserContext } from "../../app/context/UserContext";
 import { DogContext } from "../../app/context/DogContext";
-import { ErrorHandlingContext } from "../../app/context/errorHandlingContext";
+import { ErrorHandlingContext } from "../../app/context/ErrorHandlingContext";
 import { uploadFilesToCloudinary } from "../../app/context/UploadToCloudinary";
 
 export default function DogFormWrapper() {

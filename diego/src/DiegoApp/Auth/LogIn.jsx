@@ -9,7 +9,7 @@ import { UserContext } from "../app/context/UserContext";
 import { useNavigate } from "react-router";
 import eyeOpen from "./AuthStyle/eyeOpen.svg";
 import eyeClosed from "./AuthStyle/eyeClosed.svg";
-import { ErrorHandlingContext } from "../app/context/errorHandlingContext";
+import { ErrorHandlingContext } from "../app/context/ErrorHandlingContext";
 
 
 

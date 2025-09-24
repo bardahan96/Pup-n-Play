@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { useOutletContext } from "react-router";
 import "../AuthStyle/AuthStyle.css";
 import { DogContext } from "../../app/context/DogContext";
-import { ErrorHandlingContext } from "../../app/context/errorHandlingContext";
+import { ErrorHandlingContext } from "../../app/context/ErrorHandlingContext";
 import DogTakingAPic from "../AuthStyle/DogTakingAPic2.png";
 
 function DogPicture() {
