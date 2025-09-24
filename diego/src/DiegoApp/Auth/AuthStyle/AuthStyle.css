@@ -4,35 +4,35 @@
   --secondaryFontSize: 16px;
   --PrimaryFontHeadSize: 22px;
   --primaryBackgroundColor: #98f4; */
-.login-page-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2em;
-    border-radius: 12px;
-    box-shadow: var(--primaryBoxShadow);
-    width: 100%;
-    max-width: 420px;
-    gap: 16px;
+.login-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
+  border-radius: 12px;
+  box-shadow: var(--primaryBoxShadow);
+  width: 100%;
+  max-width: 420px;
+  gap: 16px;
 }
-.login-page-container .diegoLogo{
+.login-page-container .diegoLogo {
   width: auto;
   height: 200px;
   border-radius: 8px;
 }
 
-.email-pass-container{
+.email-pass-container {
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 220px;
 }
-.email-pass-container input::placeholder{
+.email-pass-container input::placeholder {
   padding-left: 0.4em;
 }
 
-.signUpContainer{
+.signUpContainer {
   display: flex;
   flex-direction: column;
   padding: 2em;
@@ -43,12 +43,12 @@
   gap: 16px;
 }
 
-.password-container{
+.password-container {
   position: relative;
   display: flex;
   align-items: center;
 }
-.password-container span{
+.password-container span {
   cursor: pointer;
   position: absolute;
   right: 8px;
@@ -57,14 +57,14 @@
   justify-content: center;
 }
 
-.signUpForm{
+.signUpForm {
   display: flex;
   flex-direction: column;
   gap: 12px;
   color: var(--primaryColor);
 }
 
-button{
+button {
   align-self: flex-start;
   background-color: var(--primaryColor);
   color: white;
@@ -75,32 +75,40 @@ button{
   width: 48%;
   text-transform: capitalize;
 }
-button:focus{
+
+.submit-btn {
+  margin-top: 16px;
+  align-self: self-end;
+  justify-self: self-end;
+}
+
+button:focus {
   outline: none;
   transform: scale(0.97);
 }
 
-.formInput{
+.formInput {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
-.formInput label{
+.formInput label {
   cursor: pointer;
 }
-.formInput input{
+.formInput input {
   width: 100%;
   border-radius: 4px;
   border: none;
   padding: 0.3em 0.1em;
+  margin-bottom: 16px;
 }
-.formInput input::placeholder{
+.formInput input::placeholder {
   padding-left: 0.4em;
 }
-.formInput input:focus{
+.formInput input:focus {
   outline: none;
 }
-.formInput select{
+.formInput select {
   width: 100%;
   border-radius: 4px;
   border: none;
@@ -108,47 +116,63 @@ button:focus{
   color: var(--primaryColor);
 }
 
-.userForm-btns{
+.userForm-btns {
   display: flex;
   justify-content: space-between;
 }
-.userForm-btns button{ width: 48%; }
+.userForm-btns button {
+  width: 48%;
+}
 
 /* Mobile-only tweaks */
 @media (max-width: 600px) {
-  .login-page-container{ padding: 1.25em; }
-  .email-pass-container{ width: 100%; max-width: 320px; }
-  .signUpContainer{ padding: 1.25em; }
+  .login-page-container {
+    padding: 1.25em;
+  }
+  .email-pass-container {
+    width: 100%;
+    max-width: 320px;
+  }
+  .signUpContainer {
+    padding: 1.25em;
+  }
 }
 
 /* Error modal styles */
-.error-modal{
+.error-modal {
   position: fixed;
   inset: 0;
   z-index: 5;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0,0,0,.35);
+  background: rgba(0, 0, 0, 0.35);
   opacity: 0;
-  animation: fadeIn .18s ease forwards;
+  animation: fadeIn 0.18s ease forwards;
 }
 
-.error-modal__panel{
+.error-modal__panel {
   background: #fff;
   border: 2px solid #e53935; /* red border */
   border-radius: 12px;
   width: 90%;
   max-width: 420px;
   padding: 14px 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.18);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
   transform: translateY(12px);
   opacity: 0.98;
-  animation: slideUp .2s ease forwards;
+  animation: slideUp 0.2s ease forwards;
 }
-.error-modal__header{ font-weight: 700; color: #e53935; margin-bottom: 6px; }
-.error-modal__message{ margin: 0 0 10px; color: #333; }
-.error-modal__close{
+.error-modal__header {
+  font-weight: 700;
+  color: #e53935;
+  margin-bottom: 6px;
+}
+.error-modal__message {
+  margin: 0 0 10px;
+  color: #333;
+}
+.error-modal__close {
   align-self: flex-start;
   background: #e53935; /* red */
   color: #fff;
@@ -158,11 +182,27 @@ button:focus{
   cursor: pointer;
 }
 
-@keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
-@keyframes slideUp { from { transform: translateY(12px); opacity: 0.8 } to { transform: translateY(0); opacity: 1 } }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideUp {
+  from {
+    transform: translateY(12px);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
 /* Inline field error styles */
-.field-error{
+.field-error {
   margin-bottom: 4px;
   background: var(--errorHandlingColor);
   color: #7a1111;
@@ -175,27 +215,57 @@ button:focus{
   display: inline-block;
   transform: translateY(-6px);
   opacity: 0;
-  animation: fieldSlideUp .18s ease forwards;
+  animation: fieldSlideUp 0.18s ease forwards;
 }
 
 /* small pointer arrow pointing to the input */
-.field-error::after{
+.field-error::after {
   content: "";
   position: absolute;
   left: 12px;
   bottom: -6px;
-  width: 0; height: 0;
+  width: 0;
+  height: 0;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
   border-top: 6px solid var(--errorHandlingColor);
 }
 
 /* animate from slightly below to above, as it appears */
-@keyframes fieldSlideUp { from { transform: translateY(6px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+@keyframes fieldSlideUp {
+  from {
+    transform: translateY(6px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
 /* subtle red focus ring on the input beneath the error, without changing sizing */
 .formInput .field-error + input,
-.formInput .field-error + .password-container input{
+.formInput .field-error + .password-container input {
   box-shadow: 0 0 0 1.5px rgba(229, 57, 53, 0.45);
   transition: box-shadow 160ms ease;
+}
+
+.asking-dog-name {
+  height: auto;
+}
+
+input[type="range"] {
+  accent-color: var(--primaryColor); /* Sets the accent color to red */
+}
+
+.dog-description {
+  display: flex;
+  flex-direction: column;
+}
+
+.next-btn {
+  background-color: var(--secondaryColor);
+  margin-top: 16px;
+  align-self: self-end;
+  justify-self: self-end;
 }

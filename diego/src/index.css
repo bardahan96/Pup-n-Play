@@ -21,6 +21,8 @@
 
 body {
   margin: 0;
+  font-family: "Futura PT", Futura, "Poppins", "Trebuchet MS", Arial, sans-serif;
+  color: var(--textColor);
 }
 
 button{
@@ -53,4 +55,25 @@ button{
 }
 a {
   text-decoration: none;
+}
+
+/* Headings use a contrasting font */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* Header colors */
+header,
+h1, h2, h3 {
+  color: var(--headerColor);
+}
+
+/* Labels use header color for visual consistency */
+label {
+  color: var(--headerColor);
+}
+
+/* Ensure form controls inherit body font across browsers */
+input, select, textarea, button {
+  font-family: inherit;
 }

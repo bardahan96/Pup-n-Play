@@ -30,6 +30,9 @@
   background: none;
   width: 33px;
   height: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .back-arrow {
@@ -65,7 +68,8 @@
   color: var(--onPrimary, #fff);
   font-size: 12px;
   font-weight: 600;
-  transition: transform 120ms ease, background-color 150ms ease, box-shadow 150ms ease, filter 150ms ease;
+  transition: transform 120ms ease, background-color 150ms ease,
+    box-shadow 150ms ease, filter 150ms ease;
 }
 .btn:active { transform: translateY(1px) scale(0.96); filter: brightness(0.92); }
 .btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
@@ -74,8 +78,14 @@
 .footer .btn__icon { width: 28px; height: 28px; margin: 0; }
 .footer .btn__label { line-height: 1; }
 
-.back-btn { border-radius: 12px; padding: 6px; }
-.back-btn:active { transform: translateY(1px) scale(0.96); filter: brightness(0.94); }
+.back-btn {
+  border-radius: 12px;
+  padding: 6px;
+}
+.back-btn:active {
+  transform: translateY(1px) scale(0.96);
+  filter: brightness(0.94);
+}
 
 /* Mobile header/footer paddings and heights */
 @media (max-width: 600px) {
