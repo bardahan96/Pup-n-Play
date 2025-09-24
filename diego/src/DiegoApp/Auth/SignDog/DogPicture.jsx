@@ -20,7 +20,7 @@ function DogPicture() {
   return (
     <div className="formInput">
       <label htmlFor="uploadImgs" className="typing-label">
-        Please Upload {dog.name}'s Best Picture
+        Please Upload {dog ? dog.name : "Your dog"}'s Best Picture
       </label>
       {getFieldError('dogPhotos', 'imgs') && (
         <div className="field-error" role="alert">

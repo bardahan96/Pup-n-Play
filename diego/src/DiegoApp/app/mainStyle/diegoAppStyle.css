@@ -9,7 +9,7 @@
     overflow: hidden;
 }
 
-/* White ChatGPT image watermark behind content */
+/* Purple-tinted ChatGPT image watermark behind content */
 .webWrraper::before {
     content: "";
     position: absolute;
@@ -18,8 +18,8 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    filter: brightness(0) invert(1);
-    opacity: 0.12;
+    filter: brightness(0) invert(1) sepia(1) hue-rotate(240deg) saturate(2) brightness(0.8);
+    opacity: 0.15;
     pointer-events: none;
     z-index: 0;
 }
