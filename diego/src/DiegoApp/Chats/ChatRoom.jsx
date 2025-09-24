@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router";
 import "./ChatRoom.css";
 
 const fallbackAvatar =
@@ -37,13 +38,18 @@ function timeNow() {
 export default function ChatRoom({
   chat = defaultChat,
   initialMessages = defaultMessages,
-  onBack = () => {},
   onSend, // optional callback(newMessage)
 }) {
+  const navigate = useNavigate();
+  const { username, chatId } = useParams();
   const [messages, setMessages] = useState(initialMessages);
   const [text, setText] = useState("");
   const endRef = useRef(null);
   const inputRef = useRef(null);
+
+  const handleBack = () => {
+    navigate(`/${username}/chats`);
+  };
 
   // Auto scroll to bottom when messages change
   useEffect(() => {
@@ -84,7 +90,7 @@ export default function ChatRoom({
     <section className="chatRoom" aria-label={`Chat with ${chat.name}`}>
       {/* Header */}
       <header className="roomHeader">
-        <button className="roomBack" onClick={onBack} aria-label="Back">
+        <button className="roomBack" onClick={handleBack} aria-label="Back">
           ←
         </button>
         <img className="roomAvatar" src={avatar} alt="Chat avatar" />

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate, useParams } from "react-router";
 import "./ChatsList.css";
 
 // --- Mock data: 3 existing chats ---
@@ -32,44 +33,53 @@ const mockChats = [
   },
 ];
 
-export default function ChatList({ chats = mockChats, onOpenChat = () => {} }) {
+export default function ChatList({ chats = mockChats }) {
+  const navigate = useNavigate();
+  const { username } = useParams();
+
+  const handleOpenChat = (chat) => {
+    navigate(`/${username}/chats/${chat.id}`);
+  };
+
   return (
-    <section className="chatList" aria-label="Chats">
-      <h1 className="chatList__title">Chats</h1>
+    <div className="chatsPage-container">
+      <section className="chatList" aria-label="Chats">
+        <h1 className="chatList__title">Chats</h1>
 
-      <ul className="chatList__items" role="list">
-        {chats.map((chat) => (
-          <li key={chat.id} className="chatList__item" role="listitem">
-            <button
-              type="button"
-              className="chatItem"
-              onClick={() => onOpenChat(chat)}
-            >
-              <img
-                className="chatItem__avatar"
-                src={chat.avatar}
-                alt={`${chat.name} avatar`}
-                loading="lazy"
-                width={48}
-                height={48}
-              />
+        <ul className="chatList__items" role="list">
+          {chats.map((chat) => (
+            <li key={chat.id} className="chatList__item" role="listitem">
+              <button
+                type="button"
+                className="chatItem"
+                onClick={() => handleOpenChat(chat)}
+              >
+                <img
+                  className="chatItem__avatar"
+                  src={chat.avatar}
+                  alt={`${chat.name} avatar`}
+                  loading="lazy"
+                  width={48}
+                  height={48}
+                />
 
-              <div className="chatItem__main">
-                <div className="chatItem__row">
-                  <span className="chatItem__name">{chat.name}</span>,
-                  <time className="chatItem__time">{chat.time}</time>
+                <div className="chatItem__main">
+                  <div className="chatItem__row">
+                    <span className="chatItem__name">{chat.name}</span>,
+                    <time className="chatItem__time">{chat.time}</time>
+                  </div>
+                  <div className="chatItem__row">
+                    <span className="chatItem__preview">{chat.last}</span>
+                    {chat.unread > 0 && (
+                      <span className="chatItem__badge">{chat.unread}</span>
+                    )}
+                  </div>
                 </div>
-                <div className="chatItem__row">
-                  <span className="chatItem__preview">{chat.last}</span>
-                  {chat.unread > 0 && (
-                    <span className="chatItem__badge">{chat.unread}</span>
-                  )}
-                </div>
-              </div>
-            </button>
-          </li>
-        ))}
-      </ul>
-    </section>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
   );
 }

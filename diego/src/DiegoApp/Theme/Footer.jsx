@@ -11,7 +11,7 @@ export default function Footer({ active = "home", onChange = () => {} }) {
   
   const items = [
     { key: "matches", label: "Matches", icon: HeartIcon, alt: "Matches", nav: `/${username}/home/matches` },
-    { key: "chat", label: "Chat", icon: Chat, alt: "Chat", nav: "ChatsList" },
+    { key: "chat", label: "Chat", icon: Chat, alt: "Chat", nav: `/${username}/home/chats` },
     {
       key: "home",
       label: "Home",
@@ -19,7 +19,7 @@ export default function Footer({ active = "home", onChange = () => {} }) {
       alt: "Home",
       nav: `/${username}/home`,
     },
-    { key: "user", label: "User", icon: DogIcon, alt: "User" },
+    { key: "user", label: "User", icon: DogIcon, alt: "User" , nav: `/${username}/home/profile` },
   ];
 
   return (

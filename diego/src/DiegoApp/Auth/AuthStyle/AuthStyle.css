@@ -290,3 +290,17 @@ input[type="range"] {
   align-self: self-end;
   justify-self: self-end;
 }
+
+/* Typing Animation for Labels */
+.typing-label {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typeText 2.5s steps(40, end) 0.5s forwards;
+}
+
+@keyframes typeText {
+  from { width: 0; }
+  to { width: 100%; }
+}

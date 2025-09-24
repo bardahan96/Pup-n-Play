@@ -13,8 +13,7 @@
 .match-row {
   display: flex;
   align-items: center;       /* vertical align */
-  justify-content: center;   /* center the pair */
-  gap: 12px;                 /* space between circles */
+  justify-content: space-between;   /* space between the pair */
   width: min(92vw, 420px);
   margin: 4px 0 12px;
 }

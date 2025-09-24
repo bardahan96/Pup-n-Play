@@ -19,6 +19,7 @@ import DogName from "../Auth/SignDog/DogName";
 import DogPicture from "../Auth/SignDog/DogPicture";
 import DogPlace from "../Auth/SignDog/DogPlace";
 import DogDescription from "../Auth/SignDog/DogDescription";
+import DescrptionList from "../HomePage/HomePageComponents/DescrptionList";
 
 export default function DiegoApp() {
   const { getAllDogs, dogs} = useContext(DogContext);
@@ -46,8 +47,10 @@ export default function DiegoApp() {
                   <Route index element={<RenderDogs />}/>
                   <Route path="match" element={<Match />} />
                   <Route path="matches" element={<MatchList />} />
+                  <Route path="profile" element={<DescrptionList />} />
+                  <Route path="chats" element={<ChatsList />} />
+                {/* <Route path="/:chatId" element={<ChatRoom />} /> */}
                 </Route>
-
             </Route>
           </Route>
         </Routes>
