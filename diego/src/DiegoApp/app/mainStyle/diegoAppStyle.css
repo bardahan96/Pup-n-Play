@@ -54,7 +54,7 @@
 
 @media (max-width: 600px) {
   .webWrraper {
-    height: 86vh; 
+    height: 100vh; 
     overflow: hidden;
   }
 
