@@ -17,7 +17,7 @@ export default function DogImgModal({ isOpen, images, onClose }) {
       aria-modal="true"
       aria-label="Dog images"
     >
-      <div className="dog-modal__backdrop" onClick={() => setIsPop(false)} />
+      <div className="dog-modal__backdrop" onClick={onClose} />
       <div className="dog-modal__panel">
         <Swiper
           className="dog-modal__swiper"

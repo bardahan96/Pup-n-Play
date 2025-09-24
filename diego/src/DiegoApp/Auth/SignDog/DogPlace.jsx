@@ -20,7 +20,7 @@ function DogPlace() {
   return (
     <div>
       <div className="formInput">
-        <label htmlFor="location" className="typing-label">Where Is {dog.name} From?</label>
+        <label htmlFor="location" className="typing-label">Where Is {dog ? dog.name : "Your dog"} From?</label>
         {getFieldError('dogLocation', 'location') && (
           <div className="field-error" role="alert">
             {getFieldError('dogLocation', 'location')}

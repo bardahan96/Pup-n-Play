@@ -121,7 +121,7 @@
 }
 
 /* Style for dog images in RenderDogs */
-.render_dogs_container img {
+.dogForRender_img {
     border-radius: 4px;
 }
 
@@ -139,6 +139,53 @@
   margin-bottom: 1em;
 }
 
+/* Like/Dislike Animations */
+.like-animation {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.like-text {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #4CAF50;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: likeFadeInOut 1s ease-in-out;
+}
+
+.dislike-animation {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.dislike-text {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #f44336;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: dislikeFadeInOut 1s ease-in-out;
+}
+
+@keyframes likeFadeInOut {
+  0% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+@keyframes dislikeFadeInOut {
+  0% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
 .button_container{
   margin-top: 10px;
   display: flex;
@@ -154,7 +201,7 @@
 .dog_info {
   display: flex;
   flex-direction: row;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
   margin: 0;
   padding: 0;

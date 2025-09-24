@@ -40,7 +40,7 @@ function DogDescription() {
       </div>
 
       <div className="formInput">
-        <label htmlFor="preferences" className="typing-label">{dog.name}'s Breed:</label>
+        <label htmlFor="preferences" className="typing-label">{dog ? dog.name : "Your dog"}'s Breed:</label>
         {getFieldError('dogDescription', 'bread') && (
           <div className="field-error" role="alert">
             {getFieldError('dogDescription', 'bread')}
@@ -57,7 +57,7 @@ function DogDescription() {
       </div>
 
       <div className="formInput">
-        <label htmlFor="age" className="typing-label">{dog.name}'s Age:</label>
+        <label htmlFor="age" className="typing-label">{dog ? dog.name : "Your dog"}'s Age:</label>
         <span>{dog.age}</span>
         <input
           type="range"
