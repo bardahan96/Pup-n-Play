@@ -3,7 +3,7 @@ import HomePage from "../HomePage/HomePage";
 import SignUp from "../Auth/SignUp";
 import SignOut from "../Auth/SignOut";
 import ChatsList from "../Chats/ChatsList";
-import ChatRoom from "../Chats/ChatRoom";
+// import ChatRoom from "../Chats/ChatRoom";
 import { useContext, useEffect, useState, useMemo } from "react";
 import "./mainStyle/diegoAppStyle.css";
 import UserWrapper from "./context/UserWrapper";
@@ -22,14 +22,12 @@ import DogDescription from "../Auth/SignDog/DogDescription";
 import DescrptionList from "../HomePage/HomePageComponents/DescrptionList";
 
 import AddressAutocomplete from "../Auth/AddressAutocomplete";
-
+import ChatRoom from "../Chats/ChatRoom";
 
 export default function DiegoApp() {
-  const { getAllDogs, dogs} = useContext(DogContext);
+  const { getAllDogs, dogs } = useContext(DogContext);
 
-
-//  
-
+  //
 
   return (
     <div className="webWrraper">
@@ -38,7 +36,7 @@ export default function DiegoApp() {
           <Route path="" element={<UserWrapper />}>
             <Route index element={<LogIn />} />
             <Route path="signup" element={<SignUp />} />
-            <Route path=":username" element={<DogFormWrapper/>}>
+            <Route path=":username" element={<DogFormWrapper />}>
               <Route path="createDogName" element={<DogName />} />
               <Route path="createDogPicture" element={<DogPicture />} />
               <Route path="createDogPlace" element={<DogPlace />} />
@@ -46,15 +44,16 @@ export default function DiegoApp() {
             </Route>
             <Route path="signOut" element={<SignOut />} />
             <Route path="google" element={<AddressAutocomplete />} />
-            <Route element={<ConnectedUser/>}>
-                <Route path=":username/home" element={<HomePage />}> 
-                  <Route index element={<RenderDogs />}/>
-                  <Route path="match" element={<Match />} />
-                  <Route path="matches" element={<MatchList />} />
-                  <Route path="profile" element={<DescrptionList />} />
-                  <Route path="chats" element={<ChatsList />} />
-                {/* <Route path="/:chatId" element={<ChatRoom />} /> */}
-                </Route>
+            <Route element={<ConnectedUser />}>
+              <Route path=":username/home" element={<HomePage />}>
+                <Route index element={<RenderDogs />} />
+                <Route path="match" element={<Match />} />
+                <Route path="matches" element={<MatchList />} />
+                <Route path="profile" element={<DescrptionList />} />
+                <Route path="chats" element={<ChatsList />} />
+                {/* <Route path=":chatId" element={<ChatRoom />} /> */}
+                <Route path="chats/:chatId" element={<ChatRoom />} />
+              </Route>
             </Route>
           </Route>
         </Routes>

@@ -38,7 +38,7 @@ export default function ChatList({ chats = mockChats }) {
   const { username } = useParams();
 
   const handleOpenChat = (chat) => {
-    navigate(`/${username}/chats/${chat.id}`);
+    navigate(`/${username}/home/chats/${chat.id}`);
   };
 
   return (
