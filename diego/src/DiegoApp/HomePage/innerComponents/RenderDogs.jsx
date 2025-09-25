@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import DogImgModal from "../HomePageComponents/DogImgModal";
 import { useOutletContext, useNavigate } from "react-router";
 import Match from "./MatchList/Match";
+import chatgptEmptyImg from "../HomePageStyle/ChatGPT Image Sep 25, 2025, 09_29_03 AM.png";
 
 export default function RenderDogs() {
   // const { user, signUpDB, onChangeUserData } = useContext(UserContext);
@@ -138,7 +139,13 @@ export default function RenderDogs() {
             </div>
           </div>
         ) : (
-          <p>{remainingDogs.length === 0 ? "נגמרו הכלבים להצגה" : "לחץ כדי להתחיל"}</p>
+          remainingDogs.length === 0 && (
+            <img
+              src={chatgptEmptyImg}
+              alt="No dogs to show yet"
+              style={{ display: "block", margin: "24px auto", maxWidth: "280px", width: "70%", height: "auto", opacity: 0.9 }}
+            />
+          ) 
         )}
 
         <div className="button_container">
